@@ -1,0 +1,82 @@
+﻿<UserControl x:Class="Mine2CraftWinApp.UserControls.CreateOrUpdateUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Mine2CraftWinApp.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="10*"/>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Content="Liste des objets :" HorizontalAlignment="Center"></Label>
+            
+            <ListBox x:Name="ListBoxCompleteItem" Grid.Row="1">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="{Binding Name}" FontWeight="Bold" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="10*"/>
+            </Grid.RowDefinitions>
+
+            <Label x:Name="TitlePage" Content="Création d'un objet complet :" FontWeight="Bold" Grid.Row="0" HorizontalAlignment="Center"></Label>
+            <Button Content="Retour" Grid.Row="0" HorizontalAlignment="Right" Click="BackToMenuClick"></Button>
+
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="8*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Content="Nom :" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0, 0, 200, 0"></Label>
+                    <TextBox x:Name="CompleteItemName" Width="200" Height="20" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="100, 0, 00, 0"></TextBox>
+                </Grid>
+
+                <Grid Grid.Row="2">
+                    <Label Content="Description :" ></Label>
+                    <TextBox x:Name="CompleteItemDescription" Width="200" Height="20" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="100, 0, 00, 0"></TextBox>
+                </Grid>
+
+                <Grid Grid.Row="3">
+                    <Label Content="Durabilité :" ></Label>
+                    <TextBox x:Name="CompleteItemDurability" Width="200" Height="20" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="100, 0, 00, 0" PreviewTextInput="NumberValidationTextBox"></TextBox>
+                </Grid>
+                
+                
+                <Button Content="Créer" Grid.Row="4" Click="CreateCompleteItem"></Button>
+            </Grid>
+            
+        </Grid>
+        
+
+    </Grid>
+</UserControl>
