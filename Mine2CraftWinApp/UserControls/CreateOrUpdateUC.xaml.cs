@@ -13,7 +13,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using CompleteItemService;
 
 namespace Mine2CraftWinApp.UserControls
 {
@@ -56,11 +55,11 @@ namespace Mine2CraftWinApp.UserControls
 
         internal void CreateCompleteItem(object sender, RoutedEventArgs e)
         {
-            var client = new CompleteItemServiceClient();
+            /*var client = new CompleteItemServiceClient();
 
             client.CreateCompleteItem(CompleteItemName.Text, Int32.Parse(CompleteItemDurability.Text), CompleteItemDescription.Text);
 
-            client.Close();
+            client.Close();*/
         }
     }
 }

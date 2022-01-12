@@ -12,7 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using CompleteItemService;
+using Persistance;
+using Mine2CraftWebApp.Service.CompleteItem;
 
 namespace Mine2CraftWinApp.UserControls
 {
@@ -22,15 +23,25 @@ namespace Mine2CraftWinApp.UserControls
     public partial class ListCraftUC : UserControl
     {
 
+        public ICompleteItemRepository CompleteItemManager { get; }
+
+        public ICompleteItemService CompleteItemService { get; }
+
         public ListCraftUC()
         {
             InitializeComponent();
 
-            var client = new CompleteItemServiceClient();
+            if (Application.Current is App app)
+            {
+                CompleteItemManager = app.CompleteItemManager;
+            }
 
-            ListBoxCompleteItem.ItemsSource = client.GetCompleteItems().ToList();
+            CompleteItemService = new CompleteItemService((BddCompleteItemManager)CompleteItemManager);
 
-            client.Close();
+
+            ListBoxCompleteItem.ItemsSource = CompleteItemService.GetCompleteItems();
+
+
         }
 
         /*
@@ -55,15 +66,15 @@ namespace Mine2CraftWinApp.UserControls
 
         private void DisplayCompleteItemInfo(object sender, RoutedEventArgs e)
         {
-            CompleteItemDto completeItemSelected = (CompleteItemDto)ListBoxCompleteItem.SelectedItem;
+            /*CompleteItemDto completeItemSelected = (CompleteItemDto)ListBoxCompleteItem.SelectedItem;
 
             CompleteItemDescriptionContainer.Content = $"Description : {completeItemSelected.Description}";
-            CompleteItemDurabilityContainer.Content = $"Durabilité : {completeItemSelected.Durability}";
+            CompleteItemDurabilityContainer.Content = $"Durabilité : {completeItemSelected.Durability}";*/
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-            var completeItemDtoToDelete = ListBoxCompleteItem.SelectedItem;
+            /*var completeItemDtoToDelete = ListBoxCompleteItem.SelectedItem;
 
             var client = new CompleteItemServiceClient();
 
@@ -71,7 +82,7 @@ namespace Mine2CraftWinApp.UserControls
 
             ListBoxCompleteItem.ItemsSource = completeItemsUpdate.ToList();
 
-            client.Close();
+            client.Close();*/
         }
     }
 }
