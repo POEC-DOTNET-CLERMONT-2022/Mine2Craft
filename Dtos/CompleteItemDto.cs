@@ -14,11 +14,7 @@ namespace Mine2CraftWebApp.CompleteItem
         protected string _description;
 
         [DataMember]
-        public Guid Id
-        {
-            get => _id;
-            set => _id = value;
-        }
+        public Guid Id { get; set; }
 
         [DataMember]
         public string Name
@@ -28,11 +24,7 @@ namespace Mine2CraftWebApp.CompleteItem
         }
 
         [DataMember]
-        public int Durability
-        {
-            get => _durability;
-            set => _durability = value;
-        }
+        public int Durability { get; set; }
 
         [DataMember]
         public string Description
