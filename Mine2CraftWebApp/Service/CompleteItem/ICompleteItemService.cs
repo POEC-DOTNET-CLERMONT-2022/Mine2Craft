@@ -1,12 +1,12 @@
-﻿using Mine2CraftWebApp.CompleteItem;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using Mine2CraftWebApp.CompleteItem;
 
-namespace Mine2CraftWebApp.CompleteItemService
+namespace Mine2CraftWebApp.Service.CompleteItem
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "ICompleteItemService" in both code and config file together.
     [ServiceContract]
@@ -16,10 +16,9 @@ namespace Mine2CraftWebApp.CompleteItemService
         IEnumerable<CompleteItemDto> GetCompleteItems();
 
         [OperationContract]
-        IEnumerable<CompleteItemDto> CreateCompleteItem(String name, int durability, String description);
+        IEnumerable<CompleteItemDto> CreateCompleteItem(string name, int durability, string description);
 
         [OperationContract]
         IEnumerable<CompleteItemDto> DeleteCompleteItem(CompleteItemDto completeItemDto);
-
     }
 }

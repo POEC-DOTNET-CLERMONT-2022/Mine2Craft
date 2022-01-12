@@ -1,1 +1,0 @@
-﻿<%@ ServiceHost Language="C#" Debug="true" Service="Mine2CraftWebApp.CompleteItem.CompleteItemService" CodeBehind="CompleteItemService.svc.cs" %>

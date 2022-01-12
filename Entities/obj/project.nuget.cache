@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "PnMCBZ1k4iswJT2xwoJ8ouECAGWgTwcYJscwQCrIMU114FbXE9os/m4J98C44/tLsQ+GU8XQQDuPt6RU+ilY4w==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\johan\\source\\repos\\Mine2Craft\\Entities\\Entities.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\johan\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\johan\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
+    "C:\\Users\\johan\\.nuget\\packages\\system.componentmodel.annotations\\5.0.0\\system.componentmodel.annotations.5.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

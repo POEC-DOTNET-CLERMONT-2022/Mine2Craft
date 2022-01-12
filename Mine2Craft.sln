@@ -7,7 +7,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mine2CraftWebApp", "Mine2Cr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dtos", "Dtos\Dtos.csproj", "{F67D1C7A-7627-4AC4-8BEA-610F7B9A3406}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mine2CraftWinApp", "Mine2CraftWinApp\Mine2CraftWinApp.csproj", "{09271859-A6BA-415E-BE52-B2C1EEC76C0D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mine2CraftWinApp", "Mine2CraftWinApp\Mine2CraftWinApp.csproj", "{09271859-A6BA-415E-BE52-B2C1EEC76C0D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistance", "Persistance\Persistance.csproj", "{76E985D1-AB55-465B-89DE-4EE8799B0AF6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{E11763E3-2645-42B0-B2D9-A72BD908B2F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{65070520-6616-43FD-B631-3433423ACFCA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +33,18 @@ Global
 		{09271859-A6BA-415E-BE52-B2C1EEC76C0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09271859-A6BA-415E-BE52-B2C1EEC76C0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{09271859-A6BA-415E-BE52-B2C1EEC76C0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76E985D1-AB55-465B-89DE-4EE8799B0AF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76E985D1-AB55-465B-89DE-4EE8799B0AF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76E985D1-AB55-465B-89DE-4EE8799B0AF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76E985D1-AB55-465B-89DE-4EE8799B0AF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E11763E3-2645-42B0-B2D9-A72BD908B2F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E11763E3-2645-42B0-B2D9-A72BD908B2F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E11763E3-2645-42B0-B2D9-A72BD908B2F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E11763E3-2645-42B0-B2D9-A72BD908B2F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65070520-6616-43FD-B631-3433423ACFCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65070520-6616-43FD-B631-3433423ACFCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65070520-6616-43FD-B631-3433423ACFCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65070520-6616-43FD-B631-3433423ACFCA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
