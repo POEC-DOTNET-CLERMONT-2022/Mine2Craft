@@ -13,3 +13,9 @@ C:\Users\Johan\source\repos\Mine2Craft\Mine2CraftWebApp\bin\Fare.xml
 C:\Users\Johan\source\repos\Mine2Craft\Mine2CraftWebApp\obj\Debug\Mine2CraftWebApp.csproj.CopyComplete
 C:\Users\Johan\source\repos\Mine2Craft\Mine2CraftWebApp\bin\Dtos.dll
 C:\Users\Johan\source\repos\Mine2Craft\Mine2CraftWebApp\bin\Dtos.pdb
+C:\Users\johan\source\repos\Mine2Craft\Mine2CraftWebApp\bin\Entities.dll
+C:\Users\johan\source\repos\Mine2Craft\Mine2CraftWebApp\bin\Models.dll
+C:\Users\johan\source\repos\Mine2Craft\Mine2CraftWebApp\bin\Entities.pdb
+C:\Users\johan\source\repos\Mine2Craft\Mine2CraftWebApp\bin\Models.pdb
+C:\Users\johan\source\repos\Mine2Craft\Mine2CraftWebApp\bin\Persistance.dll
+C:\Users\johan\source\repos\Mine2Craft\Mine2CraftWebApp\bin\Persistance.pdb
