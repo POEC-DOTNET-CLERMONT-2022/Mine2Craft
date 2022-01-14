@@ -5,15 +5,17 @@ VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mine2CraftWebApp", "Mine2CraftWebApp\Mine2CraftWebApp.csproj", "{D6A4EB52-5BF9-425B-B471-EB0551645DAC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dtos", "Dtos\Dtos.csproj", "{F67D1C7A-7627-4AC4-8BEA-610F7B9A3406}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mine2CraftWinApp", "Mine2CraftWinApp\Mine2CraftWinApp.csproj", "{09271859-A6BA-415E-BE52-B2C1EEC76C0D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistance", "Persistance\Persistance.csproj", "{76E985D1-AB55-465B-89DE-4EE8799B0AF6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistance", "Persistance\Persistance.csproj", "{76E985D1-AB55-465B-89DE-4EE8799B0AF6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{E11763E3-2645-42B0-B2D9-A72BD908B2F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "Entities\Entities.csproj", "{E11763E3-2645-42B0-B2D9-A72BD908B2F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{65070520-6616-43FD-B631-3433423ACFCA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csproj", "{65070520-6616-43FD-B631-3433423ACFCA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mine2CraftApi", "Mine2CraftApi\Mine2CraftApi.csproj", "{AB4912FA-F1FC-466C-8E5B-2242F3832A87}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dtos", "Dtos\Dtos.csproj", "{0068B1BE-DC7A-4B63-8CE0-60AE74A30A10}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,10 +27,6 @@ Global
 		{D6A4EB52-5BF9-425B-B471-EB0551645DAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6A4EB52-5BF9-425B-B471-EB0551645DAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D6A4EB52-5BF9-425B-B471-EB0551645DAC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F67D1C7A-7627-4AC4-8BEA-610F7B9A3406}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F67D1C7A-7627-4AC4-8BEA-610F7B9A3406}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F67D1C7A-7627-4AC4-8BEA-610F7B9A3406}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F67D1C7A-7627-4AC4-8BEA-610F7B9A3406}.Release|Any CPU.Build.0 = Release|Any CPU
 		{09271859-A6BA-415E-BE52-B2C1EEC76C0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{09271859-A6BA-415E-BE52-B2C1EEC76C0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09271859-A6BA-415E-BE52-B2C1EEC76C0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -45,6 +43,14 @@ Global
 		{65070520-6616-43FD-B631-3433423ACFCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65070520-6616-43FD-B631-3433423ACFCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65070520-6616-43FD-B631-3433423ACFCA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB4912FA-F1FC-466C-8E5B-2242F3832A87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB4912FA-F1FC-466C-8E5B-2242F3832A87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB4912FA-F1FC-466C-8E5B-2242F3832A87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB4912FA-F1FC-466C-8E5B-2242F3832A87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0068B1BE-DC7A-4B63-8CE0-60AE74A30A10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0068B1BE-DC7A-4B63-8CE0-60AE74A30A10}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0068B1BE-DC7A-4B63-8CE0-60AE74A30A10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0068B1BE-DC7A-4B63-8CE0-60AE74A30A10}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

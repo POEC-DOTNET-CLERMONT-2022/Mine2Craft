@@ -12,8 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Dtos;
 using Persistance;
 using Mine2CraftWebApp.Service.CompleteItem;
+using Mine2CraftWinApp.Request;
 
 namespace Mine2CraftWinApp.UserControls
 {
@@ -23,25 +25,15 @@ namespace Mine2CraftWinApp.UserControls
     public partial class ListCraftUC : UserControl
     {
 
-        public ICompleteItemRepository CompleteItemManager { get; }
-
-        public ICompleteItemService CompleteItemService { get; }
+        public CompleteItemRequest CompleteItemRequest { get; } = new CompleteItemRequest();
 
         public ListCraftUC()
         {
             InitializeComponent();
+            
+            Task.Run( () => CompleteItemRequest.GetCompleteItems()).Wait();
 
-            if (Application.Current is App app)
-            {
-                CompleteItemManager = app.CompleteItemManager;
-            }
-
-            CompleteItemService = new CompleteItemService((BddCompleteItemManager)CompleteItemManager);
-
-
-            ListBoxCompleteItem.ItemsSource = CompleteItemService.GetCompleteItems();
-
-
+            ListBoxCompleteItem.ItemsSource = CompleteItemRequest.CompleteItems;
         }
 
         /*
@@ -66,10 +58,10 @@ namespace Mine2CraftWinApp.UserControls
 
         private void DisplayCompleteItemInfo(object sender, RoutedEventArgs e)
         {
-            /*CompleteItemDto completeItemSelected = (CompleteItemDto)ListBoxCompleteItem.SelectedItem;
+            CompleteItemDto completeItemSelected = (CompleteItemDto)ListBoxCompleteItem.SelectedItem;
 
             CompleteItemDescriptionContainer.Content = $"Description : {completeItemSelected.Description}";
-            CompleteItemDurabilityContainer.Content = $"Durabilité : {completeItemSelected.Durability}";*/
+            CompleteItemDurabilityContainer.Content = $"Durabilité : {completeItemSelected.Durability}";
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
@@ -84,5 +76,6 @@ namespace Mine2CraftWinApp.UserControls
 
             client.Close();*/
         }
+
     }
 }

@@ -44,6 +44,10 @@
     <Reference Include="AutoFixture, Version=4.17.0.0, Culture=neutral, PublicKeyToken=b24654c590009d4f, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoFixture.4.17.0\lib\net452\AutoFixture.dll</HintPath>
     </Reference>
+    <Reference Include="Dtos, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Bin\Dtos.dll</HintPath>
+    </Reference>
     <Reference Include="Fare, Version=2.1.0.0, Culture=neutral, PublicKeyToken=ea68d375bf33a7c8, processorArchitecture=MSIL">
       <HintPath>..\packages\Fare.2.1.1\lib\net35\Fare.dll</HintPath>
     </Reference>
@@ -73,7 +77,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Factories\CompleteItemFactory.cs" />
-    <Compile Include="Managers\CompleteItemManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\CompleteItem\CompleteItemService.svc.cs">
       <DependentUpon>CompleteItemService.svc</DependentUpon>
@@ -94,24 +97,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Dtos\Dtos.csproj">
-      <Project>{f67d1c7a-7627-4ac4-8bea-610f7b9a3406}</Project>
-      <Name>Dtos</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Entities\Entities.csproj">
-      <Project>{E11763E3-2645-42B0-B2D9-A72BD908B2F4}</Project>
-      <Name>Entities</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Models\Models.csproj">
-      <Project>{65070520-6616-43fd-b631-3433423acfca}</Project>
-      <Name>Models</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Persistance\Persistance.csproj">
-      <Project>{76E985D1-AB55-465B-89DE-4EE8799B0AF6}</Project>
-      <Name>Persistance</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
