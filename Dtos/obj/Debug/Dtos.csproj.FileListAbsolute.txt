@@ -1,6 +1,0 @@
-C:\Users\Johan\source\repos\Mine2Craft\Dtos\bin\Debug\Dtos.dll
-C:\Users\Johan\source\repos\Mine2Craft\Dtos\bin\Debug\Dtos.pdb
-C:\Users\Johan\source\repos\Mine2Craft\Dtos\obj\Debug\Dtos.csproj.AssemblyReference.cache
-C:\Users\Johan\source\repos\Mine2Craft\Dtos\obj\Debug\Dtos.csproj.CoreCompileInputs.cache
-C:\Users\Johan\source\repos\Mine2Craft\Dtos\obj\Debug\Dtos.dll
-C:\Users\Johan\source\repos\Mine2Craft\Dtos\obj\Debug\Dtos.pdb

@@ -1,29 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Web;
+﻿using System.Text.Json.Serialization;
 
-namespace Mine2CraftWebApp.CompleteItem
+namespace Dtos
 {
     public class CompleteItemDto
     {
-        
-        [DataMember]
+        [JsonPropertyName("id")]
         public Guid Id { get; set; }
 
-        [DataMember] 
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
-        [DataMember]
+        [JsonPropertyName("durability")]
         public int Durability { get; set; }
 
-        [DataMember]
+        [JsonPropertyName("description")]
         public string Description { get; set; }
 
-        public override string ToString()
-        {
-            return $"{Name} {Durability} {Description}";
-        }
     }
 }

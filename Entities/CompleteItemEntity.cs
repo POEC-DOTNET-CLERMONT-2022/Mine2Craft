@@ -21,7 +21,7 @@ namespace Entities
 
         [Column("description")]
         public string Description { get; set; }
-
+        
         public CompleteItemEntity(Guid id, string name, int durability, string description)
         {
             Id = id;

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
-using Mine2CraftWebApp.CompleteItem;
+using Dtos;
 
 namespace Mine2CraftWebApp.Service.CompleteItem
 {

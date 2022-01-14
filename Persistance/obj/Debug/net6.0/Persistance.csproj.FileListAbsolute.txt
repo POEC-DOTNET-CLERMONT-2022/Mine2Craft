@@ -1,0 +1,15 @@
+C:\Users\johan\source\repos\Mine2Craft\Persistance\bin\Debug\net6.0\Persistance.deps.json
+C:\Users\johan\source\repos\Mine2Craft\Persistance\bin\Debug\net6.0\Persistance.dll
+C:\Users\johan\source\repos\Mine2Craft\Persistance\bin\Debug\net6.0\ref\Persistance.dll
+C:\Users\johan\source\repos\Mine2Craft\Persistance\bin\Debug\net6.0\Persistance.pdb
+C:\Users\johan\source\repos\Mine2Craft\Persistance\bin\Debug\net6.0\Entities.dll
+C:\Users\johan\source\repos\Mine2Craft\Persistance\bin\Debug\net6.0\Entities.pdb
+C:\Users\johan\source\repos\Mine2Craft\Persistance\obj\Debug\net6.0\Persistance.csproj.AssemblyReference.cache
+C:\Users\johan\source\repos\Mine2Craft\Persistance\obj\Debug\net6.0\Persistance.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\johan\source\repos\Mine2Craft\Persistance\obj\Debug\net6.0\Persistance.AssemblyInfoInputs.cache
+C:\Users\johan\source\repos\Mine2Craft\Persistance\obj\Debug\net6.0\Persistance.AssemblyInfo.cs
+C:\Users\johan\source\repos\Mine2Craft\Persistance\obj\Debug\net6.0\Persistance.csproj.CoreCompileInputs.cache
+C:\Users\johan\source\repos\Mine2Craft\Persistance\obj\Debug\net6.0\Persistance.csproj.CopyComplete
+C:\Users\johan\source\repos\Mine2Craft\Persistance\obj\Debug\net6.0\Persistance.dll
+C:\Users\johan\source\repos\Mine2Craft\Persistance\obj\Debug\net6.0\ref\Persistance.dll
+C:\Users\johan\source\repos\Mine2Craft\Persistance\obj\Debug\net6.0\Persistance.pdb

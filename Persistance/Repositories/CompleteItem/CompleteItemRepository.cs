@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Entities;
 using Microsoft.EntityFrameworkCore;
@@ -20,9 +21,25 @@ namespace Persistance
             return SqlContext.Set<CompleteItemEntity>();
         }
 
-        public CompleteItemEntity GetSingleCompleteItem(short id)
+        public CompleteItemEntity GetSingleCompleteItem(Guid id)
         {
-            throw new NotImplementedException();
+            return GetAllCompleteItems().Single(completeItem => completeItem.Id == id);
+        }
+
+        public void CreateCompleteItem(CompleteItemEntity completeItemEntityToCreate)
+        {
+            SqlContext.Add(completeItemEntityToCreate);
+
+            SqlContext.SaveChanges();
+        }
+
+        public void DeleteCompleteItem(Guid id)
+        {
+            CompleteItemEntity completeItemEntityToDelete = GetSingleCompleteItem(id);
+
+            SqlContext.Remove(completeItemEntityToDelete);
+
+            SqlContext.SaveChanges();
         }
     }
 }
