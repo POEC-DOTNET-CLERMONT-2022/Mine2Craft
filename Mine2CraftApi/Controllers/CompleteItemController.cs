@@ -12,7 +12,7 @@ namespace Mine2CraftApi.Controllers
     [ApiController]
     public class CompleteItemController : ControllerBase
     {
-        private BddCompleteItemManager _bddCompleteItemManager;
+        private readonly BddCompleteItemManager _bddCompleteItemManager;
         public CompleteItemController()
         {
             _bddCompleteItemManager = new BddCompleteItemManager();
