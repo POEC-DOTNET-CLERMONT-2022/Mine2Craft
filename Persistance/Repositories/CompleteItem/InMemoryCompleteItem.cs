@@ -10,7 +10,6 @@ namespace Persistance
 {
     public class InMemoryCompleteItem : ICompleteItemRepository
     {
-        //TODO class avec fixture pour faire des tests
 
         private readonly Fixture _fixture = new Fixture();
 
