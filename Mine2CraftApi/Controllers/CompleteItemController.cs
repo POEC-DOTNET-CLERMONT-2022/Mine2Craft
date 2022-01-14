@@ -45,6 +45,7 @@ namespace Mine2CraftApi.Controllers
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
+            throw new NotSupportedException();
         }
 
         // DELETE api/<CompleteItemController>/5
