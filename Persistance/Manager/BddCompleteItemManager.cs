@@ -14,8 +14,7 @@ namespace Persistance
         {
             _completeItemRepository = new CompleteItemRepository(new SqlDbContext("Data Source=(LocalDB)\\MSSQLLocalDB;Initial Catalog=Mine2Craft;Integrated Security=True"));
         }
-
-        //TODO implement class
+        
         public IEnumerable<CompleteItemEntity> GetAllCompleteItems()
         {
             return _completeItemRepository.GetAllCompleteItems();
@@ -24,6 +23,11 @@ namespace Persistance
         public CompleteItemEntity GetSingleCompleteItem(short id)
         {
             throw new NotImplementedException();
+        }
+
+        public void CreateCompleteItem(CompleteItemEntity completeItemEntityToCreate)
+        {
+            _completeItemRepository.CreateCompleteItem(completeItemEntityToCreate);
         }
     }
 }

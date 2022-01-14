@@ -24,5 +24,12 @@ namespace Persistance
         {
             throw new NotImplementedException();
         }
+
+        public void CreateCompleteItem(CompleteItemEntity completeItemEntityToCreate)
+        {
+            SqlContext.Add(completeItemEntityToCreate);
+
+            SqlContext.SaveChanges();
+        }
     }
 }

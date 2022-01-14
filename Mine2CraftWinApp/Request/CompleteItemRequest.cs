@@ -36,5 +36,16 @@ namespace Mine2CraftWinApp.Request
             }
 
         }
+
+        public async Task CreateCompleteItem(string name, int durability, string description)
+        {
+            var request = new HttpRequestMessage(HttpMethod.Post,
+                "https://localhost:7204/api/CompleteItem");
+
+            request.Content = JsonContent.Create(new { Id = new Guid(), Name = name, Durability = durability, Description = description });
+
+            await _httpClient.SendAsync(request);
+
+        }
     }
 }

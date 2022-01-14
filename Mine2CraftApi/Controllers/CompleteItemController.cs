@@ -33,8 +33,12 @@ namespace Mine2CraftApi.Controllers
 
         // POST api/<CompleteItemController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post(CompleteItemDto completeItemDto)
         {
+            CompleteItemEntity completeItemToCreate = new CompleteItemEntity(completeItemDto.Id, completeItemDto.Name,
+                completeItemDto.Durability, completeItemDto.Description);
+
+            _bddCompleteItemManager.CreateCompleteItem(completeItemToCreate);
         }
 
         // PUT api/<CompleteItemController>/5
