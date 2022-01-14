@@ -66,15 +66,9 @@ namespace Mine2CraftWinApp.UserControls
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-            /*var completeItemDtoToDelete = ListBoxCompleteItem.SelectedItem;
+            CompleteItemDto completeItemDtoToDelete = (CompleteItemDto) ListBoxCompleteItem.SelectedItem;
 
-            var client = new CompleteItemServiceClient();
-
-            var completeItemsUpdate = client.DeleteCompleteItem((CompleteItemDto)completeItemDtoToDelete);
-
-            ListBoxCompleteItem.ItemsSource = completeItemsUpdate.ToList();
-
-            client.Close();*/
+            CompleteItemRequest.DeleteCompleteItem(completeItemDtoToDelete.Id);
         }
 
     }

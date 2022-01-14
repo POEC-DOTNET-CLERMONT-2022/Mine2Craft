@@ -9,6 +9,10 @@ namespace Persistance
     {
         IEnumerable<CompleteItemEntity> GetAllCompleteItems();
 
-        CompleteItemEntity GetSingleCompleteItem(short id);
+        CompleteItemEntity GetSingleCompleteItem(Guid id);
+
+        void CreateCompleteItem(CompleteItemEntity completeItemEntityToCreate);
+
+        void DeleteCompleteItem(Guid id);
     }
 }

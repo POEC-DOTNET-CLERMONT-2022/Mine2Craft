@@ -13,7 +13,17 @@ namespace Persistance
             throw new NotImplementedException();
         }
 
-        public CompleteItemEntity GetSingleCompleteItem(short id)
+        public CompleteItemEntity GetSingleCompleteItem(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CreateCompleteItem(CompleteItemEntity completeItemEntityToCreate)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteCompleteItem(Guid id)
         {
             throw new NotImplementedException();
         }

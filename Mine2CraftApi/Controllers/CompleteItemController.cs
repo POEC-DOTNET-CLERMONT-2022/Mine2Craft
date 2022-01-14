@@ -49,8 +49,9 @@ namespace Mine2CraftApi.Controllers
 
         // DELETE api/<CompleteItemController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public void Delete(Guid id)
         {
+            _bddCompleteItemManager.DeleteCompleteItem(id);
         }
     }
 }

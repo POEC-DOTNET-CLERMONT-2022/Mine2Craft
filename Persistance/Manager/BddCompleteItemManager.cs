@@ -20,7 +20,7 @@ namespace Persistance
             return _completeItemRepository.GetAllCompleteItems();
         }
 
-        public CompleteItemEntity GetSingleCompleteItem(short id)
+        public CompleteItemEntity GetSingleCompleteItem(Guid id)
         {
             throw new NotImplementedException();
         }
@@ -28,6 +28,11 @@ namespace Persistance
         public void CreateCompleteItem(CompleteItemEntity completeItemEntityToCreate)
         {
             _completeItemRepository.CreateCompleteItem(completeItemEntityToCreate);
+        }
+
+        public void DeleteCompleteItem(Guid id)
+        {
+            _completeItemRepository.DeleteCompleteItem(id);
         }
     }
 }

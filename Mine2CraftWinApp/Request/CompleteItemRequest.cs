@@ -47,5 +47,13 @@ namespace Mine2CraftWinApp.Request
             await _httpClient.SendAsync(request);
 
         }
+
+        public async Task DeleteCompleteItem(Guid id)
+        {
+            var request = new HttpRequestMessage(HttpMethod.Delete,
+                $"https://localhost:7204/api/CompleteItem/{id}");
+
+            await _httpClient.SendAsync(request);
+        }
     }
 }
