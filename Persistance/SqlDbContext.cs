@@ -27,7 +27,7 @@ namespace Persistance
         {
             base.OnModelCreating(modelBuilder);
 
-            EntityTypeBuilder<CompleteItemEntity> entityTypeBuilder = modelBuilder.Entity<CompleteItemEntity>();
+            modelBuilder.Entity<CompleteItemEntity>();
 
         }
 
