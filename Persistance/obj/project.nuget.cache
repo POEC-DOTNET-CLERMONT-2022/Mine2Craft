@@ -1,12 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "OnoyvxSEjjw+e+cESYnnzQjD50UhrzWsrApBLSa8kXZcH0eVJSlwRGEYnpNdb4K//5xl2nZZQM/KyI7zeTCsWQ==",
+  "dgSpecHash": "Eyzl3EZ7jF1FpKaKjv1R9eGN2pMgZZR2Q/qJYYpMexSmhuEWkF15Q90MrNhea2HS+NwljYX2LGGNf/+ReU+joA==",
   "success": true,
   "projectFilePath": "C:\\Users\\johan\\source\\repos\\Mine2Craft\\Persistance\\Persistance.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\johan\\.nuget\\packages\\autofixture\\4.17.0\\autofixture.4.17.0.nupkg.sha512",
+    "C:\\Users\\johan\\.nuget\\packages\\automapper\\11.0.0\\automapper.11.0.0.nupkg.sha512",
+    "C:\\Users\\johan\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
     "C:\\Users\\johan\\.nuget\\packages\\fare\\2.1.1\\fare.2.1.1.nupkg.sha512",
-    "C:\\Users\\johan\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
+    "C:\\Users\\johan\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\johan\\.nuget\\packages\\microsoft.data.sqlclient\\2.1.4\\microsoft.data.sqlclient.2.1.4.nupkg.sha512",
     "C:\\Users\\johan\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\2.1.1\\microsoft.data.sqlclient.sni.runtime.2.1.1.nupkg.sha512",
     "C:\\Users\\johan\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.1\\microsoft.entityframeworkcore.6.0.1.nupkg.sha512",

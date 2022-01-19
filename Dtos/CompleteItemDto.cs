@@ -4,14 +4,7 @@ namespace Dtos
 {
     public class CompleteItemDto
     {
-        public CompleteItemDto(Guid id, string name, int durability, string? description)
-        {
-            Id = id;
-            Name = name;
-            Durability = durability;
-            Description = description;
-        }
-
+        
         [JsonPropertyName("id")]
         public Guid Id { get; set; }
 

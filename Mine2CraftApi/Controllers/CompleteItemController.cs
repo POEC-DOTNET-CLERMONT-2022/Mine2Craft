@@ -1,7 +1,9 @@
-﻿using Dtos;
+﻿using AutoMapper;
+using Dtos;
 using Entities;
 using Microsoft.AspNetCore.Mvc;
-using Mine2CraftWebApp.Factories;
+using Mine2CraftApi.Transformator;
+using Models;
 using Persistance;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -13,15 +15,19 @@ namespace Mine2CraftApi.Controllers
     public class CompleteItemController : ControllerBase
     {
         private readonly BddCompleteItemManager _bddCompleteItemManager;
-        public CompleteItemController()
+
+        private readonly CompleteItemTransformator _completeItemTransformator;
+        public CompleteItemController(IMapper mapper)
         {
-            _bddCompleteItemManager = new BddCompleteItemManager();
+            _bddCompleteItemManager = new BddCompleteItemManager(mapper);
+
+            _completeItemTransformator = new CompleteItemTransformator(mapper);
         }
         // GET: api/<CompleteItemController>
         [HttpGet]
         public IEnumerable<CompleteItemDto> Get()
-        {
-             return _bddCompleteItemManager.GetAllCompleteItems().ToDto();
+        { 
+            return _completeItemTransformator.ToDto(_bddCompleteItemManager.GetAllCompleteItems());
         }
 
         // GET api/<CompleteItemController>/5
@@ -35,8 +41,7 @@ namespace Mine2CraftApi.Controllers
         [HttpPost]
         public void Post(CompleteItemDto completeItemDto)
         {
-            CompleteItemEntity completeItemToCreate = new CompleteItemEntity(completeItemDto.Id, completeItemDto.Name,
-                completeItemDto.Durability, completeItemDto.Description);
+            CompleteItemModel completeItemToCreate = _completeItemTransformator.ToModel(completeItemDto);
 
             _bddCompleteItemManager.CreateCompleteItem(completeItemToCreate);
         }

@@ -1,5 +1,6 @@
 ﻿using Mine2CraftWinApp.UserControls;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using AutoMapper;
+using Dtos;
+using Mine2CraftWinApp.Request;
 
 namespace Mine2CraftWinApp
 {
@@ -26,10 +30,14 @@ namespace Mine2CraftWinApp
         internal SelectionMenuUC SelectionMenuUC { get; set; } = new SelectionMenuUC();
 
         internal CreateOrUpdateUC CreateOrUpdateUC { get; set; } = new CreateOrUpdateUC();
+        internal CompleteItemRequest CompleteItemRequest { get; } = new CompleteItemRequest();
 
         public MainWindow()
         {
             InitializeComponent();
+
+            DataContext = this;
+
             ContentControl.Content = SelectionMenuUC;
 
             //Subscribe UserControl's event on the method who change the UserControl of the main Window
@@ -48,8 +56,9 @@ namespace Mine2CraftWinApp
             ContentControl.Content = SelectionMenuUC;
         }
 
-        private void GoToCraftList(object sender, RoutedEventArgs e)
+        private async void GoToCraftList(object sender, RoutedEventArgs e)
         {
+            ListCraftUC.LoadData();
             ContentControl.Content = ListCraftUC;
         }
 

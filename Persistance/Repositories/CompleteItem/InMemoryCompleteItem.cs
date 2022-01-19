@@ -8,7 +8,7 @@ using Entities;
 
 namespace Persistance
 {
-    public class InMemoryCompleteItem : ICompleteItemRepository
+    public class InMemoryCompleteItem
     {
 
         private readonly Fixture _fixture = new Fixture();
