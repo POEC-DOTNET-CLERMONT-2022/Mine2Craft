@@ -8,9 +8,8 @@ using Entities;
 
 namespace Persistance
 {
-    public class InMemoryCompleteItem : ICompleteItemRepository
+    public class InMemoryCompleteItem
     {
-        //TODO class avec fixture pour faire des tests
 
         private readonly Fixture _fixture = new Fixture();
 

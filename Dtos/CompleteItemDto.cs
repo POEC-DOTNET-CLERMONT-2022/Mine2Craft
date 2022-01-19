@@ -4,6 +4,7 @@ namespace Dtos
 {
     public class CompleteItemDto
     {
+        
         [JsonPropertyName("id")]
         public Guid Id { get; set; }
 
@@ -14,7 +15,7 @@ namespace Dtos
         public int Durability { get; set; }
 
         [JsonPropertyName("description")]
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
     }
 }

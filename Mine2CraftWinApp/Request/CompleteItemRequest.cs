@@ -8,6 +8,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Documents;
 using Dtos;
+using Models;
 
 namespace Mine2CraftWinApp.Request
 {
@@ -34,7 +35,6 @@ namespace Mine2CraftWinApp.Request
                 using var responseStream = await response.Content.ReadAsStreamAsync();
                 CompleteItems = await JsonSerializer.DeserializeAsync<IEnumerable<CompleteItemDto>>(responseStream);
             }
-
         }
 
         public async Task CreateCompleteItem(string name, int durability, string description)
@@ -42,7 +42,7 @@ namespace Mine2CraftWinApp.Request
             var request = new HttpRequestMessage(HttpMethod.Post,
                 "https://localhost:7204/api/CompleteItem");
 
-            request.Content = JsonContent.Create(new { Id = new Guid(), Name = name, Durability = durability, Description = description });
+            request.Content = JsonContent.Create(new { Id = Guid.NewGuid(), Name = name, Durability = durability, Description = description });
 
             await _httpClient.SendAsync(request);
 

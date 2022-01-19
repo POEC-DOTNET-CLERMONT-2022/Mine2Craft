@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using AutoMapper;
 using Dtos;
 using Persistance;
 using Mine2CraftWebApp.Service.CompleteItem;
@@ -24,16 +26,27 @@ namespace Mine2CraftWinApp.UserControls
     /// </summary>
     public partial class ListCraftUC : UserControl
     {
-
         public CompleteItemRequest CompleteItemRequest { get; } = new CompleteItemRequest();
+
+        //public CompleteItemsList CompleteItemList { get; set; } = new CompleteItemsList();
+        public CompleteItemsList CompleteItemsList { get; set; } = new CompleteItemsList();
 
         public ListCraftUC()
         {
             InitializeComponent();
-            
-            Task.Run( () => CompleteItemRequest.GetCompleteItems()).Wait();
+        }
 
-            ListBoxCompleteItem.ItemsSource = CompleteItemRequest.CompleteItems;
+        public async void LoadData()
+        {
+            CompleteItemsList.CompleteItemsDtos.Clear();
+
+            await CompleteItemRequest.GetCompleteItems();
+
+            foreach (var completeItem in CompleteItemRequest.CompleteItems)
+            {
+                CompleteItemsList.CompleteItemsDtos.Add(completeItem);
+            }
+
         }
 
         /*
@@ -60,15 +73,26 @@ namespace Mine2CraftWinApp.UserControls
         {
             CompleteItemDto completeItemSelected = (CompleteItemDto)ListBoxCompleteItem.SelectedItem;
 
-            CompleteItemDescriptionContainer.Content = $"Description : {completeItemSelected.Description}";
-            CompleteItemDurabilityContainer.Content = $"Durabilité : {completeItemSelected.Durability}";
+            if (completeItemSelected != null)
+            {
+                CompleteItemDescriptionContainer.Content = $"Description : {completeItemSelected.Description}";
+                CompleteItemDurabilityContainer.Content = $"Durabilité : {completeItemSelected.Durability}";
+            }
+            else
+            {
+                CompleteItemDescriptionContainer.Content = "";
+                CompleteItemDurabilityContainer.Content = "";
+            }
+            
         }
 
-        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        private async void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-            CompleteItemDto completeItemDtoToDelete = (CompleteItemDto) ListBoxCompleteItem.SelectedItem;
+            CompleteItemDto completeItemModelToDelete = (CompleteItemDto) ListBoxCompleteItem.SelectedItem;
 
-            CompleteItemRequest.DeleteCompleteItem(completeItemDtoToDelete.Id);
+            await CompleteItemRequest.DeleteCompleteItem(completeItemModelToDelete.Id);
+
+            CompleteItemsList.CompleteItemsDtos.Remove(completeItemModelToDelete);
         }
 
     }
