@@ -6,7 +6,9 @@ using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Documents;
+using AutoMapper;
 using Dtos;
 using Models;
 
@@ -16,7 +18,8 @@ namespace Mine2CraftWinApp.Request
     {
         private HttpClient _httpClient;
 
-        public IEnumerable<CompleteItemDto>? CompleteItems { get; private set; } = new List<CompleteItemDto>();
+        public IEnumerable<CompleteItemModel>? CompleteItems { get; private set; } = new List<CompleteItemModel>();
+        private Mapper.MapperCustom Mapper { get; } = new Mapper.MapperCustom();
 
         public CompleteItemRequest()
         {
@@ -33,7 +36,8 @@ namespace Mine2CraftWinApp.Request
             if (response.IsSuccessStatusCode)
             {
                 using var responseStream = await response.Content.ReadAsStreamAsync();
-                CompleteItems = await JsonSerializer.DeserializeAsync<IEnumerable<CompleteItemDto>>(responseStream);
+                var completeItemsDtos = await JsonSerializer.DeserializeAsync<IEnumerable<CompleteItemDto>>(responseStream);
+                CompleteItems = Mapper.Mapper.Map<IEnumerable<CompleteItemModel>>(completeItemsDtos);
             }
         }
 

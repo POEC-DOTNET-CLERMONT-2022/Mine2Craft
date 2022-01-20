@@ -18,6 +18,7 @@ using Dtos;
 using Persistance;
 using Mine2CraftWebApp.Service.CompleteItem;
 using Mine2CraftWinApp.Request;
+using Models;
 
 namespace Mine2CraftWinApp.UserControls
 {
@@ -28,7 +29,6 @@ namespace Mine2CraftWinApp.UserControls
     {
         public CompleteItemRequest CompleteItemRequest { get; } = new CompleteItemRequest();
 
-        //public CompleteItemsList CompleteItemList { get; set; } = new CompleteItemsList();
         public CompleteItemsList CompleteItemsList { get; set; } = new CompleteItemsList();
 
         public ListCraftUC()
@@ -38,13 +38,13 @@ namespace Mine2CraftWinApp.UserControls
 
         public async void LoadData()
         {
-            CompleteItemsList.CompleteItemsDtos.Clear();
+            CompleteItemsList.CompleteItemsModels.Clear();
 
             await CompleteItemRequest.GetCompleteItems();
 
             foreach (var completeItem in CompleteItemRequest.CompleteItems)
             {
-                CompleteItemsList.CompleteItemsDtos.Add(completeItem);
+                CompleteItemsList.CompleteItemsModels.Add(completeItem);
             }
 
         }
@@ -71,7 +71,7 @@ namespace Mine2CraftWinApp.UserControls
 
         private void DisplayCompleteItemInfo(object sender, RoutedEventArgs e)
         {
-            CompleteItemDto completeItemSelected = (CompleteItemDto)ListBoxCompleteItem.SelectedItem;
+            CompleteItemModel completeItemSelected = (CompleteItemModel)ListBoxCompleteItem.SelectedItem;
 
             if (completeItemSelected != null)
             {
@@ -88,11 +88,11 @@ namespace Mine2CraftWinApp.UserControls
 
         private async void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-            CompleteItemDto completeItemModelToDelete = (CompleteItemDto) ListBoxCompleteItem.SelectedItem;
+            CompleteItemModel completeItemModelToDelete = (CompleteItemModel) ListBoxCompleteItem.SelectedItem;
 
             await CompleteItemRequest.DeleteCompleteItem(completeItemModelToDelete.Id);
 
-            CompleteItemsList.CompleteItemsDtos.Remove(completeItemModelToDelete);
+            CompleteItemsList.CompleteItemsModels.Remove(completeItemModelToDelete);
         }
 
     }
