@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 using AutoMapper;
+using Dtos;
 using Entities;
 using Models;
+using Mapper;
 
 namespace Persistance
 {
@@ -12,17 +14,16 @@ namespace Persistance
         
         private readonly RepositoryGeneric<CompleteItemEntity> _completeItemRepository;
 
-        private IMapper _mapper;
+        private Mapper.MapperCustom Mapper { get; } = new Mapper.MapperCustom();
 
-        public BddCompleteItemManager(IMapper mapper)
+        public BddCompleteItemManager()
         {
             _completeItemRepository = new RepositoryGeneric<CompleteItemEntity>(new SqlDbContext("Data Source=(LocalDB)\\MSSQLLocalDB;Initial Catalog=Mine2Craft;Integrated Security=True"));
-            _mapper = mapper;
         }
 
-        public IEnumerable<CompleteItemModel> GetAllCompleteItems()
+        public IEnumerable<CompleteItemEntity> GetAllCompleteItems()
         {
-            return _mapper.Map<IEnumerable<CompleteItemModel>>(_completeItemRepository.GetAllCompleteItems());
+            return _completeItemRepository.GetAllCompleteItems();
         }
 
         public CompleteItemEntity GetSingleCompleteItem(Guid id)
@@ -30,9 +31,10 @@ namespace Persistance
             throw new NotImplementedException();
         }
 
-        public void CreateCompleteItem(CompleteItemModel completeItemModel)
+        public void CreateCompleteItem(CompleteItemDto completeItemDto)
         {
-            _completeItemRepository.CreateCompleteItem(_mapper.Map<CompleteItemEntity>(completeItemModel));
+            var completeItemEntityToCreate = Mapper.Mapper.Map<CompleteItemEntity>(completeItemDto);
+            _completeItemRepository.CreateCompleteItem(completeItemEntityToCreate);
         }
 
         public void DeleteCompleteItem(Guid id)

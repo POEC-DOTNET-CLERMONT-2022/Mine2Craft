@@ -1,26 +1,21 @@
-﻿using AutoMapper;
-using Dtos;
+﻿using Dtos;
+using Entities;
 using Models;
 
 namespace Mine2CraftApi.Transformator
 {
     public class CompleteItemTransformator
     {
-        private IMapper _mapper;
+        private Mapper.MapperCustom Mapper { get; } = new Mapper.MapperCustom();
 
-        public CompleteItemTransformator(IMapper mapper)
+        public IEnumerable<CompleteItemDto> ToDto(IEnumerable<CompleteItemEntity> completeItemsModel)
         {
-            _mapper = mapper;
-        }
-
-        public IEnumerable<CompleteItemDto> ToDto(IEnumerable<CompleteItemModel> completeItemsModel)
-        {
-            return _mapper.Map<IEnumerable<CompleteItemDto>>(completeItemsModel);
+            return Mapper.Mapper.Map<IEnumerable<CompleteItemDto>>(completeItemsModel);
         }
 
         public CompleteItemModel ToModel(CompleteItemDto completeItemDto)
         {
-            return _mapper.Map<CompleteItemModel>(completeItemDto);
+            return Mapper.Mapper.Map<CompleteItemModel>(completeItemDto);
         }
     }
 }

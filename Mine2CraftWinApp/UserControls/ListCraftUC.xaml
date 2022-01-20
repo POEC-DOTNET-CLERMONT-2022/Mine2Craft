@@ -21,7 +21,7 @@
             </Grid.RowDefinitions>
 
             <Label Grid.Row="0" Content="Liste des objets :" HorizontalAlignment="Center"></Label>
-            <ListBox x:Name="ListBoxCompleteItem" Grid.Row="1" ItemsSource="{Binding CompleteItemsList.CompleteItemsDtos, ElementName=Root}" SelectionChanged="DisplayCompleteItemInfo">
+            <ListBox x:Name="ListBoxCompleteItem" Grid.Row="1" ItemsSource="{Binding CompleteItemsList.CompleteItemsModels, ElementName=Root}" SelectionChanged="DisplayCompleteItemInfo">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Vertical">

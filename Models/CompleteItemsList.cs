@@ -5,20 +5,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dtos
+namespace Models
 {
     public class CompleteItemsList : ObservableObject
     {
-        private ObservableCollection<CompleteItemDto> _completeItemsDtos;
+        private ObservableCollection<CompleteItemModel> _completeItemsModels;
 
-        private CompleteItemDto _currentCompleteItem;
+        private CompleteItemModel _currentCompleteItem;
 
         public CompleteItemsList()
         {
-            _completeItemsDtos = new ObservableCollection<CompleteItemDto>();
+            _completeItemsModels = new ObservableCollection<CompleteItemModel>();
         }
 
-        public CompleteItemDto CurrentCompleteItem
+        public CompleteItemModel CurrentCompleteItem
         {
             get { return _currentCompleteItem; }
             set
@@ -32,14 +32,14 @@ namespace Dtos
         }
 
 
-        public ObservableCollection<CompleteItemDto> CompleteItemsDtos
+        public ObservableCollection<CompleteItemModel> CompleteItemsModels
         {
-            get { return _completeItemsDtos; }
+            get { return _completeItemsModels; }
             set
             {
-                if (_completeItemsDtos != value)
+                if (_completeItemsModels != value)
                 {
-                    _completeItemsDtos = value;
+                    _completeItemsModels = value;
                     OnNotifyPropertyChanged();
                 }
             }

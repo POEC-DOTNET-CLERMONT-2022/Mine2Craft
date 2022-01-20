@@ -19,9 +19,9 @@ namespace Mine2CraftApi.Controllers
         private readonly CompleteItemTransformator _completeItemTransformator;
         public CompleteItemController(IMapper mapper)
         {
-            _bddCompleteItemManager = new BddCompleteItemManager(mapper);
+            _completeItemTransformator = new CompleteItemTransformator();
 
-            _completeItemTransformator = new CompleteItemTransformator(mapper);
+            _bddCompleteItemManager = new BddCompleteItemManager();
         }
         // GET: api/<CompleteItemController>
         [HttpGet]
@@ -41,9 +41,7 @@ namespace Mine2CraftApi.Controllers
         [HttpPost]
         public void Post(CompleteItemDto completeItemDto)
         {
-            CompleteItemModel completeItemToCreate = _completeItemTransformator.ToModel(completeItemDto);
-
-            _bddCompleteItemManager.CreateCompleteItem(completeItemToCreate);
+            _bddCompleteItemManager.CreateCompleteItem(completeItemDto);
         }
 
         // PUT api/<CompleteItemController>/5
