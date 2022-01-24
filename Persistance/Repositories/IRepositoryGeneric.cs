@@ -11,8 +11,8 @@ namespace Persistance
 
         T GetSingleCompleteItem(Guid id);
 
-        void CreateCompleteItem(T t);
+        int CreateCompleteItem(T t);
 
-        void DeleteCompleteItem(Guid id);
+        int DeleteCompleteItem(Guid id);
     }
 }

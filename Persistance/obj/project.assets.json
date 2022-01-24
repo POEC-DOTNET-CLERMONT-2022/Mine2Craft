@@ -1815,23 +1815,6 @@
           "bin/placeholder/Entities.dll": {}
         }
       },
-      "Mapper/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "dependencies": {
-          "AutoMapper": "11.0.0",
-          "AutoMapper.Extensions.Microsoft.DependencyInjection": "11.0.0",
-          "Dtos": "1.0.0",
-          "Entities": "1.0.0",
-          "Models": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/Mapper.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Mapper.dll": {}
-        }
-      },
       "Models/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
@@ -6380,11 +6363,6 @@
       "path": "../Entities/Entities.csproj",
       "msbuildProject": "../Entities/Entities.csproj"
     },
-    "Mapper/1.0.0": {
-      "type": "project",
-      "path": "../MapperCustom/Mapper.csproj",
-      "msbuildProject": "../MapperCustom/Mapper.csproj"
-    },
     "Models/1.0.0": {
       "type": "project",
       "path": "../Models/Models.csproj",
@@ -6398,7 +6376,6 @@
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 11.0.0",
       "Dtos >= 1.0.0",
       "Entities >= 1.0.0",
-      "Mapper >= 1.0.0",
       "Microsoft.EntityFrameworkCore >= 6.0.1",
       "Microsoft.EntityFrameworkCore.Relational >= 6.0.1",
       "Microsoft.EntityFrameworkCore.SqlServer >= 6.0.1",
@@ -6437,9 +6414,6 @@
             },
             "C:\\Users\\johan\\source\\repos\\Mine2Craft\\Entities\\Entities.csproj": {
               "projectPath": "C:\\Users\\johan\\source\\repos\\Mine2Craft\\Entities\\Entities.csproj"
-            },
-            "C:\\Users\\johan\\source\\repos\\Mine2Craft\\MapperCustom\\Mapper.csproj": {
-              "projectPath": "C:\\Users\\johan\\source\\repos\\Mine2Craft\\MapperCustom\\Mapper.csproj"
             },
             "C:\\Users\\johan\\source\\repos\\Mine2Craft\\Models\\Models.csproj": {
               "projectPath": "C:\\Users\\johan\\source\\repos\\Mine2Craft\\Models\\Models.csproj"

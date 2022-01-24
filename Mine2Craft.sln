@@ -19,8 +19,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dtos", "Dtos\Dtos.csproj", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mine2CraftTest", "Mine2CraftTest\Mine2CraftTest.csproj", "{C726ED14-F45D-4AAA-9995-AD37203A772F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mapper", "MapperCustom\Mapper.csproj", "{0B72DF1C-2E28-4D54-9C9E-61AB0C20EE4C}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,10 +57,6 @@ Global
 		{C726ED14-F45D-4AAA-9995-AD37203A772F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C726ED14-F45D-4AAA-9995-AD37203A772F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C726ED14-F45D-4AAA-9995-AD37203A772F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0B72DF1C-2E28-4D54-9C9E-61AB0C20EE4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0B72DF1C-2E28-4D54-9C9E-61AB0C20EE4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0B72DF1C-2E28-4D54-9C9E-61AB0C20EE4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0B72DF1C-2E28-4D54-9C9E-61AB0C20EE4C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

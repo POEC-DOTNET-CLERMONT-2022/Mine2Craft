@@ -26,20 +26,20 @@ namespace Persistance
             return GetAllCompleteItems().Single(entity => entity.Id == id);
         }
 
-        public void CreateCompleteItem(T entityToCreate)
+        public int CreateCompleteItem(T entityToCreate)
         {
             SqlContext.Add(entityToCreate);
 
-            SqlContext.SaveChanges();
+            return SqlContext.SaveChanges();
         }
 
-        public void DeleteCompleteItem(Guid id)
+        public int DeleteCompleteItem(Guid id)
         {
             var completeItemEntityToDelete = GetSingleCompleteItem(id);
 
             SqlContext.Remove(completeItemEntityToDelete);
 
-            SqlContext.SaveChanges();
+            return SqlContext.SaveChanges();
         }
     }
 }

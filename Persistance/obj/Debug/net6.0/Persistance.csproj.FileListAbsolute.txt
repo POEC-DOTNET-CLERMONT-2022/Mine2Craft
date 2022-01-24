@@ -17,5 +17,3 @@ C:\Users\johan\source\repos\Mine2Craft\Persistance\bin\Debug\net6.0\Models.dll
 C:\Users\johan\source\repos\Mine2Craft\Persistance\bin\Debug\net6.0\Models.pdb
 C:\Users\johan\source\repos\Mine2Craft\Persistance\bin\Debug\net6.0\Dtos.dll
 C:\Users\johan\source\repos\Mine2Craft\Persistance\bin\Debug\net6.0\Dtos.pdb
-C:\Users\johan\source\repos\Mine2Craft\Persistance\bin\Debug\net6.0\Mapper.dll
-C:\Users\johan\source\repos\Mine2Craft\Persistance\bin\Debug\net6.0\Mapper.pdb

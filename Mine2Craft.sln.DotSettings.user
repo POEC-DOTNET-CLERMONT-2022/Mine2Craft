@@ -3,5 +3,7 @@
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;xUnit::C726ED14-F45D-4AAA-9995-AD37203A772F::net6.0::Mine2CraftTest.CompleteItemTest.GetAllCompleteItemTest&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::C726ED14-F45D-4AAA-9995-AD37203A772F::net6.0::Mine2CraftTest.CompleteItemTest.GetCompleteItemTest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::C726ED14-F45D-4AAA-9995-AD37203A772F::net6.0::Mine2CraftTest.CompleteItemTest.CreateCompleteItemTest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::C726ED14-F45D-4AAA-9995-AD37203A772F::net6.0::Mine2CraftTest.CompleteItemTest.DeleteCompleteItemTest&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
