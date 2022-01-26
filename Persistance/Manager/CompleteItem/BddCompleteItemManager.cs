@@ -23,7 +23,7 @@ namespace Persistance
 
         public IEnumerable<CompleteItemDto> GetAllCompleteItems()
         {
-            return Mapper.Map<IEnumerable<CompleteItemDto>>(_completeItemRepository.GetAllCompleteItems());
+            return Mapper.Map<IEnumerable<CompleteItemDto>>(_completeItemRepository.GetAll());
         }
 
         public CompleteItemDto GetSingleCompleteItem(Guid id)
@@ -31,15 +31,15 @@ namespace Persistance
             throw new NotImplementedException();
         }
 
-        public int CreateCompleteItem(CompleteItemDto completeItemDto)
+        public int CreateCompleteItem(CompleteItemDto completeItemDtoToCreate)
         {
-            var completeItemEntityToCreate = Mapper.Map<CompleteItemEntity>(completeItemDto);
-            return _completeItemRepository.CreateCompleteItem(completeItemEntityToCreate);
+            var completeItemEntityToCreate = Mapper.Map<CompleteItemEntity>(completeItemDtoToCreate);
+            return _completeItemRepository.Create(completeItemEntityToCreate);
         }
 
         public int DeleteCompleteItem(Guid id)
         {
-            return _completeItemRepository.DeleteCompleteItem(id);
+            return _completeItemRepository.Delete(id);
         }
 
     }

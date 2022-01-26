@@ -28,6 +28,7 @@ namespace Persistance
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<CompleteItemEntity>();
+            modelBuilder.Entity<UserEntity>();
 
         }
 

@@ -22,9 +22,9 @@ namespace Mine2CraftApi.Controllers
         }
         // GET: api/<CompleteItemController>
         [HttpGet]
-        public IEnumerable<CompleteItemDto> Get()
+        public IActionResult Get()
         { 
-            return _completeItemManager.GetAllCompleteItems();
+            return Ok(_completeItemManager.GetAllCompleteItems());
         }
 
         // GET api/<CompleteItemController>/5
@@ -36,9 +36,9 @@ namespace Mine2CraftApi.Controllers
 
         // POST api/<CompleteItemController>
         [HttpPost]
-        public int Post(CompleteItemDto completeItemDto)
+        public IActionResult Post(CompleteItemDto completeItemDtoToCreate)
         {
-            return _completeItemManager.CreateCompleteItem(completeItemDto);
+            return Ok(_completeItemManager.CreateCompleteItem(completeItemDtoToCreate));
         }
 
         // PUT api/<CompleteItemController>/5

@@ -246,8 +246,8 @@ FakesAssemblies/
 **/*.HTMLClient/GeneratedArtifacts
 **/*.DesktopClient/GeneratedArtifacts
 **/*.DesktopClient/ModelManifest.xml
-**/*.Server/GeneratedArtifacts
-**/*.Server/ModelManifest.xml
+**/*.GeneratedArtifacts
+**/*.ModelManifest.xml
 _Pvt_Extensions
 
 # Paket dependency manager

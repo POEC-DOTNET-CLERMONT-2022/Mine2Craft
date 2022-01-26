@@ -16,26 +16,26 @@ namespace Persistance
             SqlContext = sqlContext;
         }
 
-        public IEnumerable<T> GetAllCompleteItems()
+        public IEnumerable<T> GetAll()
         {
             return SqlContext.Set<T>();
         }
 
-        public T GetSingleCompleteItem(Guid id)
+        public T GetSingle(Guid id)
         {
-            return GetAllCompleteItems().Single(entity => entity.Id == id);
+            return GetAll().Single(entity => entity.Id == id);
         }
 
-        public int CreateCompleteItem(T entityToCreate)
+        public int Create(T entityToCreate)
         {
             SqlContext.Add(entityToCreate);
 
             return SqlContext.SaveChanges();
         }
 
-        public int DeleteCompleteItem(Guid id)
+        public int Delete(Guid id)
         {
-            var completeItemEntityToDelete = GetSingleCompleteItem(id);
+            var completeItemEntityToDelete = GetSingle(id);
 
             SqlContext.Remove(completeItemEntityToDelete);
 
