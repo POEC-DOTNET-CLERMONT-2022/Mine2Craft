@@ -15,6 +15,12 @@ namespace Mine2CraftWinApp
     /// </summary>
     public partial class App : Application
     {
-        
+        public IMapper Mapper { get; }
+
+        public App()
+        {
+            var configuration = new MapperConfiguration(cfg => cfg.AddMaps(typeof(App)));
+            Mapper = new Mapper(configuration);
+        }
     }
 }

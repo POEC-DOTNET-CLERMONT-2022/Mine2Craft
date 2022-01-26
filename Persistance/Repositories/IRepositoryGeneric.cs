@@ -7,12 +7,12 @@ namespace Persistance
 {
     public interface IRepositoryGeneric<T>
     {
-        IEnumerable<T> GetAllCompleteItems();
+        IEnumerable<T> GetAll();
 
-        T GetSingleCompleteItem(Guid id);
+        T GetSingle(Guid id);
 
-        void CreateCompleteItem(T t);
+        int Create(T t);
 
-        void DeleteCompleteItem(Guid id);
+        int Delete(Guid id);
     }
 }

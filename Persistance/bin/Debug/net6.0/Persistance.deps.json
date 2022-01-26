@@ -13,7 +13,6 @@
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "11.0.0",
           "Dtos": "1.0.0",
           "Entities": "1.0.0",
-          "Mapper": "1.0.0",
           "Microsoft.EntityFrameworkCore": "6.0.1",
           "Microsoft.EntityFrameworkCore.Relational": "6.0.1",
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.1",
@@ -1170,18 +1169,6 @@
           "Entities.dll": {}
         }
       },
-      "Mapper/1.0.0": {
-        "dependencies": {
-          "AutoMapper": "11.0.0",
-          "AutoMapper.Extensions.Microsoft.DependencyInjection": "11.0.0",
-          "Dtos": "1.0.0",
-          "Entities": "1.0.0",
-          "Models": "1.0.0"
-        },
-        "runtime": {
-          "Mapper.dll": {}
-        }
-      },
       "Models/1.0.0": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Relational": "6.0.1"
@@ -2009,11 +1996,6 @@
       "sha512": ""
     },
     "Entities/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "Mapper/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

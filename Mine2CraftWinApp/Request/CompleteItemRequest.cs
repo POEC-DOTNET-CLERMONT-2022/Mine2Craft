@@ -19,7 +19,9 @@ namespace Mine2CraftWinApp.Request
         private HttpClient _httpClient;
 
         public IEnumerable<CompleteItemModel>? CompleteItems { get; private set; } = new List<CompleteItemModel>();
-        private Mapper.MapperCustom Mapper { get; } = new Mapper.MapperCustom();
+        
+        private readonly IMapper _mapper
+            = ((App)Application.Current).Mapper;
 
         public CompleteItemRequest()
         {
@@ -37,7 +39,7 @@ namespace Mine2CraftWinApp.Request
             {
                 using var responseStream = await response.Content.ReadAsStreamAsync();
                 var completeItemsDtos = await JsonSerializer.DeserializeAsync<IEnumerable<CompleteItemDto>>(responseStream);
-                CompleteItems = Mapper.Mapper.Map<IEnumerable<CompleteItemModel>>(completeItemsDtos);
+                CompleteItems = _mapper.Map<IEnumerable<CompleteItemModel>>(completeItemsDtos);
             }
         }
 

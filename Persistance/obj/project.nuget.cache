@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "xwa3PXU4VTcu/qT7Xau8x/hY6KDQudvrdWRepgOcOPtai1wdzI+uib6E29Y9lLuadxL6XSG/+pOb5sbLMb7njQ==",
+  "dgSpecHash": "mJy1TO2rjxodOpnR0zbZEoSjbonRI7PZWpsgEjFFBrkeF2G22w0YaeDH6nCLvEv6z3URBs98K+PcAc75GDrGjQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\johan\\source\\repos\\Mine2Craft\\Persistance\\Persistance.csproj",
+  "projectFilePath": "C:\\Users\\johan\\source\\repos\\Mine2Craft\\Server\\Persistance\\Persistance.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\johan\\.nuget\\packages\\autofixture\\4.17.0\\autofixture.4.17.0.nupkg.sha512",
     "C:\\Users\\johan\\.nuget\\packages\\automapper\\11.0.0\\automapper.11.0.0.nupkg.sha512",

@@ -2,9 +2,8 @@
 using Dtos;
 using Entities;
 using Microsoft.AspNetCore.Mvc;
-using Mine2CraftApi.Transformator;
 using Models;
-using Persistance;
+using Persistance.Manager.CompleteItem;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -14,20 +13,18 @@ namespace Mine2CraftApi.Controllers
     [ApiController]
     public class CompleteItemController : ControllerBase
     {
-        private readonly BddCompleteItemManager _bddCompleteItemManager;
-
-        private readonly CompleteItemTransformator _completeItemTransformator;
-        public CompleteItemController(IMapper mapper)
+        private readonly ICompleteItemManager _completeItemManager;
+        
+        public CompleteItemController(ICompleteItemManager completeItemManager, IMapper mapper)
         {
-            _completeItemTransformator = new CompleteItemTransformator();
-
-            _bddCompleteItemManager = new BddCompleteItemManager();
+            _completeItemManager = completeItemManager;
+            _completeItemManager.Mapper = mapper;
         }
         // GET: api/<CompleteItemController>
         [HttpGet]
-        public IEnumerable<CompleteItemDto> Get()
+        public IActionResult Get()
         { 
-            return _completeItemTransformator.ToDto(_bddCompleteItemManager.GetAllCompleteItems());
+            return Ok(_completeItemManager.GetAllCompleteItems());
         }
 
         // GET api/<CompleteItemController>/5
@@ -39,9 +36,9 @@ namespace Mine2CraftApi.Controllers
 
         // POST api/<CompleteItemController>
         [HttpPost]
-        public void Post(CompleteItemDto completeItemDto)
+        public IActionResult Post(CompleteItemDto completeItemDtoToCreate)
         {
-            _bddCompleteItemManager.CreateCompleteItem(completeItemDto);
+            return Ok(_completeItemManager.CreateCompleteItem(completeItemDtoToCreate));
         }
 
         // PUT api/<CompleteItemController>/5
@@ -53,9 +50,10 @@ namespace Mine2CraftApi.Controllers
 
         // DELETE api/<CompleteItemController>/5
         [HttpDelete("{id}")]
-        public void Delete(Guid id)
+        public int Delete(Guid id)
         {
-            _bddCompleteItemManager.DeleteCompleteItem(id);
+            return _completeItemManager.DeleteCompleteItem(id);
         }
+
     }
 }
