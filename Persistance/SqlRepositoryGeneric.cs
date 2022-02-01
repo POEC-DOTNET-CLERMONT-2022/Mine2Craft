@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Persistance
 {
-    internal class RepositoryGeneric<T> : IRepositoryGeneric<T> where T : class, IBaseEntity, new()
+    public class SqlRepositoryGeneric<T> : IRepositoryGeneric<T> where T : class, IBaseEntity, new()
     {
         private DbContext SqlContext { get; }
 
-        public RepositoryGeneric(DbContext sqlContext)
+        public SqlRepositoryGeneric(DbContext sqlContext)
         {
             SqlContext = sqlContext;
         }
@@ -36,6 +36,8 @@ namespace Persistance
         public int Delete(Guid id)
         {
             var completeItemEntityToDelete = GetSingle(id);
+            
+            //TODO:: create a new class with an Id and then use it to delete
 
             SqlContext.Remove(completeItemEntityToDelete);
 

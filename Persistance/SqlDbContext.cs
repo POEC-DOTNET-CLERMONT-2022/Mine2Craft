@@ -9,36 +9,19 @@ namespace Persistance
 {
     public class SqlDbContext : DbContext
     {
-        private string ConnectionString { get; }
+        public DbSet<CompleteItemEntity> CompleteItems { get; set; }
+        
+        public DbSet<UserEntity> Users { get; set; }
 
-        public SqlDbContext(string connectionString)
+        public SqlDbContext(DbContextOptions<SqlDbContext> options)
+            : base(options)
         {
-            ConnectionString = connectionString;
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        protected SqlDbContext()
         {
-            base.OnConfiguring(optionsBuilder);
-
-            optionsBuilder.UseSqlServer(ConnectionString);
+            
         }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-
-            modelBuilder.Entity<CompleteItemEntity>();
-            modelBuilder.Entity<UserEntity>();
-
-        }
-
-        public override DbSet<TEntity> Set<TEntity>()
-        {
-            ChangeTracker.LazyLoadingEnabled = false;
-            ChangeTracker.AutoDetectChangesEnabled = false;
-            ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
-
-            return base.Set<TEntity>();
-        }
+        
     }
 }

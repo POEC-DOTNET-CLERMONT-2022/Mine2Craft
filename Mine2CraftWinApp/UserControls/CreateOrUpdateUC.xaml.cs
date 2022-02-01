@@ -13,7 +13,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Mine2CraftWinApp.Request;
 
 namespace Mine2CraftWinApp.UserControls
 {
@@ -22,7 +21,7 @@ namespace Mine2CraftWinApp.UserControls
     /// </summary>
     public partial class CreateOrUpdateUC : UserControl
     {
-        public CompleteItemRequest CompleteItemRequest { get; } = new CompleteItemRequest();
+        //public CompleteItemRequest CompleteItemRequest { get; } = new CompleteItemRequest();
         public CreateOrUpdateUC()
         {
             InitializeComponent();
@@ -57,7 +56,7 @@ namespace Mine2CraftWinApp.UserControls
 
         internal void CreateCompleteItem(object sender, RoutedEventArgs e)
         {
-            CompleteItemRequest.CreateCompleteItem(CompleteItemName.Text, Int32.Parse(CompleteItemDurability.Text), CompleteItemDescription.Text);
+            //CompleteItemRequest.CreateCompleteItem(CompleteItemName.Text, Int32.Parse(CompleteItemDurability.Text), CompleteItemDescription.Text);
         }
     }
 }

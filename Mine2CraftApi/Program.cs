@@ -1,6 +1,5 @@
+using Microsoft.EntityFrameworkCore;
 using Persistance;
-using Persistance.Manager.CompleteItem;
-using Persistance.Manager.User;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,9 +11,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-
-builder.Services.AddScoped<ICompleteItemManager, BddCompleteItemManager>();
-builder.Services.AddScoped<IUserManager, BddUserManager>();
+builder.Services.AddScoped(typeof(IRepositoryGeneric<>), typeof(SqlRepositoryGeneric<>));
+builder.Services.AddScoped<DbContext, SqlDbContext>();
+builder.Services.AddDbContext<SqlDbContext>(
+    options => options.UseSqlServer(builder.Configuration.GetConnectionString("SqlContext")));
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
@@ -24,6 +24,7 @@ builder.Services.AddCors(options =>
         builder =>
         {
             builder.AllowAnyOrigin();
+            builder.AllowAnyMethod();
         });
 });
 

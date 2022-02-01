@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ApiRequest\ApiRequest.csproj" />
     <ProjectReference Include="..\Dtos\Dtos.csproj" />
     <ProjectReference Include="..\Mine2CraftWebApp\Mine2CraftWebApp.csproj" />
     <ProjectReference Include="..\Persistance\Persistance.csproj" />

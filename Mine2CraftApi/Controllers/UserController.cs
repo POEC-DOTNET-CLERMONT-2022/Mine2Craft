@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
 using Dtos;
+using Entities;
 using Microsoft.AspNetCore.Mvc;
-using Persistance.Manager.User;
+using Persistance;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -11,19 +12,29 @@ namespace Mine2CraftApi.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly IUserManager _userManager;
+        private readonly IRepositoryGeneric<UserEntity> _userItemRepository;
+        private readonly IMapper _mapper;
 
-        public UserController(IUserManager userManager, IMapper mapper)
+        public UserController(IRepositoryGeneric<UserEntity> userItemRepository, IMapper mapper)
         {
-            _userManager = userManager;
-            _userManager.Mapper = mapper;
+            _userItemRepository = userItemRepository;
+            _mapper = mapper;
         }
 
         // GET: api/<UserController>
         [HttpGet]
-        public IEnumerable<UserDto> Get()
+        public IActionResult Get()
         {
-            return _userManager.GetAllUser();
+            try
+            {
+                var userEntities = _userItemRepository.GetAll();
+                var userDtos = _mapper.Map<IEnumerable<UserDto>>(userEntities);
+                return Ok(userDtos);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500);
+            }
         }
 
         // GET api/<UserController>/5
@@ -37,7 +48,8 @@ namespace Mine2CraftApi.Controllers
         [HttpPost]
         public int Post(UserDto userDtoToCreate)
         {
-            return _userManager.CreateUser(userDtoToCreate);
+            //return _userManager.CreateUser(userDtoToCreate);
+            throw new NotImplementedException();
         }
 
         // PUT api/<UserController>/5
@@ -48,8 +60,10 @@ namespace Mine2CraftApi.Controllers
 
         // DELETE api/<UserController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public int Delete(Guid id)
         {
+            //return _userManager.DeleteUser(id);
+            throw new NotImplementedException();
         }
     }
 }

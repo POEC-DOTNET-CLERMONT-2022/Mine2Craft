@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Mine2CraftWinApp.UserControls.ListCraftUC"
+﻿<UserControl x:Class="Mine2CraftWinApp.UserControls.ListCraftPage"
              x:Name="Root"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -6,31 +6,16 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Mine2CraftWinApp.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid DataContext="{Binding CompleteItemsList}">
+             d:DesignHeight="450" d:DesignWidth="800"
+             Loaded="Window_Loaded">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Column="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="10*"/>
-                <RowDefinition Height="1*"/>
-            </Grid.RowDefinitions>
-
-            <Label Grid.Row="0" Content="Liste des objets :" HorizontalAlignment="Center"></Label>
-            <ListBox x:Name="ListBoxCompleteItem" Grid.Row="1" ItemsSource="{Binding CompleteItemsList.CompleteItemsModels, ElementName=Root}" SelectionChanged="DisplayCompleteItemInfo">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Vertical">
-                            <TextBlock Text="{Binding Name}" FontWeight="Bold" />
-                        </StackPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-            <Button x:Name="DeleteButton" Grid.Row="2" Content="Supprimer Item" Click="DeleteButton_Click"></Button>
+            <local:ListUC x:Name="ListUc" ListCraft="{Binding CompleteItemsList, ElementName=Root}"></local:ListUC>
         </Grid>
 
         <Grid Grid.Column="1">
@@ -91,8 +76,10 @@
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Grid.Column="0" Margin="30, 50, 30, 30">
-                    <Label x:Name="CompleteItemDescriptionContainer" HorizontalAlignment="Center"></Label>
-                    <Label x:Name="CompleteItemDurabilityContainer" HorizontalAlignment="Center"></Label>
+                    <Label x:Name="CompleteItemDescription" HorizontalAlignment="Center" Content="Description :"></Label>
+                    <TextBlock x:Name="CompleteItemDescriptionContainer" HorizontalAlignment="Center" Text="{Binding ListCraft.CurrentCompleteItem.Description ,ElementName=ListUc}"></TextBlock>
+                    <Label x:Name="CompleteItemDurability" HorizontalAlignment="Center" Content="Durabilité :"></Label>
+                    <TextBlock x:Name="CompleteItemDurabilityContainer" HorizontalAlignment="Center" Text="{Binding ListCraft.CurrentCompleteItem.Durability ,ElementName=ListUc}"></TextBlock>
                 </StackPanel>
 
                 <StackPanel x:Name="CraftList" Grid.Column="1" Orientation="Vertical" Margin="20, 50, 30, 30">
