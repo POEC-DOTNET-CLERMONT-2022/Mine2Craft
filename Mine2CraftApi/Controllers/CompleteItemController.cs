@@ -3,7 +3,7 @@ using Dtos;
 using Entities;
 using Microsoft.AspNetCore.Mvc;
 using Models;
-using Persistance.Manager.CompleteItem;
+using Persistance;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -13,18 +13,28 @@ namespace Mine2CraftApi.Controllers
     [ApiController]
     public class CompleteItemController : ControllerBase
     {
-        private readonly ICompleteItemManager _completeItemManager;
+        private readonly IRepositoryGeneric<CompleteItemEntity> _completeItemRepository;
+        private readonly IMapper _mapper;
         
-        public CompleteItemController(ICompleteItemManager completeItemManager, IMapper mapper)
+        public CompleteItemController(IRepositoryGeneric<CompleteItemEntity> completeItemRepository, IMapper mapper)
         {
-            _completeItemManager = completeItemManager;
-            _completeItemManager.Mapper = mapper;
+            _completeItemRepository = completeItemRepository;
+            _mapper = mapper;
         }
         // GET: api/<CompleteItemController>
         [HttpGet]
         public IActionResult Get()
         { 
-            return Ok(_completeItemManager.GetAllCompleteItems());
+            try
+            {
+                var completeItemEntities = _completeItemRepository.GetAll();
+                var completeItemDtos = _mapper.Map<IEnumerable<CompleteItemDto>>(completeItemEntities);
+                return Ok(completeItemDtos);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500);
+            }
         }
 
         // GET api/<CompleteItemController>/5
@@ -38,7 +48,8 @@ namespace Mine2CraftApi.Controllers
         [HttpPost]
         public IActionResult Post(CompleteItemDto completeItemDtoToCreate)
         {
-            return Ok(_completeItemManager.CreateCompleteItem(completeItemDtoToCreate));
+            //return Ok(_completeItemManager.CreateCompleteItem(completeItemDtoToCreate));
+            throw new NotImplementedException();
         }
 
         // PUT api/<CompleteItemController>/5
@@ -52,7 +63,8 @@ namespace Mine2CraftApi.Controllers
         [HttpDelete("{id}")]
         public int Delete(Guid id)
         {
-            return _completeItemManager.DeleteCompleteItem(id);
+            //return _completeItemManager.DeleteCompleteItem(id);
+            throw new NotImplementedException();
         }
 
     }

@@ -16,7 +16,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using AutoMapper;
 using Dtos;
-using Mine2CraftWinApp.Request;
 
 namespace Mine2CraftWinApp
 {
@@ -25,12 +24,11 @@ namespace Mine2CraftWinApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        internal ListCraftUC ListCraftUC { get; set; } = new ListCraftUC();
+        internal ListCraftPage ListCraftPage { get; set; } = new ListCraftPage();
 
         internal SelectionMenuUC SelectionMenuUC { get; set; } = new SelectionMenuUC();
 
         internal CreateOrUpdateUC CreateOrUpdateUC { get; set; } = new CreateOrUpdateUC();
-        internal CompleteItemRequest CompleteItemRequest { get; } = new CompleteItemRequest();
 
         public MainWindow()
         {
@@ -41,7 +39,7 @@ namespace Mine2CraftWinApp
             ContentControl.Content = SelectionMenuUC;
 
             //Subscribe UserControl's event on the method who change the UserControl of the main Window
-            ListCraftUC.BackToMenu += BackToMenu;
+            ListCraftPage.BackToMenu += BackToMenu;
 
             //Subscribe UserControl's event on the method who change the UserControl of the main Window
             SelectionMenuUC.GoToCraftList += GoToCraftList;
@@ -56,10 +54,9 @@ namespace Mine2CraftWinApp
             ContentControl.Content = SelectionMenuUC;
         }
 
-        private async void GoToCraftList(object sender, RoutedEventArgs e)
+        private void GoToCraftList(object sender, RoutedEventArgs e)
         {
-            ListCraftUC.LoadData();
-            ContentControl.Content = ListCraftUC;
+            ContentControl.Content = ListCraftPage;
         }
 
         private void GoToCreateOrUpdateItem(object sender, RoutedEventArgs e)
