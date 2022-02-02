@@ -35,5 +35,7 @@ namespace Entities
             Durability = durability;
             Description = description;
         }
+
+        public ICollection<WorkbenchEntity> Workbenches { get; set; }
     }
 }

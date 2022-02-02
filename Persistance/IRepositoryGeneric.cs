@@ -14,5 +14,10 @@ namespace Persistance
         int Create(T t);
 
         int Delete(Guid id);
+
+        //Alexis
+        bool Update(T entity);
+
+        void Add(T entity);
     }
 }

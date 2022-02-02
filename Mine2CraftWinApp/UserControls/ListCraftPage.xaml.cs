@@ -18,7 +18,6 @@ using AutoMapper;
 using Dtos;
 using Entities;
 using Persistance;
-using Mine2CraftWebApp.Service.CompleteItem;
 using Models;
 
 namespace Mine2CraftWinApp.UserControls

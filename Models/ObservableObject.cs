@@ -18,6 +18,7 @@ namespace Models
             if (PropertyChanged != null)
             {
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+                //PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
     }
