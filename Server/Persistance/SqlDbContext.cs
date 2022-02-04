@@ -9,18 +9,51 @@ namespace Persistance
 {
     public class SqlDbContext : DbContext
     {
-        public DbSet<CompleteItemEntity> CompleteItems { get; set; }
         
-        public DbSet<UserEntity> Users { get; set; }
-
         public SqlDbContext(DbContextOptions<SqlDbContext> options)
             : base(options)
         {
+            //dotnet ef migrations add  InitialCreate --project Persistance --startup-project Mine2CraftApi
+            
+            //dotnet ef database update --project Persistance --startup-project Mine2CraftApi
+            
+            //dotnet ef migrations remove --project Persistance --startup-project Mine2CraftApi
         }
 
-        protected SqlDbContext()
+        public SqlDbContext()
         {
             
+        }
+        
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            //optionsBuilder.UseSqlServer(@"Server=DESKTOP-KN0N952\ALEXPRESS;User id=sa;Password = mdpbdd;Initial Catalog=Mine2Craft;Integrated Security=True;");
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Initial Catalog=Mine2Craft;Integrated Security=True");
+        }
+        
+        public DbSet<CompleteItemEntity> CompleteItems { get; set; }
+        
+        public DbSet<UserEntity> Users { get; set; }
+        
+        public DbSet<WorkbenchEntity> Workbenches { get; set; }
+        
+        public DbSet<ItemEntity> Items { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<CompleteItemEntity>()
+                .HasMany<WorkbenchEntity>(ci => ci.Workbenches)
+                .WithOne(w => w.CompleteItem)
+                .HasForeignKey(w => w.CompleteItemId);
+            
+            modelBuilder.Entity<CompleteItemEntity>().Navigation(ci => ci.Workbenches).AutoInclude();
+
+            modelBuilder.Entity<WorkbenchEntity>()
+                .HasOne<ItemEntity>(w => w.Item)
+                .WithMany(i => i.Workbenches)
+                .HasForeignKey(w => w.ItemId);
+
+            modelBuilder.Entity<WorkbenchEntity>().Navigation(w => w.Item).AutoInclude();
         }
         
     }

@@ -22,6 +22,8 @@ namespace Entities
 
         [Column("description")]
         public string Description { get; set; }
+        
+        public ICollection<WorkbenchEntity> Workbenches { get; set; }
 
         public CompleteItemEntity()
         {

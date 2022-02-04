@@ -5,10 +5,19 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Mine2CraftWinApp.UserControls"
+             xmlns:converter="clr-namespace:Mine2CraftWinApp.Converter"
+             xmlns:system="clr-namespace:System;assembly=System.Runtime"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
-             Loaded="Window_Loaded">
+             Loaded="Window_Loaded"
+             >
+    <UserControl.Resources>
+        <converter:ItemInCraftTableConverter x:Key="ItemInCraftTableConverter"/>
+        <system:Int32 x:Key="component">2</system:Int32>
+    </UserControl.Resources>
+    
     <Grid>
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="3*"/>
@@ -84,21 +93,7 @@
 
                 <StackPanel x:Name="CraftList" Grid.Column="1" Orientation="Vertical" Margin="20, 50, 30, 30">
                     <Label Content="Craft de l'objet :" HorizontalAlignment="Center"></Label>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <Label x:Name="Component0" Content="Component1" Margin="20"></Label>
-                        <Label x:Name="Component1" Content="Component2" Margin="20"></Label>
-                        <Label x:Name="Component2" Content="Component3" Margin="20"></Label>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <Label x:Name="Component3" Content="Component4" Margin="20"></Label>
-                        <Label x:Name="Component4" Content="Component5" Margin="20"></Label>
-                        <Label x:Name="Component5" Content="Component6" Margin="20"></Label>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <Label x:Name="Component6" Content="Component7" Margin="20"></Label>
-                        <Label x:Name="Component7" Content="Component8" Margin="20"></Label>
-                        <Label x:Name="Component8" Content="Component9" Margin="20"></Label>
-                    </StackPanel>
+                    <local:CraftCompleteItemUC WorkbenchCompleteItem="{Binding CompleteItemsList.CurrentCompleteItem.Workbenches, ElementName=Root}"></local:CraftCompleteItemUC>
                 </StackPanel>
             </Grid>
         </Grid>

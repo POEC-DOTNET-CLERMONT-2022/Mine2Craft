@@ -16,6 +16,9 @@ namespace Dtos
 
         [JsonPropertyName("description")]
         public string? Description { get; set; }
+        
+        [JsonPropertyName("workbenches")]
+        public ICollection<WorkbenchDto> Workbenches { get; set; }
 
     }
 }

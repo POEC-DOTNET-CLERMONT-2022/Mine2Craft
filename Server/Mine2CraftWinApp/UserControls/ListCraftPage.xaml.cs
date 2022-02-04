@@ -18,7 +18,6 @@ using AutoMapper;
 using Dtos;
 using Entities;
 using Persistance;
-using Mine2CraftWebApp.Service.CompleteItem;
 using Models;
 
 namespace Mine2CraftWinApp.UserControls
@@ -50,12 +49,7 @@ namespace Mine2CraftWinApp.UserControls
             var completeItemModels = await _completeItemManager.GetAll();
 
             CompleteItemsList.CompleteItemsModels = new ObservableCollection<CompleteItemModel>(completeItemModels);
-
-            //foreach (var completeItem in CompleteItemRequest.CompleteItems)
-            //{
-              //  CompleteItemsList.CompleteItemsModels.Add(completeItem);
-            //}
-
+            
         }
 
         /*

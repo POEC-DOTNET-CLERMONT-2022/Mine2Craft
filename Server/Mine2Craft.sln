@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mine2CraftWebApp", "Mine2CraftWebApp\Mine2CraftWebApp.csproj", "{D6A4EB52-5BF9-425B-B471-EB0551645DAC}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mine2CraftWinApp", "Mine2CraftWinApp\Mine2CraftWinApp.csproj", "{09271859-A6BA-415E-BE52-B2C1EEC76C0D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistance", "Persistance\Persistance.csproj", "{76E985D1-AB55-465B-89DE-4EE8799B0AF6}"
@@ -27,10 +25,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D6A4EB52-5BF9-425B-B471-EB0551645DAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D6A4EB52-5BF9-425B-B471-EB0551645DAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D6A4EB52-5BF9-425B-B471-EB0551645DAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D6A4EB52-5BF9-425B-B471-EB0551645DAC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{09271859-A6BA-415E-BE52-B2C1EEC76C0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{09271859-A6BA-415E-BE52-B2C1EEC76C0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09271859-A6BA-415E-BE52-B2C1EEC76C0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
