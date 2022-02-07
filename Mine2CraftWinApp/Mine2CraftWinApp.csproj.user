@@ -27,6 +27,9 @@
     <Page Update="UserControls\CreateOrUpdateUC.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="UserControls\ItemManagerPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="UserControls\ListUC.xaml">
       <SubType>Designer</SubType>
     </Page>

@@ -22,24 +22,54 @@ public class RequestManager<TModel, TDto> : IRequestManager<TModel, TDto>   wher
         Uri = new Uri(ServerUrl + ResourceUrl); 
     }
     
+    //public async Task<IEnumerable<TModel>> GetAll()
+    //{
+    //    var request = new HttpRequestMessage(HttpMethod.Get, Uri);
+        
+    //    var response = await HttpClient.SendAsync(request);
+    //    using var responseStream = await response.Content.ReadAsStreamAsync();
+    //    var result = await JsonSerializer.DeserializeAsync<IEnumerable<TDto>>(responseStream);
+    //    return Mapper.Map<IEnumerable<TModel>>(result);
+    //}
+    
+    //public async Task CreateCompleteItem(string name, int durability, string description)
+    //{
+    //    /*var request = new HttpRequestMessage(HttpMethod.Post,
+    //        "https://localhost:7204/api/CompleteItem");
+
+    //    request.Content = JsonContent.Create(new { Id = Guid.NewGuid(), Name = name, Durability = durability, Description = description });
+
+    //    await _httpClient.SendAsync(request);*/
+
+    //}
+
     public async Task<IEnumerable<TModel>> GetAll()
     {
-        var request = new HttpRequestMessage(HttpMethod.Get, Uri);
-        
-        var response = await HttpClient.SendAsync(request);
-        using var responseStream = await response.Content.ReadAsStreamAsync();
-        var result = await JsonSerializer.DeserializeAsync<IEnumerable<TDto>>(responseStream);
+        var result = await HttpClient.GetFromJsonAsync<IEnumerable<TDto>>(Uri);
         return Mapper.Map<IEnumerable<TModel>>(result);
     }
-    
-    public async Task CreateCompleteItem(string name, int durability, string description)
+
+    public async Task Add(TModel model)
     {
-        /*var request = new HttpRequestMessage(HttpMethod.Post,
-            "https://localhost:7204/api/CompleteItem");
+        var dto = Mapper.Map<TDto>(model);
+        await HttpClient.PostAsJsonAsync(Uri, dto);
+    }
 
-        request.Content = JsonContent.Create(new { Id = Guid.NewGuid(), Name = name, Durability = durability, Description = description });
+    public async Task Delete(Guid guid)
+    {
+        string sguid = "/" + guid.ToString();
+        var uriDelete = new Uri(Uri + sguid);
+        await HttpClient.DeleteAsync(uriDelete);
+    }
 
-        await _httpClient.SendAsync(request);*/
+    public async Task Update(TModel model, Guid guid)
+    {
+        var dto = Mapper.Map<TDto>(model);
 
+
+        string sguid = "/" + guid.ToString();
+        var uriUpdate = new Uri(Uri + sguid);
+
+        await HttpClient.PutAsJsonAsync(uriUpdate, dto);
     }
 }

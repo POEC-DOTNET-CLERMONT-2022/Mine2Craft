@@ -10,14 +10,20 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+//builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+//builder.Services.AddScoped(typeof(IRepositoryGeneric<>), typeof(SqlRepositoryGeneric<>));
+//builder.Services.AddScoped<DbContext, SqlDbContext>();
+//builder.Services.AddDbContext<SqlDbContext>(
+//    options => options.UseSqlServer(builder.Configuration.GetConnectionString("SqlContext")));
+
+builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddScoped(typeof(IRepositoryGeneric<>), typeof(SqlRepositoryGeneric<>));
 builder.Services.AddScoped<DbContext, SqlDbContext>();
-builder.Services.AddDbContext<SqlDbContext>(
-    options => options.UseSqlServer(builder.Configuration.GetConnectionString("SqlContext")));
+builder.Services.AddDbContext<SqlDbContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<SqlDbContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("SqlContext")));
+
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
-
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: MyAllowSpecificOrigins,
@@ -30,8 +36,16 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<DbContext>();
+
+    context.Database.Migrate();
+}
 
 app.UseCors(MyAllowSpecificOrigins);
+
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
