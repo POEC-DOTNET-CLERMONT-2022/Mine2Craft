@@ -30,6 +30,7 @@ namespace Mine2CraftWinApp
         {
             var configuration = new MapperConfiguration(cfg => cfg.AddMaps(typeof(App)));
             Mapper = new Mapper(configuration);
+            
             CompleteItemRequestManager = new CompleteItemRequestManager(HttpClient, Mapper, SERVER_URL);
         }
     }

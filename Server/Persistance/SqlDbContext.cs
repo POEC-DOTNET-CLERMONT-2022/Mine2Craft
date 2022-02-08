@@ -32,7 +32,9 @@ namespace Persistance
         }
         
         public DbSet<CompleteItemEntity> CompleteItems { get; set; }
-        
+        public DbSet<ToolEntity> Tools { get; set; }
+        public DbSet<ArmorEntity> Armors { get; set; }
+
         public DbSet<UserEntity> Users { get; set; }
         
         public DbSet<WorkbenchEntity> Workbenches { get; set; }
@@ -42,14 +44,19 @@ namespace Persistance
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<CompleteItemEntity>()
-                .HasMany<WorkbenchEntity>(ci => ci.Workbenches)
+                .HasMany(ci => ci.Workbenches)
                 .WithOne(w => w.CompleteItem)
                 .HasForeignKey(w => w.CompleteItemId);
             
             modelBuilder.Entity<CompleteItemEntity>().Navigation(ci => ci.Workbenches).AutoInclude();
 
+            modelBuilder.Entity<CompleteItemEntity>()
+                .HasDiscriminator(ci => ci.CompleteItemType)
+                .HasValue<ToolEntity>("tools")
+                .HasValue<ArmorEntity>("armors");
+
             modelBuilder.Entity<WorkbenchEntity>()
-                .HasOne<ItemEntity>(w => w.Item)
+                .HasOne(w => w.Item)
                 .WithMany(i => i.Workbenches)
                 .HasForeignKey(w => w.ItemId);
 

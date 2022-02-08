@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Persistance
 {
-    public class SqlRepositoryGeneric<T> : IRepositoryGeneric<T> where T : class, IBaseEntity, new()
+    public class SqlRepositoryGeneric<T> : IRepositoryGeneric<T> where T : class, IBaseEntity
     {
         private DbContext SqlContext { get; }
 

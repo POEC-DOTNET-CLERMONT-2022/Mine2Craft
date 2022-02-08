@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dtos;
+using Entities;
 using Models;
 
 namespace Mine2CraftWinApp.Profile
@@ -12,7 +13,11 @@ namespace Mine2CraftWinApp.Profile
     {
         public CompleteItemProfile()
         {
-            CreateMap<CompleteItemDto, CompleteItemModel>().ReverseMap();
+            CreateMap<CompleteItemDto, CompleteItemModel>()
+                .IncludeAllDerived();
+            
+            CreateMap<ArmorDto, ArmorModel>().ReverseMap();
+            CreateMap<ToolDto, ToolModel>().ReverseMap();
         }
     }
 }

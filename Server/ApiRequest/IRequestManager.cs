@@ -1,4 +1,6 @@
-﻿namespace ApiRequest;
+﻿using Models;
+
+namespace ApiRequest;
 
 public interface IRequestManager<TModel, TDto>  where TModel : class
                                                 where TDto : class

@@ -9,4 +9,10 @@ public class ItemDto
 
     [JsonPropertyName("name")]
     public string Name { get; set; }
+
+    public ItemDto(Guid id, string name)
+    {
+        Id = id;
+        Name = name;
+    }
 }

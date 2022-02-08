@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistance;
 
@@ -11,9 +12,10 @@ using Persistance;
 namespace Persistance.Migrations
 {
     [DbContext(typeof(SqlDbContext))]
-    partial class SqlDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220205114226_FixPropertyDiscriminator")]
+    partial class FixPropertyDiscriminator
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -113,17 +115,6 @@ namespace Persistance.Migrations
                     b.HasIndex("ItemId");
 
                     b.ToTable("Workbenches");
-                });
-
-            modelBuilder.Entity("Entities.ArmorEntity", b =>
-                {
-                    b.HasBaseType("Entities.CompleteItemEntity");
-
-                    b.Property<int>("ArmorPoint")
-                        .HasColumnType("int")
-                        .HasColumnName("armorPoint");
-
-                    b.HasDiscriminator().HasValue("armors");
                 });
 
             modelBuilder.Entity("Entities.ToolEntity", b =>

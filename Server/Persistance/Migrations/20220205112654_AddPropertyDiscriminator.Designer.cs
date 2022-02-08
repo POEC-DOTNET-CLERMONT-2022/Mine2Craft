@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistance;
 
@@ -11,9 +12,10 @@ using Persistance;
 namespace Persistance.Migrations
 {
     [DbContext(typeof(SqlDbContext))]
-    partial class SqlDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220205112654_AddPropertyDiscriminator")]
+    partial class AddPropertyDiscriminator
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,14 +31,14 @@ namespace Persistance.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("id");
 
-                    b.Property<string>("CompleteItemType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("complete_item_type");
-
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("description");
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("complete_item_type");
 
                     b.Property<int>("Durability")
                         .HasColumnType("int")
@@ -46,11 +48,15 @@ namespace Persistance.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("name");
 
+                    b.Property<string>("complete_item_type")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("complete_item_type1");
+
                     b.HasKey("Id");
 
                     b.ToTable("CompleteItems");
 
-                    b.HasDiscriminator<string>("CompleteItemType").HasValue("CompleteItemEntity");
+                    b.HasDiscriminator<string>("Discriminator").HasValue("CompleteItemEntity");
                 });
 
             modelBuilder.Entity("Entities.ItemEntity", b =>
@@ -113,17 +119,6 @@ namespace Persistance.Migrations
                     b.HasIndex("ItemId");
 
                     b.ToTable("Workbenches");
-                });
-
-            modelBuilder.Entity("Entities.ArmorEntity", b =>
-                {
-                    b.HasBaseType("Entities.CompleteItemEntity");
-
-                    b.Property<int>("ArmorPoint")
-                        .HasColumnType("int")
-                        .HasColumnName("armorPoint");
-
-                    b.HasDiscriminator().HasValue("armors");
                 });
 
             modelBuilder.Entity("Entities.ToolEntity", b =>

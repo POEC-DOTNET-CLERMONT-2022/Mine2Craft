@@ -12,8 +12,8 @@
              Loaded="Window_Loaded"
              >
     <UserControl.Resources>
-        <converter:ItemInCraftTableConverter x:Key="ItemInCraftTableConverter"/>
-        <system:Int32 x:Key="component">2</system:Int32>
+        <converter:DisplaySpecificityCompleteItemValue x:Key="DisplaySpecificityCompleteItemValue"/>
+        <converter:DisplaySpecificityCompleteItemLabel x:Key="DisplaySpecificityCompleteItemLabel"/>
     </UserControl.Resources>
     
     <Grid>
@@ -89,6 +89,8 @@
                     <TextBlock x:Name="CompleteItemDescriptionContainer" HorizontalAlignment="Center" Text="{Binding ListCraft.CurrentCompleteItem.Description ,ElementName=ListUc}"></TextBlock>
                     <Label x:Name="CompleteItemDurability" HorizontalAlignment="Center" Content="Durabilité :"></Label>
                     <TextBlock x:Name="CompleteItemDurabilityContainer" HorizontalAlignment="Center" Text="{Binding ListCraft.CurrentCompleteItem.Durability ,ElementName=ListUc}"></TextBlock>
+                    <Label x:Name="CompleteItemSpecifity" HorizontalAlignment="Center" Content="{Binding ListCraft.CurrentCompleteItem ,ElementName=ListUc,  Converter={StaticResource DisplaySpecificityCompleteItemLabel}}"></Label>
+                    <TextBlock x:Name="CompleteItemSpecifityContainer" HorizontalAlignment="Center" Text="{Binding ListCraft.CurrentCompleteItem ,ElementName=ListUc,  Converter={StaticResource DisplaySpecificityCompleteItemValue}}"></TextBlock>
                 </StackPanel>
 
                 <StackPanel x:Name="CraftList" Grid.Column="1" Orientation="Vertical" Margin="20, 50, 30, 30">

@@ -1,6 +1,9 @@
 ﻿using System.Net.Http.Json;
 using System.Text.Json;
 using AutoMapper;
+using Dtos;
+using Models;
+using Newtonsoft.Json;
 
 namespace ApiRequest;
 
@@ -24,18 +27,21 @@ public class RequestManager<TModel, TDto> : IRequestManager<TModel, TDto>   wher
     
     public async Task<IEnumerable<TModel>> GetAll()
     {
-        var request = new HttpRequestMessage(HttpMethod.Get, Uri);
-        
-        var response = await HttpClient.SendAsync(request);
-        using var responseStream = await response.Content.ReadAsStreamAsync();
-        var result = await JsonSerializer.DeserializeAsync<IEnumerable<TDto>>(responseStream);
-        return Mapper.Map<IEnumerable<TModel>>(result);
+        var httpResponse = await HttpClient.GetAsync(Uri);
+        var responseAsString = await httpResponse.Content.ReadAsStringAsync();
+
+        var dtos = JsonConvert.DeserializeObject<IEnumerable<TDto>>(responseAsString,
+            new JsonSerializerSettings {TypeNameHandling = TypeNameHandling.Auto});
+
+        return Mapper.Map<IEnumerable<TModel>>(dtos);
     }
     
     public async Task CreateCompleteItem(string name, int durability, string description)
     {
         /*var request = new HttpRequestMessage(HttpMethod.Post,
             "https://localhost:7204/api/CompleteItem");
+            
+        postRequest.Content = new StringContent(dtoString, System.Text.Encoding.UTF8, "application/json-patch+json");
 
         request.Content = JsonContent.Create(new { Id = Guid.NewGuid(), Name = name, Durability = durability, Description = description });
 

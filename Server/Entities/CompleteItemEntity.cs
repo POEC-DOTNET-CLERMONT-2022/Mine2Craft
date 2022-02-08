@@ -6,14 +6,13 @@ using System.Text;
 
 namespace Entities
 {
-    [Table("completeItem")]
-    public class CompleteItemEntity : IBaseEntity
+    public abstract class CompleteItemEntity : IBaseEntity
     {
 
         [Key]
         [Column("id")] 
         public Guid Id { get; set; }
-
+        
         [Column("name")]
         public string Name { get; set; }
 
@@ -23,19 +22,11 @@ namespace Entities
         [Column("description")]
         public string Description { get; set; }
         
-        public ICollection<WorkbenchEntity> Workbenches { get; set; }
-
-        public CompleteItemEntity()
-        {
-
-        }
+        [Column("complete_item_type")]
+        public string CompleteItemType { get; set; }
         
-        public CompleteItemEntity(Guid id, string name, int durability, string description)
-        {
-            Id = id;
-            Name = name;
-            Durability = durability;
-            Description = description;
-        }
+        public ICollection<WorkbenchEntity> Workbenches { get; set; }
+        
+        
     }
 }

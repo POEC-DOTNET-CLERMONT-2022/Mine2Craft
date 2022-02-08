@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using Persistance;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -27,6 +28,9 @@ builder.Services.AddCors(options =>
             builder.AllowAnyMethod();
         });
 });
+
+builder.Services.AddControllers().AddNewtonsoftJson(
+    opt => opt.SerializerSettings.TypeNameHandling = TypeNameHandling.Auto);
 
 var app = builder.Build();
 

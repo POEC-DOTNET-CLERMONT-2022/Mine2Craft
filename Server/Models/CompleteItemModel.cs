@@ -10,11 +10,27 @@ namespace Models
     public class CompleteItemModel : ObservableObject
     {
 
-        private Guid _id;
-        private string _name;
-        private int _durability;
-        private string _description;
-        private ICollection<WorkbenchDto> _workbenches;
+        protected Guid _id;
+        protected string _name;
+        protected int _durability;
+        protected string _description;
+        protected ICollection<WorkbenchDto> _workbenches;
+        
+        public CompleteItemModel()
+        {
+            
+        }
+
+        [JsonConstructorAttribute]
+        public CompleteItemModel(Guid id, string name, int durability, string description,
+            ICollection<WorkbenchDto> workbenches)
+        {
+            Id = id;
+            Name = name;
+            Durability = durability;
+            Description = description;
+            Workbenches = workbenches;
+        }
 
         public Guid Id
         {
@@ -67,6 +83,7 @@ namespace Models
                 }
             }
         }
+        
         public ICollection<WorkbenchDto> Workbenches
         {
             get { return _workbenches; }
@@ -84,7 +101,7 @@ namespace Models
 
                     foreach (var position in emptyPosition)
                     {
-                        positionManaged.Add(new WorkbenchDto(){Position = position, Item = null});
+                        positionManaged.Add(new WorkbenchDto(position, null));
                     }
 
                     foreach (var workbench in value)
