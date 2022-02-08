@@ -1,0 +1,2 @@
+C:\Users\sa_12\Desktop\Formation .NET\Visual Studio\Mine2Craft\Mine2CraftWebApp\obj\Debug\Mine2CraftWebApp.csproj.AssemblyReference.cache
+C:\Users\sa_12\Desktop\Formation .NET\Visual Studio\Mine2Craft\Mine2CraftWebApp\obj\Debug\Mine2CraftWebApp.csproj.CoreCompileInputs.cache

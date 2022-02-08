@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dtos", "Dtos\Dtos.csproj", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mine2CraftTest", "Mine2CraftTest\Mine2CraftTest.csproj", "{C726ED14-F45D-4AAA-9995-AD37203A772F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiRequest", "ApiRequest\ApiRequest.csproj", "{D02CD84C-B9CF-4166-9A4A-298BD98E9906}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiRequest", "ApiRequest\ApiRequest.csproj", "{D02CD84C-B9CF-4166-9A4A-298BD98E9906}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -17,6 +17,7 @@ using ApiRequest;
 using AutoMapper;
 using Dtos;
 using Entities;
+using Mine2CraftWinApp.Utils;
 using Persistance;
 using Models;
 
@@ -31,6 +32,8 @@ namespace Mine2CraftWinApp.UserControls
             = ((App) Application.Current).CompleteItemRequestManager;
 
         public CompleteItemsList CompleteItemsList { get; set; } = new CompleteItemsList();
+        
+        public INavigator Navigator { get; set; } = ((App)Application.Current).Navigator;
 
         public ListCraftPage()
         {
@@ -69,7 +72,7 @@ namespace Mine2CraftWinApp.UserControls
          */
         internal void BackToMenuClick(object sender, RoutedEventArgs e)
         {
-            RaiseEvent(new RoutedEventArgs(BackToMenuEvent));
+            Navigator.NavigateTo(typeof(SelectionMenuUC));
         }
     }
 }

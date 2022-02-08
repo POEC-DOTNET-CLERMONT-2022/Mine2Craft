@@ -43,5 +43,24 @@ namespace Persistance
 
             return SqlContext.SaveChanges();
         }
+
+
+        // Alexis
+        public bool Update(T entity)
+        {
+            if (entity != null)
+            {
+                SqlContext.Update(entity);
+                SqlContext.SaveChanges();
+                return true;
+            }
+            return false;
+        }
+
+        public void Add(T entity)
+        {
+            SqlContext.Add(entity);
+            SqlContext.SaveChanges();
+        }
     }
 }

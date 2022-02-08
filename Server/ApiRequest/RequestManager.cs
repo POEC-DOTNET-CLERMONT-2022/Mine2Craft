@@ -24,7 +24,6 @@ public class RequestManager<TModel, TDto> : IRequestManager<TModel, TDto>   wher
         ResourceUrl = resourceUrl;
         Uri = new Uri(ServerUrl + ResourceUrl); 
     }
-    
     public async Task<IEnumerable<TModel>> GetAll()
     {
         var httpResponse = await HttpClient.GetAsync(Uri);
@@ -35,17 +34,33 @@ public class RequestManager<TModel, TDto> : IRequestManager<TModel, TDto>   wher
 
         return Mapper.Map<IEnumerable<TModel>>(dtos);
     }
-    
-    public async Task CreateCompleteItem(string name, int durability, string description)
+
+    public async Task Add(TModel model)
     {
-        /*var request = new HttpRequestMessage(HttpMethod.Post,
+        var request = new HttpRequestMessage(HttpMethod.Post,
             "https://localhost:7204/api/CompleteItem");
             
-        postRequest.Content = new StringContent(dtoString, System.Text.Encoding.UTF8, "application/json-patch+json");
+        //postRequest.Content = new StringContent(dtoString, System.Text.Encoding.UTF8, "application/json-patch+json");
 
-        request.Content = JsonContent.Create(new { Id = Guid.NewGuid(), Name = name, Durability = durability, Description = description });
+        var dto = Mapper.Map<TDto>(model);
+        await HttpClient.PostAsJsonAsync(Uri, dto);
+    }
 
-        await _httpClient.SendAsync(request);*/
+    public async Task Delete(Guid guid)
+    {
+        string sguid = "/" + guid.ToString();
+        var uriDelete = new Uri(Uri + sguid);
+        await HttpClient.DeleteAsync(uriDelete);
+    }
 
+    public async Task Update(TModel model, Guid guid)
+    {
+        var dto = Mapper.Map<TDto>(model);
+
+
+        string sguid = "/" + guid.ToString();
+        var uriUpdate = new Uri(Uri + sguid);
+
+        await HttpClient.PutAsJsonAsync(uriUpdate, dto);
     }
 }

@@ -27,6 +27,5 @@ namespace Entities
         
         public ICollection<WorkbenchEntity> Workbenches { get; set; }
         
-        
     }
 }

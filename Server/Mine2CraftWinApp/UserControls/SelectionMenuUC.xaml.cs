@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Mine2CraftWinApp.Utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,8 @@ namespace Mine2CraftWinApp.UserControls
     /// </summary>
     public partial class SelectionMenuUC : UserControl
     {
+        public INavigator Navigator { get; set; } = ((App)Application.Current).Navigator;
+
         public SelectionMenuUC()
         {
             InitializeComponent();
@@ -42,7 +45,8 @@ namespace Mine2CraftWinApp.UserControls
          */
         internal void GoToCraftListClick(object sender, RoutedEventArgs e)
         {
-            RaiseEvent(new RoutedEventArgs(GoToCraftListEvent));
+            //RaiseEvent(new RoutedEventArgs(GoToCraftListEvent));
+            Navigator.NavigateTo(typeof(ListCraftPage));
         }
 
         internal static readonly RoutedEvent GoToCreateOrUpdateItemEvent = EventManager.RegisterRoutedEvent(
@@ -57,6 +61,11 @@ namespace Mine2CraftWinApp.UserControls
         internal void GoToCreateOrUpdateItemClick(object sender, RoutedEventArgs e)
         {
             RaiseEvent(new RoutedEventArgs(GoToCreateOrUpdateItemEvent));
+        }
+
+        private void GoToItemManagerPage(object sender, RoutedEventArgs e)
+        {
+            Navigator.NavigateTo(typeof(ItemManagerPage));
         }
     }
 }

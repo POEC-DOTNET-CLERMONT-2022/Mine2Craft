@@ -7,6 +7,8 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
 
-    <ContentControl x:Name="ContentControl"></ContentControl>
+    <!--<ContentControl x:Name="ContentControl"></ContentControl>-->
+    <ContentControl x:Name="ContentControl" Content="{Binding Navigator.CurrentContentControl}"/>
+
 
 </Window>

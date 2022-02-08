@@ -59,8 +59,17 @@ namespace Persistance.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte>("isCombustible")
+                        .HasColumnType("tinyint");
+
+                    b.Property<byte>("isCooked")
+                        .HasColumnType("tinyint");
 
                     b.HasKey("Id");
 
