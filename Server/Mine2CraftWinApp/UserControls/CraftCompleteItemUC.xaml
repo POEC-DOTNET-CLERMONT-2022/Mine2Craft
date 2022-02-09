@@ -1,0 +1,30 @@
+<UserControl x:Class="Mine2CraftWinApp.UserControls.CraftCompleteItemUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Mine2CraftWinApp.UserControls"
+             mc:Ignorable="d"
+             x:Name="Root"
+             d:DesignHeight="300" d:DesignWidth="300"
+             >
+    <Grid DataContext="{Binding ., ElementName=Root}">
+        <StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Label x:Name="Component0" Content="{Binding .WorkbenchCompleteItem[0].Item.Name}" Margin="20"></Label>
+                <Label x:Name="Component1" Content="{Binding .WorkbenchCompleteItem[1].Item.Name}" Margin="20"></Label>
+                <Label x:Name="Component2" Content="{Binding .WorkbenchCompleteItem[2].Item.Name}" Margin="20"></Label>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Label x:Name="Component3" Content="{Binding .WorkbenchCompleteItem[3].Item.Name}" Margin="20"></Label>
+                <Label x:Name="Component4" Content="{Binding .WorkbenchCompleteItem[4].Item.Name}" Margin="20"></Label>
+                <Label x:Name="Component5" Content="{Binding .WorkbenchCompleteItem[5].Item.Name}" Margin="20"></Label>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Label x:Name="Component6" Content="{Binding .WorkbenchCompleteItem[6].Item.Name}" Margin="20"></Label>
+                <Label x:Name="Component7" Content="{Binding .WorkbenchCompleteItem[7].Item.Name}" Margin="20"></Label>
+                <Label x:Name="Component8" Content="{Binding .WorkbenchCompleteItem[8].Item.Name}" Margin="20"></Label>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>
