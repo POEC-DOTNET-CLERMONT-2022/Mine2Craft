@@ -205,6 +205,7 @@
                 <WrapPanel Grid.Row="1">
                     <Button Content="Create" Click="CreateCompleteItem"></Button>
                     <Button Content="Update" Click="UpdateCompleteItem"></Button>
+                    <Button Content="Delete" Click="DeleteCompleteItem"></Button>
                 </WrapPanel>
             </Grid>
 

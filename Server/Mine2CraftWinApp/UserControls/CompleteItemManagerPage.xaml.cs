@@ -167,4 +167,9 @@ public partial class CompleteItemManagerPage : UserControl
             _toolRequestManager.Update(toolToCreate, CompleteItemsList.CurrentCompleteItem.Id);
         }
     }
+
+    private void DeleteCompleteItem(object sender, RoutedEventArgs e)
+    {
+        _completeItemManager.Delete(CompleteItemsList.CurrentCompleteItem.Id);
+    }
 }
