@@ -51,6 +51,14 @@ namespace Persistance
             if (entity != null)
             {
                 SqlContext.Update(entity);
+                /*var entries = SqlContext.ChangeTracker.Entries();
+                if (entries.Any())
+                {
+                    foreach (var entry in entries)
+                    {
+                        entry.State = EntityState.Modified;
+                    }
+                }*/
                 SqlContext.SaveChanges();
                 return true;
             }

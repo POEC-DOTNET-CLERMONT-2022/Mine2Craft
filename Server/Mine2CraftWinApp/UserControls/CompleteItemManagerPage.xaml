@@ -109,8 +109,8 @@
                     </WrapPanel>
                     
                 </StackPanel>
-                <StackPanel Grid.Row="0" Grid.Column="1">
-                    <ComboBox ItemsSource="{Binding .ItemsList.Items}" SelectionChanged="ComboBox_SelectionChanged" SelectedValuePath="1">
+                <StackPanel x:Name="StackPanelWorkbenches" Grid.Row="0" Grid.Column="1">
+                    <ComboBox x:Name="Workbench1" ItemsSource="{Binding .ItemsList.Items}" SelectionChanged="ComboBox_SelectionChanged" SelectedValuePath="1">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -120,7 +120,7 @@
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
-                    <ComboBox ItemsSource="{Binding .ItemsList.Items}" SelectionChanged="ComboBox_SelectionChanged" SelectedValuePath="2">
+                    <ComboBox x:Name="Workbench2" ItemsSource="{Binding .ItemsList.Items}" SelectionChanged="ComboBox_SelectionChanged" SelectedValuePath="2">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -130,7 +130,7 @@
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
-                    <ComboBox ItemsSource="{Binding .ItemsList.Items}" SelectionChanged="ComboBox_SelectionChanged" SelectedValuePath="3">
+                    <ComboBox x:Name="Workbench3" ItemsSource="{Binding .ItemsList.Items}" SelectionChanged="ComboBox_SelectionChanged" SelectedValuePath="3">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -140,7 +140,7 @@
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
-                    <ComboBox ItemsSource="{Binding .ItemsList.Items}" SelectionChanged="ComboBox_SelectionChanged" SelectedValuePath="4">
+                    <ComboBox x:Name="Workbench4" ItemsSource="{Binding .ItemsList.Items}" SelectionChanged="ComboBox_SelectionChanged" SelectedValuePath="4">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -150,7 +150,7 @@
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
-                    <ComboBox ItemsSource="{Binding .ItemsList.Items}" SelectionChanged="ComboBox_SelectionChanged" SelectedValuePath="5">
+                    <ComboBox x:Name="Workbench5" ItemsSource="{Binding .ItemsList.Items}" SelectionChanged="ComboBox_SelectionChanged" SelectedValuePath="5">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -160,7 +160,7 @@
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
-                    <ComboBox ItemsSource="{Binding .ItemsList.Items}" SelectionChanged="ComboBox_SelectionChanged" SelectedValuePath="6">
+                    <ComboBox x:Name="Workbench6" ItemsSource="{Binding .ItemsList.Items}" SelectionChanged="ComboBox_SelectionChanged" SelectedValuePath="6">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -170,7 +170,7 @@
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
-                    <ComboBox ItemsSource="{Binding .ItemsList.Items}" SelectionChanged="ComboBox_SelectionChanged" SelectedValuePath="7">
+                    <ComboBox x:Name="Workbench7" ItemsSource="{Binding .ItemsList.Items}" SelectionChanged="ComboBox_SelectionChanged" SelectedValuePath="7">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -180,7 +180,7 @@
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
-                    <ComboBox ItemsSource="{Binding .ItemsList.Items}" SelectionChanged="ComboBox_SelectionChanged" SelectedValuePath="8">
+                    <ComboBox x:Name="Workbench8" ItemsSource="{Binding .ItemsList.Items}" SelectionChanged="ComboBox_SelectionChanged" SelectedValuePath="8">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -190,7 +190,7 @@
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
-                    <ComboBox ItemsSource="{Binding .ItemsList.Items}" SelectionChanged="ComboBox_SelectionChanged" SelectedValuePath="9">
+                    <ComboBox x:Name="Workbench9" ItemsSource="{Binding .ItemsList.Items}" SelectionChanged="ComboBox_SelectionChanged" SelectedValuePath="9">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -204,6 +204,7 @@
                 
                 <WrapPanel Grid.Row="1">
                     <Button Content="Create" Click="CreateCompleteItem"></Button>
+                    <Button Content="Update" Click="UpdateCompleteItem"></Button>
                 </WrapPanel>
             </Grid>
 

@@ -26,4 +26,24 @@ public class ToolController : ControllerBase
         var completeItemEntityToCreate = _mapper.Map<ToolEntity>(toolDtoToCreate);
         return Ok(_completeItemRepository.Create(completeItemEntityToCreate));
     }
+    
+    [HttpPut("{guid}")]
+    [ProducesResponseType(200)]
+    [ProducesResponseType(404)]
+    [ProducesResponseType(500)]
+    public IActionResult Put(Guid guid, [FromBody] ToolDto toolToCreate)
+    {
+        try
+        {
+            var toolEntity = _mapper.Map<ToolEntity>(toolToCreate);
+            var updateEntity = _completeItemRepository.Update(toolEntity);
+            if (updateEntity == false)
+                return NotFound();
+            return Ok();
+        }
+        catch (Exception e)
+        {
+            return StatusCode(500);
+        }
+    }
 }
