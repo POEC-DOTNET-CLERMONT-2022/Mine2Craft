@@ -8,7 +8,7 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Button Click="GoToCraftListClick" Content="Liste des craft" Height="50" Width="200" Margin="0, 0, 0, 100"></Button>
-        <Button Click="GoToCreateOrUpdateItemClick" Content="Création ou modification d'item" Height="50" Width="200" Margin="0, 100, 0, 0"></Button>
+        <Button Click="GoToCompleteItemManager" Content="Complete item manager" Height="50" Width="200" Margin="0, 100, 0, 0"></Button>
         <Button Click="GoToItemManagerPage" Content="Item Manger" Height="50" Width="200" Margin="300,348,300,52"></Button>
     </Grid>
 </UserControl>

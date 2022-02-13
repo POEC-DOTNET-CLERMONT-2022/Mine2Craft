@@ -28,8 +28,8 @@ namespace Persistance
 
         public int Create(T entityToCreate)
         {
-            SqlContext.Add(entityToCreate);
-
+            SqlContext.Attach(entityToCreate);
+            
             return SqlContext.SaveChanges();
         }
 

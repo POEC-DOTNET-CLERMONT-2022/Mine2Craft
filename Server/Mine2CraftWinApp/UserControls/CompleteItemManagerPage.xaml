@@ -1,0 +1,215 @@
+<UserControl x:Class="Mine2CraftWinApp.UserControls.CompleteItemManagerPage"
+             x:Name="Root"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Mine2CraftWinApp.UserControls"
+             mc:Ignorable="d"
+             Loaded="Window_Loaded"
+             d:DesignHeight="720" d:DesignWidth="1080">
+    <Grid DataContext="{Binding ., ElementName=Root}">
+        <DockPanel LastChildFill="False">
+            <DockPanel.Background>
+                <ImageBrush ImageSource="/UserControls/minecrafWall.jpg"/>
+            </DockPanel.Background>
+            <WrapPanel DockPanel.Dock="Left" Width="280">
+                <WrapPanel.Background>
+                    <SolidColorBrush Color="Black" Opacity="0.75"/>
+                </WrapPanel.Background>
+                <Label Content="List des Items Complets" Margin="0,20,0,20" HorizontalAlignment="Center" Height="50" Width="275" VerticalAlignment="Center" FontSize="24" HorizontalContentAlignment="Center"></Label>
+
+                <ListBox x:Name="CompleteItemList" ItemsSource="{Binding CompleteItemsList.CompleteItemsModels}" SelectedItem="{Binding CompleteItemsList.CurrentCompleteItem}" SelectionChanged="OnSelectionChangeCompleteItemList" Width="275" Height="630" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18" HorizontalContentAlignment="Left" Foreground="White">
+                    <ListBox.Background>
+                        <SolidColorBrush Color="Black" Opacity="0"/>
+                    </ListBox.Background>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Width="275">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="4*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="0.25*"/>
+                                        <ColumnDefinition Width="0.5*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="50" />
+                                    </Grid.RowDefinitions>
+
+                                    <Grid Grid.Row="1" Grid.Column="0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="25" />
+                                            <RowDefinition Height="30" />
+                                        </Grid.RowDefinitions>
+
+                                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Name" HorizontalAlignment="Center" FontSize="14" FontWeight="Bold"/>
+                                        <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Name}" HorizontalAlignment="Center"/>
+                                    </Grid>
+                                    <Image Grid.Column="1" Width="55" Height="55" Source="/Image/minecrafWall.jpg"></Image>
+                                    <Button x:Name="button_Delete" Content="DEL" Grid.Column="3" Width="20" Height="55" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                </Grid>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </WrapPanel>
+
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Height="100" Margin="0,0,0,0">
+
+                <Label Content="COMPLETE ITEM MANAGER" Width="632" Height="106" FontSize="40" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold" Foreground="Black"/>
+                <Button Margin="70,10,0,10" Content="Back" Height="50" Width="80" Click="Button_Click_Back" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+            </StackPanel>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="400"></ColumnDefinition>
+                    <ColumnDefinition Width="400"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="550"></RowDefinition>
+                    <RowDefinition Height="70"></RowDefinition>
+                </Grid.RowDefinitions>
+                
+                <StackPanel Grid.Row="0" Grid.Column="0" DataContext="{Binding .CompleteItemsList.CurrentCompleteItem}">
+                    <WrapPanel x:Name="ItemTypeContainer">
+                        <Label Content="Type d'item :"></Label>
+                        <RadioButton Name="tools" Checked="RadioButtonChecked">Arme</RadioButton>
+                        <RadioButton Name="armors" Checked="RadioButtonChecked">Armure</RadioButton>
+                    </WrapPanel>
+                    
+                    <WrapPanel x:Name="ItemNameContainer">
+                        <Label Content="Nom de l'item :"></Label>
+                        <TextBox x:Name="ItemName" Width="200" Text="{Binding .Name}"></TextBox>
+                    </WrapPanel>
+                    
+                    <WrapPanel x:Name="ItemDescriptionContainer">
+                        <Label Content="Description de l'item :"></Label>
+                        <TextBox x:Name="ItemDescription" Width="200" Text="{Binding .Description}"></TextBox>
+                    </WrapPanel>
+                    
+                    <WrapPanel x:Name="ItemDurabilityContainer">
+                        <Label Content="Durabilité de l'item :"></Label>
+                        <TextBox x:Name="ItemDurability" Width="200" Text="{Binding .Durability}"></TextBox>
+                    </WrapPanel>
+                    
+                    <WrapPanel x:Name="ItemAttackContainer">
+                        <Label Content="Attaque de l'item :"></Label>
+                        <TextBox x:Name="ItemAttack" Width="200"></TextBox>
+                    </WrapPanel>
+                    
+                    <WrapPanel x:Name="ItemArmorContainer">
+                        <Label Content="Armure de l'item :"></Label>
+                        <TextBox x:Name="ItemArmor" Width="200"></TextBox>
+                    </WrapPanel>
+                    
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="1">
+                    <ComboBox ItemsSource="{Binding .ItemsList.Items}" SelectionChanged="ComboBox_SelectionChanged" SelectedValuePath="1">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Rectangle Fill="{Binding Name}" Width="16" Height="16" Margin="0,2,5,2" />
+                                    <TextBlock Text="{Binding Name}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <ComboBox ItemsSource="{Binding .ItemsList.Items}" SelectionChanged="ComboBox_SelectionChanged" SelectedValuePath="2">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Rectangle Fill="{Binding Name}" Width="16" Height="16" Margin="0,2,5,2" />
+                                    <TextBlock Text="{Binding Name}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <ComboBox ItemsSource="{Binding .ItemsList.Items}" SelectionChanged="ComboBox_SelectionChanged" SelectedValuePath="3">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Rectangle Fill="{Binding Name}" Width="16" Height="16" Margin="0,2,5,2" />
+                                    <TextBlock Text="{Binding Name}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <ComboBox ItemsSource="{Binding .ItemsList.Items}" SelectionChanged="ComboBox_SelectionChanged" SelectedValuePath="4">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Rectangle Fill="{Binding Name}" Width="16" Height="16" Margin="0,2,5,2" />
+                                    <TextBlock Text="{Binding Name}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <ComboBox ItemsSource="{Binding .ItemsList.Items}" SelectionChanged="ComboBox_SelectionChanged" SelectedValuePath="5">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Rectangle Fill="{Binding Name}" Width="16" Height="16" Margin="0,2,5,2" />
+                                    <TextBlock Text="{Binding Name}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <ComboBox ItemsSource="{Binding .ItemsList.Items}" SelectionChanged="ComboBox_SelectionChanged" SelectedValuePath="6">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Rectangle Fill="{Binding Name}" Width="16" Height="16" Margin="0,2,5,2" />
+                                    <TextBlock Text="{Binding Name}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <ComboBox ItemsSource="{Binding .ItemsList.Items}" SelectionChanged="ComboBox_SelectionChanged" SelectedValuePath="7">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Rectangle Fill="{Binding Name}" Width="16" Height="16" Margin="0,2,5,2" />
+                                    <TextBlock Text="{Binding Name}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <ComboBox ItemsSource="{Binding .ItemsList.Items}" SelectionChanged="ComboBox_SelectionChanged" SelectedValuePath="8">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Rectangle Fill="{Binding Name}" Width="16" Height="16" Margin="0,2,5,2" />
+                                    <TextBlock Text="{Binding Name}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <ComboBox ItemsSource="{Binding .ItemsList.Items}" SelectionChanged="ComboBox_SelectionChanged" SelectedValuePath="9">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Rectangle Fill="{Binding Name}" Width="16" Height="16" Margin="0,2,5,2" />
+                                    <TextBlock Text="{Binding Name}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </StackPanel>
+                
+                <WrapPanel Grid.Row="1">
+                    <Button Content="Create" Click="CreateCompleteItem"></Button>
+                </WrapPanel>
+            </Grid>
+
+            
+            
+        </DockPanel>
+
+    </Grid>
+</UserControl>

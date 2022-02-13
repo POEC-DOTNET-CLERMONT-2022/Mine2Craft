@@ -12,6 +12,11 @@ namespace Mine2CraftWinApp.Profile
             
             CreateMap<ArmorDto, ArmorModel>().ReverseMap();
             CreateMap<ToolDto, ToolModel>().ReverseMap();
+
+            CreateMap<CompleteItemDto, ToolModel>().ReverseMap();
+
+            CreateMap<WorkbenchDto, WorkbenchModel>().ReverseMap();
+            CreateMap<ItemDto, ItemModel>().ReverseMap();
         }
     }
 }

@@ -5,8 +5,8 @@ namespace Models
 {
     public class ItemModel : ObservableObject
     {
-        private string _name;
-        private string _description;
+        private string? _name;
+        private string? _description;
         private byte _isCombustible;
         private byte _isCooked;
 

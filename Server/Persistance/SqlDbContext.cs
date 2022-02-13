@@ -28,7 +28,8 @@ namespace Persistance
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //optionsBuilder.UseSqlServer(@"Server=DESKTOP-KN0N952\ALEXPRESS;User id=sa;Password = mdpbdd;Initial Catalog=Mine2Craft;Integrated Security=True;");
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Initial Catalog=Mine2Craft;Integrated Security=True");
+            optionsBuilder.UseSqlServer(
+                @"Server=(localdb)\MSSQLLocalDB;Initial Catalog=Mine2Craft;Integrated Security=True");
         }
         
         public DbSet<CompleteItemEntity> CompleteItems { get; set; }
@@ -61,6 +62,12 @@ namespace Persistance
                 .HasForeignKey(w => w.ItemId);
 
             modelBuilder.Entity<WorkbenchEntity>().Navigation(w => w.Item).AutoInclude();
+
+            modelBuilder.Entity<ToolEntity>()
+                .Property(t => t.Id).ValueGeneratedOnAdd();
+
+            modelBuilder.Entity<WorkbenchEntity>()
+                .Property(w => w.Id).ValueGeneratedOnAdd();
         }
         
     }

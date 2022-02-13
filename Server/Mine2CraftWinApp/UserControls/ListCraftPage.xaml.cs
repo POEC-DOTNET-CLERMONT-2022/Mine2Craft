@@ -34,7 +34,7 @@ namespace Mine2CraftWinApp.UserControls
         public CompleteItemsList CompleteItemsList { get; set; } = new CompleteItemsList();
         
         public INavigator Navigator { get; set; } = ((App)Application.Current).Navigator;
-
+        
         public ListCraftPage()
         {
             InitializeComponent();

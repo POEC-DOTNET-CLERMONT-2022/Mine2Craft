@@ -95,7 +95,7 @@
 
                 <StackPanel x:Name="CraftList" Grid.Column="1" Orientation="Vertical" Margin="20, 50, 30, 30">
                     <Label Content="Craft de l'objet :" HorizontalAlignment="Center"></Label>
-                    <local:CraftCompleteItemUC WorkbenchCompleteItem="{Binding CompleteItemsList.CurrentCompleteItem.Workbenches, ElementName=Root}"></local:CraftCompleteItemUC>
+                    <local:CraftCompleteItemUC WorkbenchCompleteItem="{Binding .CompleteItemsList.CurrentCompleteItem.Workbenches, ElementName=Root}"></local:CraftCompleteItemUC>
                 </StackPanel>
             </Grid>
         </Grid>

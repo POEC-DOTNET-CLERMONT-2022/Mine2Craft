@@ -14,7 +14,8 @@ namespace Models
         protected string _name;
         protected int _durability;
         protected string _description;
-        protected ICollection<WorkbenchDto> _workbenches;
+        protected ICollection<WorkbenchModel> _workbenches;
+        protected string _completeItemType;
         
         public CompleteItemModel()
         {
@@ -23,13 +24,24 @@ namespace Models
 
         [JsonConstructorAttribute]
         public CompleteItemModel(Guid id, string name, int durability, string description,
-            ICollection<WorkbenchDto> workbenches)
+            ICollection<WorkbenchModel> workbenches, string completeItemType)
         {
             Id = id;
             Name = name;
             Durability = durability;
             Description = description;
             Workbenches = workbenches;
+            _completeItemType = completeItemType;
+        }
+        
+        public CompleteItemModel( string name, int durability, string description,
+            ICollection<WorkbenchModel> workbenches, string completeItemType)
+        {
+            Name = name;
+            Durability = durability;
+            Description = description;
+            Workbenches = workbenches;
+            _completeItemType = completeItemType;
         }
 
         public Guid Id
@@ -84,37 +96,31 @@ namespace Models
             }
         }
         
-        public ICollection<WorkbenchDto> Workbenches
+        public ICollection<WorkbenchModel> Workbenches
         {
             get { return _workbenches; }
             set
             {
                 if (_workbenches != value)
                 {
-                    var allPositions = new List<int> {1,2,3,4,5,6,7,8,9};
-
-                    var itemPositions = value.Select(w => w.Position);
-
-                    var emptyPosition = allPositions.Except(itemPositions);
-
-                    var positionManaged = new List<WorkbenchDto>();
-
-                    foreach (var position in emptyPosition)
-                    {
-                        positionManaged.Add(new WorkbenchDto(position, null));
-                    }
-
-                    foreach (var workbench in value)
-                    {
-                        positionManaged.Add(workbench);
-                    }
-                    
-                    _workbenches = positionManaged.OrderBy(w => w.Position).ToList();
+                    _workbenches = value;
                     OnNotifyPropertyChanged();
                 }
             }
         }
 
+        public string CompleteItemType
+        {
+            get { return _completeItemType; }
+            set
+            {
+                if (_completeItemType != value)
+                {
+                    _completeItemType = value;
+                    OnNotifyPropertyChanged();
+                }
+            }
+        }
         
     }
 }

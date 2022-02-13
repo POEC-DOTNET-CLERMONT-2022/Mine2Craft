@@ -37,13 +37,15 @@ public class RequestManager<TModel, TDto> : IRequestManager<TModel, TDto>   wher
 
     public async Task Add(TModel model)
     {
-        var request = new HttpRequestMessage(HttpMethod.Post,
-            "https://localhost:7204/api/CompleteItem");
-            
-        //postRequest.Content = new StringContent(dtoString, System.Text.Encoding.UTF8, "application/json-patch+json");
-
         var dto = Mapper.Map<TDto>(model);
-        await HttpClient.PostAsJsonAsync(Uri, dto);
+        var dtoString = JsonConvert.SerializeObject(dto, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto });
+
+        var postRequest = new HttpRequestMessage(HttpMethod.Post, Uri.AbsoluteUri);
+        postRequest.Headers.Add("Accept", "*/*");
+        postRequest.Content = new StringContent(dtoString, System.Text.Encoding.UTF8, "application/json-patch+json");
+        var response = await HttpClient.SendAsync(postRequest);
+            
+        response.EnsureSuccessStatusCode();
     }
 
     public async Task Delete(Guid guid)
