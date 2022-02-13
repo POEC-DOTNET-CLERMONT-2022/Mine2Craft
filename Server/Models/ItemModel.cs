@@ -5,12 +5,26 @@ namespace Models
 {
     public class ItemModel : ObservableObject
     {
+        public Guid Id { get; set; }
         private string _name;
         private string _description;
         private byte _isCombustible;
         private byte _isCooked;
+        private Guid _itemBeforeCook;
 
-        public Guid Id { get; set; }
+        public Guid ItemBeforeCook
+        {
+            get { return _itemBeforeCook; }
+            set
+            {
+                if (_itemBeforeCook != value)
+                {
+                    _itemBeforeCook = value;
+                    OnNotifyPropertyChanged();
+                }
+            }
+        }
+
         public string Name 
         {
             get { return _name; }
