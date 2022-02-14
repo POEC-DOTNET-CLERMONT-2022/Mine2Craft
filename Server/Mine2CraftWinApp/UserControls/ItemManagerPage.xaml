@@ -79,16 +79,6 @@
                 </ListBox>
             </StackPanel>
 
-            <!--<StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Height="100" Margin="0,0,0,0">
-
-                    <Label Content="ITEM MANAGER" Width="632" Height="106" FontSize="60" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold" Foreground="Black"/>
-                    <Button Margin="70,10,0,10" Content="Back" Height="50" Width="80" Click="Button_Click_Back" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-
-                </StackPanel>-->
-
-            <!--<StackPanel Grid.Column="1" Width="225"></StackPanel>-->
-
-
             <StackPanel Grid.Column="2">
                 <Grid x:Name="gridForm" Margin="10,30,10,0" Visibility="Visible">
                     <Grid.ColumnDefinitions>
@@ -109,7 +99,7 @@
                     <StackPanel>
                         <Label Grid.Row="1" Foreground="White" FontSize="20">Name</Label>
                         <TextBox x:Name="tbNameItem" Grid.Row="2" DataContext="{Binding ItemsList.CurrentItem}" Text="{Binding Name}" Margin="0,0,0,10" FontSize="20" Height="35" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />
-                        <!--, UpdateSourceTrigger=PropertyChanged-->
+
                         <Label Grid.Row="3" Foreground="White" FontSize="20">Description</Label>
                         <TextBox x:Name="tbDescItem" Grid.Row="4" DataContext="{Binding ItemsList.CurrentItem}" Text="{Binding Description}" Margin="0,0,0,30" FontSize="20" Height="35" VerticalContentAlignment="Center" />
 
