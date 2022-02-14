@@ -36,6 +36,7 @@ namespace Mine2CraftWinApp
         private void App_OnStartup(object sender, StartupEventArgs e) // bind le Startup="App_OnStartup" dans le fichier app.xaml 
         {
             Navigator.RegisterView(new ItemManagerPage());
+            Navigator.RegisterView(new FurnaceManagerPage());
             Navigator.RegisterView(new ListCraftPage());
             Navigator.RegisterView(new SelectionMenuUC());
         }
