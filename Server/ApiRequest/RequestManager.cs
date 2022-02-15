@@ -38,7 +38,7 @@ public class RequestManager<TModel, TDto> : IRequestManager<TModel, TDto>   wher
     public async Task Add(TModel model)
     {
         var dto = Mapper.Map<TDto>(model);
-        var dtoString = JsonConvert.SerializeObject(dto, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto });
+        var dtoString = JsonConvert.SerializeObject(dto, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All });
 
         var postRequest = new HttpRequestMessage(HttpMethod.Post, Uri.AbsoluteUri);
         postRequest.Headers.Add("Accept", "*/*");

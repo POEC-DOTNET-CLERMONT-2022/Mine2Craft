@@ -5,10 +5,18 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Mine2CraftWinApp.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="720" d:DesignWidth="1080">
     <Grid>
-        <Button Click="GoToCraftListClick" Content="Liste des craft" Height="50" Width="200" Margin="0, 0, 0, 100"></Button>
-        <Button Click="GoToCompleteItemManager" Content="Complete item manager" Height="50" Width="200" Margin="0, 100, 0, 0"></Button>
-        <Button Click="GoToItemManagerPage" Content="Item Manger" Height="50" Width="200" Margin="300,348,300,52"></Button>
+
+        <StackPanel Grid.Column="1">
+            <Button Click="GoToCraftListClick" Content="Liste des craft" Height="50" Width="200" Margin="0,30"></Button>
+            <Button Click="GoToCompleteItemManager" Content="Complete Item Manager" Height="50" Width="200" Margin="0,30"></Button>
+            <Button Click="GoToItemManagerPage" Content="Item Manager" Height="50" Width="200" Margin="0,30"></Button>
+            <Button Click="GoToFurnaceManagerPage" Content="Furnace Manager" Height="50" Width="200" Margin="0,30"></Button>
+
+            <Image Width="100" Height="100" Source="/UserControls/arrowload.jpg" Stretch="Fill"/>
+
+        </StackPanel>
+
     </Grid>
 </UserControl>

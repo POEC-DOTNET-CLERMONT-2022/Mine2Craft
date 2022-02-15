@@ -9,14 +9,17 @@ namespace Dtos
         public string? Description { get; set; }
         public byte isCombustible { get; set; }
         public byte isCooked { get; set; }
+        public Guid ItemBeforeCook { get; set; }
 
-        public ItemDto(Guid id, string name, string description, byte isCombustible, byte isCooked)
+
+        public ItemDto(Guid id, string name, string description, byte isCombustible, byte isCooked, Guid itemBeforeCook)
         {
             Id = id;
             Name = name;
             Description = description;
             this.isCombustible = isCombustible;
             this.isCooked = isCooked;
+            ItemBeforeCook = itemBeforeCook;
         }
     }
 }

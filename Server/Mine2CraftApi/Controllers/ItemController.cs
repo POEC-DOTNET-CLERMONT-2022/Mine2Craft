@@ -25,8 +25,8 @@ namespace Mine2CraftApi.Controllers
         [HttpGet]
         public ActionResult Get()
         {
-            var usersEntity = _itemRepository.GetAll();
-            var dto = _mapper.Map<IEnumerable<ItemDto>>(usersEntity);
+            var itemEntity = _itemRepository.GetAll();
+            var dto = _mapper.Map<IEnumerable<ItemDto>>(itemEntity);
             return Ok(dto);
         }
 

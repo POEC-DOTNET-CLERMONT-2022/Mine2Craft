@@ -40,6 +40,7 @@ namespace Mine2CraftWinApp
         {
             Navigator.RegisterView(new ItemManagerPage());
             Navigator.RegisterView(new CompleteItemManagerPage());
+            Navigator.RegisterView(new FurnaceManagerPage());
             Navigator.RegisterView(new ListCraftPage());
             Navigator.RegisterView(new SelectionMenuUC());
         }

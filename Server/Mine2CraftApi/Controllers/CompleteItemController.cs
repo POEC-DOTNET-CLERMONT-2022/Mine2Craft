@@ -48,8 +48,8 @@ namespace Mine2CraftApi.Controllers
         [HttpPost]
         public IActionResult Post(CompleteItemDto completeItemDtoToCreate)
         {
-            CompleteItemEntity completeItemEntityToCreate = _mapper.Map<ToolEntity>(completeItemDtoToCreate);
-            return Ok(_completeItemRepository.Create(completeItemEntityToCreate));
+            var completeItemEntityToCreate = _mapper.Map<CompleteItemEntity>(completeItemDtoToCreate);
+            return Ok(_completeItemRepository.Create(completeItemEntityToCreate).ToString());
         }
 
         // PUT api/<CompleteItemController>/5

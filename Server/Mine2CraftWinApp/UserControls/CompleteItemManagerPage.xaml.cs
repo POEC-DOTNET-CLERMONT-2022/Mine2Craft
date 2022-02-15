@@ -1,19 +1,22 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using ApiRequest;
 using Dtos;
+using Mine2CraftWinApp.Annotations;
 using Mine2CraftWinApp.Utils;
 using Models;
 
 namespace Mine2CraftWinApp.UserControls;
 
-public partial class CompleteItemManagerPage : UserControl
+public partial class CompleteItemManagerPage : UserControl, INotifyPropertyChanged
 {
-    private readonly IRequestManager<CompleteItemModel, CompleteItemDto> _completeItemManager
+    private readonly IRequestManager<CompleteItemModel, CompleteItemDto> _completeItemRequestManager
         = ((App) Application.Current).CompleteItemRequestManager;
     
     private readonly IRequestManager<ItemModel, ItemDto> _itemDataManager
@@ -29,7 +32,16 @@ public partial class CompleteItemManagerPage : UserControl
 
     private readonly Dictionary<int, object> _currentItemWorbenches = new Dictionary<int, object>();
 
-    private string completeItemDiscriminator;
+    private string _completeItemDiscriminator = String.Empty;
+    public string CompleteItemDiscriminator
+    {
+        get => _completeItemDiscriminator;
+        set
+        {
+            _completeItemDiscriminator = value;
+            OnPropertyChanged();
+        }
+    }
     
     public CompleteItemManagerPage()
     {
@@ -38,6 +50,9 @@ public partial class CompleteItemManagerPage : UserControl
 
     private void Button_Click_Back(object sender, RoutedEventArgs e)
     {
+        CompleteItemsList.CompleteItemsModels.Clear();
+        ItemAttack.Clear();
+        CompleteItemDiscriminator = String.Empty;
         Navigator.NavigateTo(typeof(SelectionMenuUC));
     }
 
@@ -46,25 +61,30 @@ public partial class CompleteItemManagerPage : UserControl
         var radioButton = sender as RadioButton;
         if (radioButton == null)
             return;
-        completeItemDiscriminator = radioButton.Name;
+        CompleteItemDiscriminator = radioButton.Name;
     }
 
     private void CreateCompleteItem(object sender, RoutedEventArgs e)
     {
         var workbenches = new List<WorkbenchModel>();
         
-        if (completeItemDiscriminator == "tools")
+        foreach (KeyValuePair<int, object> entry in _currentItemWorbenches) {
+            ItemModel item = entry.Value as ItemModel;
+            workbenches.Add(new WorkbenchModel(entry.Key, item.Id));
+        }
+        
+        /*if (completeItemDiscriminator == "tools")
         {
-            foreach (KeyValuePair<int, object> entry in _currentItemWorbenches) {
-                ItemModel item = entry.Value as ItemModel;
-                workbenches.Add(new WorkbenchModel(entry.Key, item.Id));
-            }
-
             var toolToCreate = new ToolModel(ItemName.Text, Int32.Parse(ItemDurability.Text),
                 ItemDescription.Text, workbenches, completeItemDiscriminator, Int32.Parse(ItemAttack.Text));
             
             _toolRequestManager.Add(toolToCreate);
-        }
+        }*/
+        
+        CompleteItemModel toolToCreatee = new ToolModel(ItemName.Text, Int32.Parse(ItemDurability.Text),
+            ItemDescription.Text, workbenches, CompleteItemDiscriminator, Int32.Parse(ItemAttack.Text));
+
+        _completeItemRequestManager.Add(toolToCreatee);
     }
 
     private async void Window_Loaded(object sender, RoutedEventArgs e)
@@ -74,7 +94,7 @@ public partial class CompleteItemManagerPage : UserControl
 
     public async void LoadData()
     {
-        var completeItemModels = await _completeItemManager.GetAll();
+        var completeItemModels = await _completeItemRequestManager.GetAll();
 
         CompleteItemsList.CompleteItemsModels = new ObservableCollection<CompleteItemModel>(completeItemModels);
 
@@ -96,45 +116,50 @@ public partial class CompleteItemManagerPage : UserControl
     {
         _currentItemWorbenches.Clear();
 
-        foreach (var workbench in CompleteItemsList.CurrentCompleteItem.Workbenches)
+        if (CompleteItemsList.CurrentCompleteItem != null)
         {
-            _currentItemWorbenches.Add(workbench.Position, workbench.Item);
-        }
-        
-        if (CompleteItemsList.CurrentCompleteItem.GetType() == typeof(ToolModel))
-        {
-            var tool = CompleteItemsList.CurrentCompleteItem as ToolModel;
-            ItemAttack.Text = tool.AttackPoint.ToString();
-        }
-        
-        for (var i = 1; i < 10; i++)
-        {
-            var itemFilled = false;
-            var comboBox = StackPanelWorkbenches.FindName($"Workbench{i}") as ComboBox;
-            
             foreach (var workbench in CompleteItemsList.CurrentCompleteItem.Workbenches)
             {
-                if (workbench.Position == i)
-                {
-                    foreach (var item in ItemsList.Items)
-                    {
-                        if (item.Id == workbench.Item.Id)
-                        {
-                            comboBox.SelectedItem = item;
-                        }
-                    }
-
-                    itemFilled = true;
-                }
+                _currentItemWorbenches.Add(workbench.Position, workbench.Item);
             }
-
-            if (itemFilled)
+        
+            if (CompleteItemsList.CurrentCompleteItem.GetType() == typeof(ToolModel))
             {
-                itemFilled = false;
-                continue;
+                var tool = CompleteItemsList.CurrentCompleteItem as ToolModel;
+                ItemAttack.Text = tool.AttackPoint.ToString();
+            }
+        
+            for (var i = 1; i < 10; i++)
+            {
+                var itemFilled = false;
+                var comboBox = StackPanelWorkbenches.FindName($"Workbench{i}") as ComboBox;
+            
+                foreach (var workbench in CompleteItemsList.CurrentCompleteItem.Workbenches)
+                {
+                    if (workbench.Position == i)
+                    {
+                        foreach (var item in ItemsList.Items)
+                        {
+                            if (item.Id == workbench.Item.Id)
+                            {
+                                comboBox.SelectedItem = item;
+                            }
+                        }
+
+                        itemFilled = true;
+                    }
+                }
+
+                if (itemFilled)
+                {
+                    itemFilled = false;
+                    continue;
+                }
+
+                comboBox.SelectedItem = null;
             }
 
-            comboBox.SelectedItem = null;
+            CompleteItemDiscriminator = CompleteItemsList.CurrentCompleteItem.CompleteItemType;
         }
         
     }
@@ -143,7 +168,7 @@ public partial class CompleteItemManagerPage : UserControl
     {
         var workbenches = new List<WorkbenchModel>();
         
-        if (completeItemDiscriminator == "tools")
+        if (CompleteItemDiscriminator == "tools")
         {
             foreach (KeyValuePair<int, object> entry in _currentItemWorbenches) {
                 ItemModel item = entry.Value as ItemModel;
@@ -162,7 +187,7 @@ public partial class CompleteItemManagerPage : UserControl
             }
 
             var toolToCreate = new ToolModel(CompleteItemsList.CurrentCompleteItem.Id, ItemName.Text, Int32.Parse(ItemDurability.Text),
-                ItemDescription.Text, workbenches, completeItemDiscriminator, Int32.Parse(ItemAttack.Text));
+                ItemDescription.Text, workbenches, CompleteItemDiscriminator, Int32.Parse(ItemAttack.Text));
             
             _toolRequestManager.Update(toolToCreate, CompleteItemsList.CurrentCompleteItem.Id);
         }
@@ -170,6 +195,14 @@ public partial class CompleteItemManagerPage : UserControl
 
     private void DeleteCompleteItem(object sender, RoutedEventArgs e)
     {
-        _completeItemManager.Delete(CompleteItemsList.CurrentCompleteItem.Id);
+        _completeItemRequestManager.Delete(CompleteItemsList.CurrentCompleteItem.Id);
+    }
+
+    public event PropertyChangedEventHandler? PropertyChanged;
+
+    [NotifyPropertyChangedInvocator]
+    protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }

@@ -5,9 +5,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Mine2CraftWinApp.UserControls"
+             xmlns:converter="clr-namespace:Mine2CraftWinApp.Converter"
              mc:Ignorable="d"
              Loaded="Window_Loaded"
              d:DesignHeight="720" d:DesignWidth="1080">
+    <UserControl.Resources>
+        <converter:DisplayCompleteItemWrapPanelSpecificityConverter x:Key="DisplayCompleteItemWrapPanelSpecificityConverter"/>
+        <converter:CheckRadioButtonConverter x:Key="CheckRadioButtonConverter"/>
+    </UserControl.Resources>
+    
     <Grid DataContext="{Binding ., ElementName=Root}">
         <DockPanel LastChildFill="False">
             <DockPanel.Background>
@@ -79,8 +85,8 @@
                 <StackPanel Grid.Row="0" Grid.Column="0" DataContext="{Binding .CompleteItemsList.CurrentCompleteItem}">
                     <WrapPanel x:Name="ItemTypeContainer">
                         <Label Content="Type d'item :"></Label>
-                        <RadioButton Name="tools" Checked="RadioButtonChecked">Arme</RadioButton>
-                        <RadioButton Name="armors" Checked="RadioButtonChecked">Armure</RadioButton>
+                        <RadioButton IsChecked="{Binding CompleteItemDiscriminator, ElementName='Root', Converter={StaticResource CheckRadioButtonConverter}, ConverterParameter='tools'}" GroupName="CompleteItemType" Name="tools" Checked="RadioButtonChecked">Arme</RadioButton>
+                        <RadioButton GroupName="CompleteItemType" Name="armors" Checked="RadioButtonChecked">Armure</RadioButton>
                     </WrapPanel>
                     
                     <WrapPanel x:Name="ItemNameContainer">
@@ -98,12 +104,12 @@
                         <TextBox x:Name="ItemDurability" Width="200" Text="{Binding .Durability}"></TextBox>
                     </WrapPanel>
                     
-                    <WrapPanel x:Name="ItemAttackContainer">
+                    <WrapPanel x:Name="ItemAttackContainer" Visibility="{Binding .CompleteItemDiscriminator, ElementName='Root', Converter={StaticResource DisplayCompleteItemWrapPanelSpecificityConverter}, ConverterParameter=tools}">
                         <Label Content="Attaque de l'item :"></Label>
                         <TextBox x:Name="ItemAttack" Width="200"></TextBox>
                     </WrapPanel>
                     
-                    <WrapPanel x:Name="ItemArmorContainer">
+                    <WrapPanel x:Name="ItemArmorContainer" Visibility="{Binding .CompleteItemDiscriminator, ElementName='Root', Converter={StaticResource DisplayCompleteItemWrapPanelSpecificityConverter}, ConverterParameter=armors}">
                         <Label Content="Armure de l'item :"></Label>
                         <TextBox x:Name="ItemArmor" Width="200"></TextBox>
                     </WrapPanel>
