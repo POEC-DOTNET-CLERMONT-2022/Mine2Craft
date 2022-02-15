@@ -8,6 +8,7 @@ using Mine2CraftWinApp.Utils;
 using System.Collections.Generic;
 using System.Windows.Documents;
 using System;
+using System.IO;
 
 namespace Mine2CraftWinApp.UserControls
 {
@@ -81,7 +82,8 @@ namespace Mine2CraftWinApp.UserControls
                 Description = tbDescItem.Text,
                 IsCombustible = isCombustible,
                 IsCooked = isCooked,
-                ItemBeforeCook = guidCooked
+                ItemBeforeCook = guidCooked,
+                ImagePath = tbImagePath.Text
             };
 
             await _itemDataManager.Add(newItem);
@@ -101,11 +103,11 @@ namespace Mine2CraftWinApp.UserControls
             {
                 isCooked = 1;
                 stackLbCooked.Visibility = Visibility.Visible;
-                tbItemBeforeCook.Visibility = Visibility.Visible;
+                stackItemBeforeCook.Visibility = Visibility.Visible;
             }
             else
                 stackLbCooked.Visibility = Visibility.Collapsed;
-                tbItemBeforeCook.Visibility = Visibility.Collapsed;
+                stackItemBeforeCook.Visibility = Visibility.Collapsed;
 
             if (index != -1)
             {
@@ -116,6 +118,7 @@ namespace Mine2CraftWinApp.UserControls
                     itemModel.Description = tbDescItem.Text;
                     itemModel.IsCombustible = isCombustible;
                     itemModel.IsCooked = isCooked;
+                    itemModel.ImagePath = tbImagePath.Text;
 
                     await _itemDataManager.Update(itemModel, itemModel.Id);
                     LoadItem();
@@ -129,6 +132,10 @@ namespace Mine2CraftWinApp.UserControls
         private void lbItem_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Guid guidCooked = Guid.Empty;
+
+            if (tbImagePath.Text == null)
+                tbImagePath.Text = "Cet Item n'a aucune image";
+
 
             if (lbItem.SelectedIndex != -1)
                 guidCooked = Guid.Parse(tbItemBeforeCook.Text);
@@ -158,6 +165,7 @@ namespace Mine2CraftWinApp.UserControls
             var itemModels = await _itemDataManager.GetAll();
             CookedList.Clear();
             dicoCookedItem.Clear();
+            cbListImage.Items.Clear();
 
             var defaultItem = new ItemModel { Name = "Default Item", ItemBeforeCook = Guid.Empty };
 
@@ -170,13 +178,18 @@ namespace Mine2CraftWinApp.UserControls
                     CookedList.Add(item);
             }
 
-
             CookedEnum = CookedList;
 
             ItemsList.Items = new ObservableCollection<ItemModel>(itemModels);
             ItemCookedList.Items = new ObservableCollection<ItemModel>(CookedEnum);
             btAdd.Visibility = Visibility.Visible;
             btUpdate.Visibility = Visibility.Hidden;
+
+            string[] files = Directory.GetFiles(Path.Combine(Environment.CurrentDirectory, @"Image/"), "*.*");
+            foreach (var file in files)
+            {
+                cbListImage.Items.Add(file);
+            }
         }
 
         private void Button_Click_Back(object sender, RoutedEventArgs e)
@@ -197,6 +210,8 @@ namespace Mine2CraftWinApp.UserControls
             tbItemBeforeCook.Text = "";
             stackItemBeforeCook.Visibility = Visibility.Collapsed;
             stackLbCooked.Visibility = Visibility.Collapsed;
+            tbImagePath.Text = "";
+            cbListImage.SelectedIndex = -1;
         }
 
         private void Button_Click_Reset(object sender, RoutedEventArgs e)
@@ -206,7 +221,7 @@ namespace Mine2CraftWinApp.UserControls
 
         private void lbCooked_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            lbCooked.Height = 400;
+            lbCooked.Height = 500;
             gridForm.Visibility = Visibility.Collapsed;
             var marg = stackLbCooked.Margin;
             marg.Top = 50;
@@ -240,6 +255,11 @@ namespace Mine2CraftWinApp.UserControls
         private void btBack_Click(object sender, RoutedEventArgs e)
         {
             Navigator.NavigateTo(typeof(SelectionMenuUC));
+        }
+        private void cbListImage_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cbListImage.SelectedIndex != -1)
+                tbImagePath.Text = cbListImage.SelectedItem.ToString();
         }
     }
 }

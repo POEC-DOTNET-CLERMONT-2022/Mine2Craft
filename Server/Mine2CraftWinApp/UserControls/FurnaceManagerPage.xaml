@@ -7,10 +7,7 @@
              xmlns:local="clr-namespace:Mine2CraftWinApp.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="720" d:DesignWidth="1080" Loaded="Root_Loaded">
-    <Grid DataContext="{Binding ., ElementName=Root}">
-        <Grid.Background>
-            <ImageBrush ImageSource="/UserControls/minecrafWall.jpg"/>
-        </Grid.Background>
+    <Grid DataContext="{Binding ., ElementName=Root}" Background="#FF8A8A8A">
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
@@ -22,7 +19,7 @@
         <Label FontSize="48" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold">FURNACE MANAGER</Label>
         <Button x:Name="BtBack" Width="100" Height="55" HorizontalAlignment="Right" FontSize="18" Margin="10" Click="BtBack_Click">Back</Button>
 
-        <Grid  Grid.Row="1">
+        <Grid  Grid.Row="1" Background="#FFC6C6C6">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*"></ColumnDefinition>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
@@ -33,12 +30,12 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
-            
+
             <StackPanel Grid.Column="0" DataContext="{Binding ItemListCooked}">
                 <StackPanel.Background>
-                    <SolidColorBrush Color="Black" Opacity="0.75"/>
+                    <SolidColorBrush Color="Black" Opacity="0.7"/>
                 </StackPanel.Background>
-                <Label Content="List des Items" Margin="0,0,0,20" HorizontalAlignment="Center" Height="50" VerticalAlignment="Center" FontSize="28" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White"></Label>
+                <Label Content="Liste des recettes" Margin="0,0,0,20" HorizontalAlignment="Center" Height="50" VerticalAlignment="Center" FontSize="28" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White"></Label>
                 <ListBox x:Name="lbItem" ItemsSource="{Binding Items}" SelectedItem="{Binding CurrentItem}" FontSize="18" HorizontalContentAlignment="Left" Foreground="White" SelectionChanged="lbItem_SelectionChanged" Height="550" d:ItemsSource="{d:SampleData ItemCount=25}" Width="260" BorderBrush="{x:Null}">
                     <ListBox.Background>
                         <SolidColorBrush Color="Black" Opacity="0"/>
@@ -68,7 +65,7 @@
                                         <TextBlock Grid.Row="0" Grid.Column="0" Text="Name" HorizontalAlignment="Center" FontSize="14" FontWeight="Bold"/>
                                         <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Name}" HorizontalAlignment="Center"/>
                                     </Grid>
-                                    <Image Grid.Column="2" Width="55" Height="55" Source="/UserControls/minecrafWall.jpg"/>
+                                    <Image Grid.Column="2" Width="40" Height="40" Source="{Binding ImagePath}"/>
                                 </Grid>
                             </StackPanel>
                         </DataTemplate>
@@ -77,43 +74,62 @@
             </StackPanel>
 
 
-            <Grid Grid.Column="2" DataContext="{Binding ItemListCooked}">
+            <Grid Grid.Column="2" DataContext="{Binding ItemListCooked}" Background="#FFC6C6C6">
                 <Grid.RowDefinitions>
                     <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="2*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="2*"></RowDefinition>
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-                <Label x:Name="labelItemBurn" Content="{Binding CurrentItem.ItemBeforeCook}" Grid.Row="1" Foreground="White" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Top"></Label>
-                <Image Grid.Row="1" Width="100" Height="100" Source="/UserControls/minecrafWall.jpg" Margin="10,50,10,0"/>
+                <StackPanel Grid.Row="1" Background="#FFC6C6C6">
+                    <Label x:Name="labelItemBurn" Content="{Binding CurrentItem.ItemBeforeCook}" Grid.Row="1" Foreground="Black" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Top"></Label>
+                    <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FF8A8A8A">
+                        <Image x:Name="imageRawItem" Grid.Row="1" Width="100" Height="100" Margin="10,5,10,5"/>
+                    </WrapPanel>
+                </StackPanel>
 
-                <Label x:Name="labelCombustible" Grid.Row="2" Foreground="White" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Top">Combustible</Label>
-                <Image Grid.Row="2" Width="100" Height="100" Source="/UserControls/minecrafWall.jpg" Margin="10,50,10,0"/>
+                <StackPanel Grid.Row="2" Background="#FFC6C6C6">
+                    <Image Grid.Row="1" Width="90" Height="90" Source="/Image/Flame.png" Margin="10,0,10,0"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="3" Background="#FFC6C6C6">
+                    <Label x:Name="labelCombustible"  Foreground="Black" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Top">Combustible</Label>
+                    <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FF8A8A8A">
+                        <Image Width="100" Height="100" Source="/Image/Coal.png" Margin="10,0,10,0"/>
+                    </WrapPanel>
+                </StackPanel>
+
 
 
             </Grid>
 
             <StackPanel Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Image Width="100" Height="100" Source="/UserControls/arrowload.jpg" Stretch="Fill"/>
+                <Image Width="100" Height="100" Source="/Image/arrowload.jpg" Stretch="Fill"/>
             </StackPanel>
 
             <Grid Grid.Column="4" DataContext="{Binding ItemListCooked}">
                 <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="9*"></RowDefinition>
+                    <RowDefinition Height="11*"></RowDefinition>
+                    <RowDefinition Height="10*"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <TextBlock x:Name="tbResultCooked" Text="{Binding CurrentItem.ItemBeforeCook}" Visibility="Collapsed" Grid.Row="0"></TextBlock>
 
-                <Label x:Name="labelItemCooked" Grid.Row="1" Content="{Binding CurrentItem.Name}" Foreground="White" FontSize="35" HorizontalAlignment="Center" VerticalAlignment="Top"></Label>
-                <Image Grid.Row="1" Width="140" Height="140" Source="/UserControls/minecrafWall.jpg" Margin="10,50,10,0"/>
+                <StackPanel Grid.Row="1" Background="#FFC6C6C6">
+                    <Label x:Name="labelItemCooked"  Content="{Binding CurrentItem.Name}" Foreground="Black" FontSize="35" HorizontalAlignment="Center" VerticalAlignment="Top"></Label>
+                    <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FF8A8A8A">
+                        <Image Grid.Row="1" Width="130" Height="130" Source="{Binding CurrentItem.ImagePath}" Margin="10,5,10,5"/>
+                    </WrapPanel>
+                </StackPanel>
+
             </Grid>
         </Grid>
     </Grid>

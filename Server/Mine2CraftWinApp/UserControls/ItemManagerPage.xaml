@@ -10,7 +10,7 @@
 
     <Grid DataContext="{Binding ., ElementName=Root}">
         <Grid.Background>
-            <ImageBrush ImageSource="/UserControls/minecrafWall.jpg"/>
+            <ImageBrush ImageSource="C:\Users\sa_12\Desktop\Formation .NET\Visual Studio\Mine2Craft\Server\Mine2CraftWinApp\Image\minecrafWall.jpg"/>
         </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
@@ -70,7 +70,7 @@
                                         <TextBlock Grid.Row="0" Grid.Column="0" Text="Name" HorizontalAlignment="Center" FontSize="14" FontWeight="Bold"/>
                                         <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Name}" HorizontalAlignment="Center"/>
                                     </Grid>
-                                    <Image Grid.Column="1" Width="55" Height="55" Source="/UserControls/minecrafWall.jpg"/>
+                                    <Image Grid.Column="1" Width="55" Height="55" Source="/Image/minecrafWall.jpg"/>
                                     <Button x:Name="button_Delete" Content="DEL" Grid.Column="3" Width="25" Height="50" HorizontalAlignment="Left" VerticalAlignment="Center" Background="#FFAD0000" Click="Button_Click_Delete" BorderBrush="#FFAD0000"/>
                                 </Grid>
                             </StackPanel>
@@ -94,46 +94,56 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <StackPanel>
                         <Label Grid.Row="1" Foreground="White" FontSize="20">Name</Label>
-                        <TextBox x:Name="tbNameItem" Grid.Row="2" DataContext="{Binding ItemsList.CurrentItem}" Text="{Binding Name}" Margin="0,0,0,10" FontSize="20" Height="35" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />
+                        <TextBox x:Name="tbNameItem" Grid.Row="2" DataContext="{Binding ItemsList.CurrentItem}" Text="{Binding Name}" Margin="0,0,0,0" FontSize="20" Height="30" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />
 
                         <Label Grid.Row="3" Foreground="White" FontSize="20">Description</Label>
-                        <TextBox x:Name="tbDescItem" Grid.Row="4" DataContext="{Binding ItemsList.CurrentItem}" Text="{Binding Description}" Margin="0,0,0,30" FontSize="20" Height="35" VerticalContentAlignment="Center" />
+                        <TextBox x:Name="tbDescItem" Grid.Row="4" DataContext="{Binding ItemsList.CurrentItem}" Text="{Binding Description}" Margin="0,0,0,20" FontSize="20" Height="30" VerticalContentAlignment="Center" />
 
-                        <Viewbox Grid.Row="5" Height="25" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,30">
+                        <Viewbox Grid.Row="5" Height="25" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,10">
                             <RadioButton x:Name="rbCooked" GroupName="GrItem" DataContext="{Binding ItemsList.CurrentItem}" IsChecked="{Binding IsCooked}" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="5,-4,0,0" Foreground="White" Checked="rbCooked_Checked" >Can be cooked</RadioButton>
                         </Viewbox>
-                        <Viewbox Grid.Row="6" Height="25" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,30">
+                        <Viewbox Grid.Row="6" Height="25" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,10">
                             <RadioButton x:Name="rbCombustible" GroupName="GrItem" DataContext="{Binding ItemsList.CurrentItem}" IsChecked="{Binding IsCombustible}" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="5,-4,0,0" Foreground="White" Checked="rbCombustible_Checked" >Can be used at fuel</RadioButton>
                         </Viewbox>
-                        <Viewbox Grid.Row="7" Height="25" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,10">
+                        <Viewbox Grid.Row="7" Height="25" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,0">
                             <RadioButton x:Name="rbNull" GroupName="GrItem" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="5,-4,0,0" Foreground="White" Checked="rbNull_Checked" >Nothing</RadioButton>
                         </Viewbox>
+
+                        <Label Grid.Row="8" Foreground="White" FontSize="20">Liste d'image</Label>
+                        <ComboBox Grid.Row="9" x:Name="cbListImage" SelectionChanged="cbListImage_SelectionChanged"></ComboBox>
+                        <Label Grid.Row="10" Foreground="White" FontSize="20">Chemin de l'image</Label>
+                        <TextBox x:Name="tbImagePath" Grid.Row="11" DataContext="{Binding ItemsList.CurrentItem}" Text="{Binding ImagePath}" Margin="0,0,0,10" FontSize="16" Height="25" VerticalContentAlignment="Center" />
+
                     </StackPanel>
 
-
                 </Grid>
-                <StackPanel x:Name="stackLbCooked" Visibility="Collapsed" Margin="0,16,0,0" Panel.ZIndex="100" HorizontalAlignment="Center" Grid.RowSpan="2" Width="279" VerticalAlignment="Top" >
-                    <ListBox DataContext="{Binding ItemCookedList}" x:Name="lbCooked" ItemsSource="{Binding Items}" SelectedItem="{Binding CurrentItem}" Height="30" Width="275" FontSize="18" HorizontalContentAlignment="Left" Foreground="White" MouseEnter="lbCooked_MouseEnter" MouseLeave="lbCooked_MouseLeave">
+                <StackPanel x:Name="stackLbCooked" Visibility="Collapsed" Margin="0,10,0,0" Panel.ZIndex="100" HorizontalAlignment="Center" Grid.RowSpan="2" Width="335" >
+                    <ListBox DataContext="{Binding ItemCookedList}" x:Name="lbCooked" ItemsSource="{Binding Items}" SelectedItem="{Binding CurrentItem}" Height="32" Width="275" FontSize="18" HorizontalContentAlignment="Left" Foreground="Black" MouseEnter="lbCooked_MouseEnter" MouseLeave="lbCooked_MouseLeave" d:ItemsSource="{d:SampleData ItemCount=5}">
                         <ListBox.Background>
-                            <SolidColorBrush Color="Black" Opacity="20"/>
+                            <SolidColorBrush Color="White" Opacity="20"/>
                         </ListBox.Background>
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="4*"/>
-                                        <ColumnDefinition Width="1*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="30" />
-                                    </Grid.RowDefinitions>
-                                    <TextBlock Grid.Column="0" Text="{Binding Name}" HorizontalAlignment="Center"/>
-                                    <Image Grid.Column="1" Width="30" Height="30" Source="/UserControls/minecrafWall.jpg"></Image>
-                                </Grid>
+                                <StackPanel Width="230">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="5*"/>
+                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="1*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="30" />
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Grid.Column="0" Text="{Binding Name}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                        <Image Grid.Column="2" Width="30" Height="30" Source="{Binding ImagePath}"></Image>
+                                    </Grid>
+                                </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
@@ -154,9 +164,9 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <Button x:Name="btAdd" Visibility="Visible" Content="ADD" Grid.Column="0" Grid.Row="1" Height="40" Width="150" Click="Button_Click_Add"></Button>
-                    <Button x:Name="btUpdate" Visibility="Hidden" Content="UPDATE" Grid.Column="0" Grid.Row="1" Height="40" Width="150" Click="Button_Click_Update"></Button>
-                    <Button x:Name="btReset" Content="RESET" Grid.Column="1" Grid.Row="1" Height="40" Width="150" Click="Button_Click_Reset"></Button>
+                    <Button x:Name="btAdd" Visibility="Visible" Content="ADD" Grid.Column="0" Grid.Row="1" Height="35" Width="150" Click="Button_Click_Add"></Button>
+                    <Button x:Name="btUpdate" Visibility="Hidden" Content="UPDATE" Grid.Column="0" Grid.Row="1" Height="35" Width="150" Click="Button_Click_Update"></Button>
+                    <Button x:Name="btReset" Content="RESET" Grid.Column="1" Grid.Row="1" Height="35" Width="150" Click="Button_Click_Reset"></Button>
                 </Grid>
             </StackPanel>
         </Grid>
