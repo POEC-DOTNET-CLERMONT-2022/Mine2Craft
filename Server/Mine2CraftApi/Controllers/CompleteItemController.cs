@@ -53,10 +53,11 @@ namespace Mine2CraftApi.Controllers
         }
 
         // PUT api/<CompleteItemController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut("{guid}")]
+        public IActionResult Put(Guid guid, [FromBody] CompleteItemDto completeItemDtoToUpdate)
         {
-            throw new NotSupportedException();
+            var completeItemEntityToCreate = _mapper.Map<CompleteItemEntity>(completeItemDtoToUpdate);
+            return Ok(_completeItemRepository.Update(completeItemEntityToCreate).ToString());
         }
 
         // DELETE api/<CompleteItemController>/5

@@ -72,19 +72,23 @@ public partial class CompleteItemManagerPage : UserControl, INotifyPropertyChang
             ItemModel item = entry.Value as ItemModel;
             workbenches.Add(new WorkbenchModel(entry.Key, item.Id));
         }
-        
-        /*if (completeItemDiscriminator == "tools")
-        {
-            var toolToCreate = new ToolModel(ItemName.Text, Int32.Parse(ItemDurability.Text),
-                ItemDescription.Text, workbenches, completeItemDiscriminator, Int32.Parse(ItemAttack.Text));
-            
-            _toolRequestManager.Add(toolToCreate);
-        }*/
-        
-        CompleteItemModel toolToCreatee = new ToolModel(ItemName.Text, Int32.Parse(ItemDurability.Text),
-            ItemDescription.Text, workbenches, CompleteItemDiscriminator, Int32.Parse(ItemAttack.Text));
 
-        _completeItemRequestManager.Add(toolToCreatee);
+        CompleteItemModel completeItemModelToCreate = null;
+        
+        if (CompleteItemDiscriminator == "tools")
+        {
+            completeItemModelToCreate = new ToolModel(ItemName.Text, Int32.Parse(ItemDurability.Text),
+                ItemDescription.Text, workbenches, CompleteItemDiscriminator, Int32.Parse(ItemAttack.Text));
+            
+        }
+
+        if (CompleteItemDiscriminator == "armors")
+        {
+            completeItemModelToCreate = new ArmorModel(ItemName.Text, Int32.Parse(ItemDurability.Text),
+                ItemDescription.Text, workbenches, CompleteItemDiscriminator, Int32.Parse(ItemArmor.Text));
+        }
+
+        _completeItemRequestManager.Add(completeItemModelToCreate);
     }
 
     private async void Window_Loaded(object sender, RoutedEventArgs e)
@@ -128,6 +132,12 @@ public partial class CompleteItemManagerPage : UserControl, INotifyPropertyChang
                 var tool = CompleteItemsList.CurrentCompleteItem as ToolModel;
                 ItemAttack.Text = tool.AttackPoint.ToString();
             }
+            
+            if (CompleteItemsList.CurrentCompleteItem.GetType() == typeof(ArmorModel))
+            {
+                var armor = CompleteItemsList.CurrentCompleteItem as ArmorModel;
+                ItemArmor.Text = armor.ArmorPoint.ToString();
+            }
         
             for (var i = 1; i < 10; i++)
             {
@@ -168,29 +178,37 @@ public partial class CompleteItemManagerPage : UserControl, INotifyPropertyChang
     {
         var workbenches = new List<WorkbenchModel>();
         
-        if (CompleteItemDiscriminator == "tools")
-        {
-            foreach (KeyValuePair<int, object> entry in _currentItemWorbenches) {
-                ItemModel item = entry.Value as ItemModel;
-                workbenches.Add(new WorkbenchModel(entry.Key, item.Id));
-            }
+        foreach (KeyValuePair<int, object> entry in _currentItemWorbenches) {
+            ItemModel item = entry.Value as ItemModel;
+            workbenches.Add(new WorkbenchModel(entry.Key, item.Id));
+        }
 
-            foreach (var workbenchCurrentItem in CompleteItemsList.CurrentCompleteItem.Workbenches)
+        foreach (var workbenchCurrentItem in CompleteItemsList.CurrentCompleteItem.Workbenches)
+        {
+            foreach (var workbench in workbenches)
             {
-                foreach (var workbench in workbenches)
+                if (workbench.Position == workbenchCurrentItem.Position)
                 {
-                    if (workbench.Position == workbenchCurrentItem.Position)
-                    {
-                        workbench.Id = workbenchCurrentItem.Id;
-                    }
+                    workbench.Id = workbenchCurrentItem.Id;
                 }
             }
-
-            var toolToCreate = new ToolModel(CompleteItemsList.CurrentCompleteItem.Id, ItemName.Text, Int32.Parse(ItemDurability.Text),
-                ItemDescription.Text, workbenches, CompleteItemDiscriminator, Int32.Parse(ItemAttack.Text));
-            
-            _toolRequestManager.Update(toolToCreate, CompleteItemsList.CurrentCompleteItem.Id);
         }
+
+        CompleteItemModel completeItemModelToUpdate = null;
+        
+        if (CompleteItemDiscriminator == "tools")
+        {
+            completeItemModelToUpdate = new ToolModel(CompleteItemsList.CurrentCompleteItem.Id, ItemName.Text, Int32.Parse(ItemDurability.Text),
+                ItemDescription.Text, workbenches, CompleteItemDiscriminator, Int32.Parse(ItemAttack.Text));
+        }
+
+        if (CompleteItemDiscriminator == "armors")
+        {
+            completeItemModelToUpdate = new ArmorModel(CompleteItemsList.CurrentCompleteItem.Id, ItemName.Text, Int32.Parse(ItemDurability.Text),
+                ItemDescription.Text, workbenches, CompleteItemDiscriminator, Int32.Parse(ItemArmor.Text));
+        }
+
+        _completeItemRequestManager.Update(completeItemModelToUpdate, CompleteItemsList.CurrentCompleteItem.Id);
     }
 
     private void DeleteCompleteItem(object sender, RoutedEventArgs e)

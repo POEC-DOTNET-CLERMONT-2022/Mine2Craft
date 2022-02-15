@@ -86,7 +86,7 @@
                     <WrapPanel x:Name="ItemTypeContainer">
                         <Label Content="Type d'item :"></Label>
                         <RadioButton IsChecked="{Binding CompleteItemDiscriminator, ElementName='Root', Converter={StaticResource CheckRadioButtonConverter}, ConverterParameter='tools'}" GroupName="CompleteItemType" Name="tools" Checked="RadioButtonChecked">Arme</RadioButton>
-                        <RadioButton GroupName="CompleteItemType" Name="armors" Checked="RadioButtonChecked">Armure</RadioButton>
+                        <RadioButton IsChecked="{Binding CompleteItemDiscriminator, ElementName='Root', Converter={StaticResource CheckRadioButtonConverter}, ConverterParameter='armors'}" GroupName="CompleteItemType" Name="armors" Checked="RadioButtonChecked">Armure</RadioButton>
                     </WrapPanel>
                     
                     <WrapPanel x:Name="ItemNameContainer">
