@@ -10,9 +10,11 @@ namespace Dtos
         public byte isCombustible { get; set; }
         public byte isCooked { get; set; }
         public Guid ItemBeforeCook { get; set; }
+        public string ImagePath { get; set; }
 
 
-        public ItemDto(Guid id, string name, string description, byte isCombustible, byte isCooked, Guid itemBeforeCook)
+
+        public ItemDto(Guid id, string name, string description, byte isCombustible, byte isCooked, Guid itemBeforeCook, string imagePath)
         {
             Id = id;
             Name = name;
@@ -20,6 +22,7 @@ namespace Dtos
             this.isCombustible = isCombustible;
             this.isCooked = isCooked;
             ItemBeforeCook = itemBeforeCook;
+            ImagePath = imagePath;
         }
     }
 }

@@ -11,6 +11,20 @@ namespace Models
         private byte _isCombustible;
         private byte _isCooked;
         private Guid _itemBeforeCook;
+        private string _imagePath;
+
+        public string ImagePath
+        {
+            get { return _imagePath; }
+            set 
+            {
+                if (_imagePath != value)
+                {
+                    _imagePath = value;
+                    OnNotifyPropertyChanged();
+                }
+            }
+        }
 
         public Guid ItemBeforeCook
         {

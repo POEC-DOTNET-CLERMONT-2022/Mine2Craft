@@ -13,6 +13,8 @@ namespace Entities
         public byte isCombustible { get; set; }
         public byte isCooked { get; set; }
         public Guid ItemBeforeCook { get; set; }
+        public string ImagePath { get; set; }
+
 
         public ICollection<WorkbenchEntity> Workbenches { get; set; }
     }
