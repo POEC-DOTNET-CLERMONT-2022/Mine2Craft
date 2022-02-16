@@ -15,9 +15,6 @@ namespace Persistance
 
         int Delete(Guid id);
 
-        //Alexis //TODO ?? 
         bool Update(T entity);
-
-        void Add(T entity);
     }
 }

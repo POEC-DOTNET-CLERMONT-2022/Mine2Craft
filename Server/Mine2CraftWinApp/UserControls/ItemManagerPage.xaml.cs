@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Windows.Documents;
 using System;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace Mine2CraftWinApp.UserControls
 {
@@ -19,7 +20,6 @@ namespace Mine2CraftWinApp.UserControls
     {
         private readonly IRequestManager<ItemModel, ItemDto> _itemDataManager
                 = ((App)Application.Current).ItemDataManager;
-
         public ItemListObservable ItemsList { get; set; } = new ItemListObservable();
         public ItemListObservable ItemCookedList{ get; set; } = new ItemListObservable();
 
@@ -29,6 +29,7 @@ namespace Mine2CraftWinApp.UserControls
         private Dictionary<Guid, string> dicoCookedItem = new Dictionary<Guid, string>();
         public INavigator Navigator { get; set; } = ((App)Application.Current).Navigator;
 
+        private int index = -1;
 
         public ItemManagerPage()
         {
@@ -38,27 +39,23 @@ namespace Mine2CraftWinApp.UserControls
 
         private async void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            LoadItem();
-            tbNameItem.Text = "New Item";
-            tbDescItem.Text = "New Desc Item";
-            rbNull.IsChecked = true;//TODO : pourquoi ce texte ici ? 
+            await LoadItem();
         }
 
         private async void Button_Click_Delete(object sender, RoutedEventArgs e)
         {
-            int index = lbItem.SelectedIndex;
+            index = lbItem.SelectedIndex;
             if (index != -1)
             {
                 var itemModel = ItemsList.Items[index].Id;
-                if (itemModel != System.Guid.Empty)
+                if (itemModel != Guid.Empty)
                     await _itemDataManager.Delete(itemModel);
-                LoadItem();
+                await LoadItem();
             }
         }
 
         private async void Button_Click_Add(object sender, RoutedEventArgs e)
         {
-
             //TODO : trop complexe 
             byte isCombustible = 0, isCooked = 0;
             Guid guidCooked = Guid.Empty;
@@ -90,15 +87,14 @@ namespace Mine2CraftWinApp.UserControls
             };
 
             await _itemDataManager.Add(newItem);
-            LoadItem();
+            await LoadItem();
             Reset();
         }
 
         private async void Button_Click_Update(object sender, RoutedEventArgs e)
         {
-
             //TODO : même chose 
-            int index = lbItem.SelectedIndex;
+            index = lbItem.SelectedIndex;
             byte isCombustible = 0, isCooked = 0;
 
             if (rbCombustible.IsChecked == true)
@@ -111,10 +107,13 @@ namespace Mine2CraftWinApp.UserControls
                 stackItemBeforeCook.Visibility = Visibility.Visible;
             }
             else
+            {
                 stackLbCooked.Visibility = Visibility.Collapsed;
-                tbItemBeforeCook.Visibility = Visibility.Collapsed;//TODO attention cette ligne n'est pas dans le else
+                tbItemBeforeCook.Visibility = Visibility.Collapsed;
+            }
+                
 
-                if (index != -1)
+            if (index != -1)
             {
                 var itemModel = ItemsList.Items[index];
                 if (itemModel.Id != System.Guid.Empty)
@@ -126,8 +125,7 @@ namespace Mine2CraftWinApp.UserControls
                     itemModel.ImagePath = tbImagePath.Text;
 
                     await _itemDataManager.Update(itemModel, itemModel.Id);
-                    LoadItem();
-                    Reset();//TODO deux reset ? 
+                    await LoadItem();
                 }
                 Reset();
             }
@@ -138,15 +136,15 @@ namespace Mine2CraftWinApp.UserControls
         {
             //TODO trop complexe
             Guid guidCooked = Guid.Empty;
+            index = lbItem.SelectedIndex;
+
+            if (index != -1)
+                guidCooked = Guid.Parse(tbItemBeforeCook.Text);
+
 
             if (tbImagePath.Text == null)
                 tbImagePath.Text = "Cet Item n'a aucune image";
 
-
-            if (lbItem.SelectedIndex != -1)
-                guidCooked = Guid.Parse(tbItemBeforeCook.Text);
-
-            
             if (dicoCookedItem.ContainsKey(guidCooked) == true)
                 tbItemBeforeCook.Text = dicoCookedItem[guidCooked];
 
@@ -166,7 +164,9 @@ namespace Mine2CraftWinApp.UserControls
             btUpdate.Visibility = Visibility.Visible;
         }
 
-        public async void LoadItem()
+
+
+        public async Task LoadItem()
         {
             var itemModels = await _itemDataManager.GetAll();
             CookedList.Clear();
