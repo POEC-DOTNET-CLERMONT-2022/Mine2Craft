@@ -5,6 +5,8 @@
              xmlns:local="clr-namespace:Mine2CraftWinApp"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <Style x:Key="MineCraftFont" TargetType="Control">
+            <Setter Property="FontFamily" Value="/Fonts/#minecraft"/>
+        </Style>
     </Application.Resources>
 </Application>

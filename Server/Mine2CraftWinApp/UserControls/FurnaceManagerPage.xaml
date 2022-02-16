@@ -6,7 +6,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Mine2CraftWinApp.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="720" d:DesignWidth="1080" Loaded="Root_Loaded">
+             d:DesignHeight="720" d:DesignWidth="1080" Loaded="Root_Loaded" Style="{StaticResource MineCraftFont}">
     <Grid DataContext="{Binding ., ElementName=Root}" Background="#FF8A8A8A">
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>

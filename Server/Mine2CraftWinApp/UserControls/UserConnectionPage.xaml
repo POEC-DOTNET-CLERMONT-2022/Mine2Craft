@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="Mine2CraftWinApp.UserControls.UserConnectionPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Mine2CraftWinApp.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="720" d:DesignWidth="1080" Style="{StaticResource MineCraftFont}">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Image/minecrafWall.jpg"/>
+        </Grid.Background>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="7*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="55" FontWeight="Bold" >MINE 2 CRAFT</Label>
+        <Button x:Name="btBack" FontSize="22" Height="50" Width="120" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="15" Click="btBack_Click">BACK</Button>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <StackPanel Width="420" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel.Background>
+                    <SolidColorBrush Color="Black" Opacity="0.4"/>
+                </StackPanel.Background>
+
+                <Label Foreground="White" FontSize="25" Margin="10,20,10,0">Identifiant</Label>
+                <TextBox FontSize="23" Height="35" Margin="20,0,20,20"></TextBox>
+
+                <Label Foreground="White" FontSize="25" Margin="10,20,10,0">Mot de passe</Label>
+                <TextBox FontSize="23" Height="35" Margin="20,0,20,30"></TextBox>
+
+                <Button Height="50" Width="200" FontSize="22" Margin="0,20,0,30" Background="#FF369C22" BorderBrush="#FF1F5D13" BorderThickness="4,4,4,4">Se connecter</Button>
+            </StackPanel>
+
+        </Grid>
+
+    </Grid>
+</UserControl>

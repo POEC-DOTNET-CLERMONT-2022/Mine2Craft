@@ -6,7 +6,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Mine2CraftWinApp.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="720" d:DesignWidth="1080" Loaded="UserControl_Loaded">
+             d:DesignHeight="720" d:DesignWidth="1080" Loaded="UserControl_Loaded" Style="{StaticResource MineCraftFont}">
 
     <Grid DataContext="{Binding ., ElementName=Root}">
         <Grid.Background>
@@ -21,7 +21,7 @@
         </Grid.RowDefinitions>
 
         <Label FontSize="48" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold">ITEM MANAGER</Label>
-        <Button x:Name="btBack" Height="50" Width="100" HorizontalAlignment="Right" Margin="0,0,10,0" Click="btBack_Click">BACK</Button>
+        <Button x:Name="btBack" Height="50" FontSize="18" Width="100" HorizontalAlignment="Right" Margin="0,0,10,0" Click="btBack_Click">BACK</Button>
 
 
         <Grid  Grid.Row="1">
@@ -63,12 +63,12 @@
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
                                         <Grid.RowDefinitions>
-                                            <RowDefinition Height="20" />
-                                            <RowDefinition Height="30" />
+                                            <!--<RowDefinition Height="20" />-->
+                                            <RowDefinition Height="50" />
                                         </Grid.RowDefinitions>
 
-                                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Name" HorizontalAlignment="Center" FontSize="14" FontWeight="Bold"/>
-                                        <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Name}" HorizontalAlignment="Center"/>
+                                        <!--<TextBlock Grid.Row="0" Grid.Column="0" Text="Name" HorizontalAlignment="Center" FontSize="14" FontWeight="Bold"/>-->
+                                        <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Name}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                     </Grid>
                                     <Image Grid.Column="1" Width="55" Height="55" Source="/Image/minecrafWall.jpg"/>
                                     <Button x:Name="button_Delete" Content="DEL" Grid.Column="3" Width="25" Height="50" HorizontalAlignment="Left" VerticalAlignment="Center" Background="#FFAD0000" Click="Button_Click_Delete" BorderBrush="#FFAD0000"/>
@@ -99,25 +99,25 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <StackPanel>
-                        <Label Grid.Row="1" Foreground="White" FontSize="20">Name</Label>
+                        <Label Grid.Row="1" Foreground="White" FontSize="18">Name</Label>
                         <TextBox x:Name="tbNameItem" Grid.Row="2" DataContext="{Binding ItemsList.CurrentItem}" Text="{Binding Name}" Margin="0,0,0,0" FontSize="20" Height="30" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" />
 
-                        <Label Grid.Row="3" Foreground="White" FontSize="20">Description</Label>
+                        <Label Grid.Row="3" Foreground="White" FontSize="18">Description</Label>
                         <TextBox x:Name="tbDescItem" Grid.Row="4" DataContext="{Binding ItemsList.CurrentItem}" Text="{Binding Description}" Margin="0,0,0,20" FontSize="20" Height="30" VerticalContentAlignment="Center" />
 
-                        <Viewbox Grid.Row="5" Height="25" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,10">
+                        <Viewbox Grid.Row="5" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,15">
                             <RadioButton x:Name="rbCooked" GroupName="GrItem" DataContext="{Binding ItemsList.CurrentItem}" IsChecked="{Binding IsCooked}" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="5,-4,0,0" Foreground="White" Checked="rbCooked_Checked" >Can be cooked</RadioButton>
                         </Viewbox>
-                        <Viewbox Grid.Row="6" Height="25" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,10">
+                        <Viewbox Grid.Row="6" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,15">
                             <RadioButton x:Name="rbCombustible" GroupName="GrItem" DataContext="{Binding ItemsList.CurrentItem}" IsChecked="{Binding IsCombustible}" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="5,-4,0,0" Foreground="White" Checked="rbCombustible_Checked" >Can be used at fuel</RadioButton>
                         </Viewbox>
-                        <Viewbox Grid.Row="7" Height="25" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,0">
+                        <Viewbox Grid.Row="7" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,10">
                             <RadioButton x:Name="rbNull" GroupName="GrItem" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="5,-4,0,0" Foreground="White" Checked="rbNull_Checked" >Nothing</RadioButton>
                         </Viewbox>
 
-                        <Label Grid.Row="8" Foreground="White" FontSize="20">Liste d'image</Label>
-                        <ComboBox Grid.Row="9" x:Name="cbListImage" SelectionChanged="cbListImage_SelectionChanged"></ComboBox>
-                        <Label Grid.Row="10" Foreground="White" FontSize="20">Chemin de l'image</Label>
+                        <Label Grid.Row="8" Foreground="White" FontSize="18">Liste d'image</Label>
+                        <ComboBox Grid.Row="9" x:Name="cbListImage" SelectionChanged="cbListImage_SelectionChanged" FontFamily="Arial"></ComboBox>
+                        <Label Grid.Row="10" Foreground="White" FontSize="18">Chemin de l'image</Label>
                         <TextBox x:Name="tbImagePath" Grid.Row="11" DataContext="{Binding ItemsList.CurrentItem}" Text="{Binding ImagePath}" Margin="0,0,0,10" FontSize="16" Height="25" VerticalContentAlignment="Center" />
 
                     </StackPanel>
