@@ -35,12 +35,7 @@ public class FakeRepositoryGeneric<T> : IRepositoryGeneric<T> where T : class, I
         throw new NotImplementedException();
     }
 
-    public bool Update(T entity) // TODO Alexis
-    {
-        throw new NotImplementedException();
-    }
-
-    public void Add(T entity) // TODO Alexis
+    public bool Update(T entity)
     {
         throw new NotImplementedException();
     }

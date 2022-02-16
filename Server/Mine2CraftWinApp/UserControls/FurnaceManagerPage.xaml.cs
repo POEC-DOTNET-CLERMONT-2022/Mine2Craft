@@ -16,7 +16,6 @@ namespace Mine2CraftWinApp.UserControls
     {
         private readonly IRequestManager<ItemModel, ItemDto> _itemDataManager
         = ((App)Application.Current).ItemDataManager;
-
         private Guid GuidCooked = Guid.Empty;
         public ItemListObservable ItemListCooked { get; set; } = new ItemListObservable();
         private List<ItemModel> CookedList = new List<ItemModel>();
@@ -37,7 +36,6 @@ namespace Mine2CraftWinApp.UserControls
         private async void Root_Loaded(object sender, RoutedEventArgs e)
         {
             await LoadItem();
-            imageRawItem.Source = null;
         }
 
         public async Task LoadItem()

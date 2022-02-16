@@ -112,7 +112,7 @@
                             <RadioButton x:Name="rbCombustible" GroupName="GrItem" DataContext="{Binding ItemsList.CurrentItem}" IsChecked="{Binding IsCombustible}" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="5,-4,0,0" Foreground="White" Checked="rbCombustible_Checked" >Can be used at fuel</RadioButton>
                         </Viewbox>
                         <Viewbox Grid.Row="7" Height="25" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,0">
-                            <RadioButton x:Name="rbNull" GroupName="GrItem" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="5,-4,0,0" Foreground="White" Checked="rbNull_Checked" >Nothing</RadioButton>
+                            <RadioButton x:Name="rbNull" GroupName="GrItem" IsChecked="True"  FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="5,-4,0,0" Foreground="White" Checked="rbNull_Checked" >Nothing</RadioButton>
                         </Viewbox>
 
                         <Label Grid.Row="8" Foreground="White" FontSize="20">Liste d'image</Label>

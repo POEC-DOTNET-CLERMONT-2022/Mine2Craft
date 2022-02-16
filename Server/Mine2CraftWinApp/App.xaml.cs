@@ -17,9 +17,7 @@ namespace Mine2CraftWinApp
         private const string SERVER_URL = "https://localhost:7204"; 
 
         public HttpClient HttpClient { get; } = new HttpClient();
-
         public IRequestManager<CompleteItemModel, CompleteItemDto> CompleteItemRequestManager { get; }
-        
         public IRequestManager<ToolModel, ToolDto> ToolRequestManager { get; }
         public IRequestManager<ItemModel, ItemDto> ItemDataManager { get; } 
         public IMapper Mapper { get; }

@@ -45,8 +45,6 @@ namespace Persistance
             return SqlContext.SaveChanges();
         }
 
-
-        // Alexis
         public bool Update(T entity)
         {
             if (entity != null)
@@ -56,13 +54,6 @@ namespace Persistance
                 return true;
             }
             return false;
-        }
-
-        public void Add(T entity)
-        {
-            //TODO: add or create ?? 
-            SqlContext.Add(entity);
-            SqlContext.SaveChanges();
         }
     }
 }
