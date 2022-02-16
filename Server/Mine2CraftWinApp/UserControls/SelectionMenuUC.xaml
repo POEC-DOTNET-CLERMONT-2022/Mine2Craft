@@ -8,7 +8,7 @@
              d:DesignHeight="720" d:DesignWidth="1080">
     <Grid>
 
-        <StackPanel Grid.Column="1">
+        <StackPanel Grid.Column="1"><!--TODO : pas de colonne ici --> 
             <Button Click="GoToCraftListClick" Content="Liste des craft" Height="50" Width="200" Margin="0,30"></Button>
             <Button Click="GoToCompleteItemManager" Content="Complete Item Manager" Height="50" Width="200" Margin="0,30"></Button>
             <Button Click="GoToItemManagerPage" Content="Item Manager" Height="50" Width="200" Margin="0,30"></Button>

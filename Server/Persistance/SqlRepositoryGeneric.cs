@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Persistance
 {
+    //TODO : gestion des exceptions 
     public class SqlRepositoryGeneric<T> : IRepositoryGeneric<T> where T : class, IBaseEntity
     {
         private DbContext SqlContext { get; }
@@ -59,6 +60,7 @@ namespace Persistance
 
         public void Add(T entity)
         {
+            //TODO: add or create ?? 
             SqlContext.Add(entity);
             SqlContext.SaveChanges();
         }

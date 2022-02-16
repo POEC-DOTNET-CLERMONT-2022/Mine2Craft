@@ -40,7 +40,7 @@ namespace Mine2CraftWinApp.UserControls
             LoadItem();
             tbNameItem.Text = "New Item";
             tbDescItem.Text = "New Desc Item";
-            rbNull.IsChecked = true;
+            rbNull.IsChecked = true;//TODO : pourquoi ce texte ici ? 
         }
 
         private async void Button_Click_Delete(object sender, RoutedEventArgs e)
@@ -57,6 +57,8 @@ namespace Mine2CraftWinApp.UserControls
 
         private async void Button_Click_Add(object sender, RoutedEventArgs e)
         {
+
+            //TODO : trop complexe 
             byte isCombustible = 0, isCooked = 0;
             Guid guidCooked = Guid.Empty;
 
@@ -67,6 +69,7 @@ namespace Mine2CraftWinApp.UserControls
             {
                 isCooked = 1;
                 stackLbCooked.Visibility = Visibility.Visible;
+                //TODO : binding ? avec converter ? 
 
                 if (lbCooked.SelectedItem != null)
                 {
@@ -91,6 +94,8 @@ namespace Mine2CraftWinApp.UserControls
 
         private async void Button_Click_Update(object sender, RoutedEventArgs e)
         {
+
+            //TODO : même chose 
             int index = lbItem.SelectedIndex;
             byte isCombustible = 0, isCooked = 0;
 
@@ -105,7 +110,7 @@ namespace Mine2CraftWinApp.UserControls
             }
             else
                 stackLbCooked.Visibility = Visibility.Collapsed;
-                tbItemBeforeCook.Visibility = Visibility.Collapsed;
+                tbItemBeforeCook.Visibility = Visibility.Collapsed;//TODO attention cette ligne n'est pas dans le else
 
             if (index != -1)
             {
@@ -119,15 +124,16 @@ namespace Mine2CraftWinApp.UserControls
 
                     await _itemDataManager.Update(itemModel, itemModel.Id);
                     LoadItem();
-                    Reset();
+                    Reset();//TODO deux reset ? 
                 }
                 Reset();
             }
         }
 
-
+        //TODO : majuscule 
         private void lbItem_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            //TODO trop complexe
             Guid guidCooked = Guid.Empty;
 
             if (lbItem.SelectedIndex != -1)
@@ -204,6 +210,8 @@ namespace Mine2CraftWinApp.UserControls
             Reset();
         }
 
+
+        //TODO: see DataTrigger
         private void lbCooked_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
         {
             lbCooked.Height = 400;
@@ -212,6 +220,7 @@ namespace Mine2CraftWinApp.UserControls
             marg.Top = 50;
         }
 
+        //TODO: see DataTrigger
         private void lbCooked_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
         {
             lbCooked.Height = 50;
@@ -219,18 +228,21 @@ namespace Mine2CraftWinApp.UserControls
 
         }
 
+        //TODO: Binding
         private void rbCooked_Checked(object sender, RoutedEventArgs e)
         {
             if (lbItem.SelectedItem == null && btAdd.Visibility == Visibility.Visible)
                 stackLbCooked.Visibility = Visibility.Visible;
         }
 
+        //TODO: Binding
         private void rbCombustible_Checked(object sender, RoutedEventArgs e)
         {
             stackLbCooked.Visibility = Visibility.Collapsed;
             stackItemBeforeCook.Visibility = Visibility.Collapsed;
         }
 
+        //TODO: Binding
         private void rbNull_Checked(object sender, RoutedEventArgs e)
         {
             stackLbCooked.Visibility = Visibility.Collapsed;

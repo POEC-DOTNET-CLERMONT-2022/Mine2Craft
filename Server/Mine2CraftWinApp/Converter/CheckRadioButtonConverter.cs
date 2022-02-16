@@ -10,6 +10,7 @@ public class CheckRadioButtonConverter : IValueConverter
     {
         if (value is string)
         {
+            //TODO : bizarre 
             if (value.Equals("True") || value.Equals("tools") && parameter.Equals("tools")) return true;
 
             if (value.Equals("True") || value.Equals("armors") && parameter.Equals("armors")) return true;

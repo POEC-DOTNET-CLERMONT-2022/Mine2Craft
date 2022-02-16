@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using ApiRequest;
@@ -98,6 +99,7 @@ public partial class CompleteItemManagerPage : UserControl, INotifyPropertyChang
         LoadData();
     }
 
+    //TODO: mettre une TASK 
     public async void LoadData()
     {
         var completeItemModels = await _completeItemRequestManager.GetAll();
@@ -116,10 +118,13 @@ public partial class CompleteItemManagerPage : UserControl, INotifyPropertyChang
         var position = Int32.Parse(comboBox.SelectedValuePath);
 
         _currentItemWorbenches[position] = comboBox.SelectedItem;
+        //TODO binding ? 
     }
 
     private void OnSelectionChangeCompleteItemList(object sender, SelectionChangedEventArgs e)
     {
+
+        //TODO trop complexe
         _currentItemWorbenches.Clear();
 
         if (CompleteItemsList.CurrentCompleteItem != null)
@@ -178,6 +183,8 @@ public partial class CompleteItemManagerPage : UserControl, INotifyPropertyChang
 
     private void UpdateCompleteItem(object sender, RoutedEventArgs e)
     {
+
+        //TODO : trop complexe
         var workbenches = new List<WorkbenchModel>();
         
         foreach (KeyValuePair<int, object> entry in _currentItemWorbenches) {
@@ -198,6 +205,7 @@ public partial class CompleteItemManagerPage : UserControl, INotifyPropertyChang
 
         CompleteItemModel completeItemModelToUpdate = null;
         
+        //TODO : enum ? 
         if (CompleteItemDiscriminator == "tools")
         {
             completeItemModelToUpdate = new ToolModel(CompleteItemsList.CurrentCompleteItem.Id, ItemName.Text, Int32.Parse(ItemDurability.Text),

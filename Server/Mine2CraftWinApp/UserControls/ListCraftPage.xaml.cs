@@ -42,6 +42,7 @@ namespace Mine2CraftWinApp.UserControls
         
         private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            //TODO : il faut un await !!! 
             LoadData();
         }
 

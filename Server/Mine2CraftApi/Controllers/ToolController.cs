@@ -8,6 +8,7 @@ namespace Mine2CraftApi.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
+//TODO: à supprimer
 public class ToolController : ControllerBase
 {
     private readonly IRepositoryGeneric<CompleteItemEntity> _completeItemRepository;

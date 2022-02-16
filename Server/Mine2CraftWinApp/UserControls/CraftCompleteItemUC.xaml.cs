@@ -18,6 +18,7 @@ public partial class CraftCompleteItemUC : UserControl
     {
         get
         {
+            //TODO : bcp trop complexe surtout pour un getter 
             var allPositions = new List<int> {1,2,3,4,5,6,7,8,9};
 
             var currentWorkbenches = GetValue(WorkbenchCompleteItemProperty) as List<WorkbenchModel>;

@@ -25,6 +25,7 @@ namespace Mine2CraftApi.Controllers
         [HttpGet]
         public IActionResult Get()
         { 
+            //TODO : Ajouter des logs
             try
             {
                 var completeItemEntities = _completeItemRepository.GetAll();
@@ -42,12 +43,15 @@ namespace Mine2CraftApi.Controllers
         public string Get(int id)
         {
             return "value";
+            //TODO : ?????
         }
 
         // POST api/<CompleteItemController>
         [HttpPost]
         public IActionResult Post(CompleteItemDto completeItemDtoToCreate)
         {
+            //TODO ajouter des logs 
+            //TODO : gestion d'exception
             var completeItemEntityToCreate = _mapper.Map<CompleteItemEntity>(completeItemDtoToCreate);
             return Ok(_completeItemRepository.Create(completeItemEntityToCreate).ToString());
         }

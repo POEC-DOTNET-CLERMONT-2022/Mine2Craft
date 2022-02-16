@@ -49,6 +49,7 @@ namespace Mine2CraftApi.Controllers
         public int Post(UserDto userDtoToCreate)
         {
             //return _userManager.CreateUser(userDtoToCreate);
+            //TODO: à implementer ! ou à supprimer 
             throw new NotImplementedException();
         }
 
@@ -63,6 +64,7 @@ namespace Mine2CraftApi.Controllers
         public int Delete(Guid id)
         {
             //return _userManager.DeleteUser(id);
+            //TODO: à implementer ! ou à supprimer 
             throw new NotImplementedException();
         }
     }

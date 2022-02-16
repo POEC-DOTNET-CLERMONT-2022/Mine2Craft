@@ -12,6 +12,7 @@ public class DisplayCompleteItemWrapPanelSpecificityConverter: IValueConverter
     {
         if (value is string)
         {
+            //TODO : enum ou const 
             if(value.Equals("tools") && parameter.Equals("tools")) return Visibility.Visible;
 
             if (value.Equals("armors") && parameter.Equals("armors")) return Visibility.Visible;

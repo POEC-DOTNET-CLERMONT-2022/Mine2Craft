@@ -52,6 +52,7 @@ namespace Mine2CraftApi.Controllers
         [ProducesResponseType(200)]
         [ProducesResponseType(404)]
         [ProducesResponseType(500)]
+        //TODO: soit on mets des ProducesResponseType partout soit pas du tout
         public IActionResult Put(Guid guid, [FromBody] ItemDto itemDto)
         {
             try
