@@ -67,6 +67,11 @@ namespace Mine2CraftWinApp.UserControls
         {
             Navigator.NavigateTo(typeof(ItemManagerPage));
         }
+        
+        private void GoToCompleteItemManager(object sender, RoutedEventArgs e)
+        {
+            Navigator.NavigateTo(typeof(CompleteItemManagerPage));
+        }
 
         private void GoToFurnaceManagerPage(object sender, RoutedEventArgs e)
         {

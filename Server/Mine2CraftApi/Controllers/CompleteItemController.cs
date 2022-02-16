@@ -25,6 +25,7 @@ namespace Mine2CraftApi.Controllers
         [HttpGet]
         public IActionResult Get()
         { 
+            //TODO : Ajouter des logs
             try
             {
                 var completeItemEntities = _completeItemRepository.GetAll();
@@ -42,29 +43,32 @@ namespace Mine2CraftApi.Controllers
         public string Get(int id)
         {
             return "value";
+            //TODO : ?????
         }
 
         // POST api/<CompleteItemController>
         [HttpPost]
         public IActionResult Post(CompleteItemDto completeItemDtoToCreate)
         {
-            //return Ok(_completeItemManager.CreateCompleteItem(completeItemDtoToCreate));
-            throw new NotImplementedException();
+            //TODO ajouter des logs 
+            //TODO : gestion d'exception
+            var completeItemEntityToCreate = _mapper.Map<CompleteItemEntity>(completeItemDtoToCreate);
+            return Ok(_completeItemRepository.Create(completeItemEntityToCreate).ToString());
         }
 
         // PUT api/<CompleteItemController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut("{guid}")]
+        public IActionResult Put(Guid guid, [FromBody] CompleteItemDto completeItemDtoToUpdate)
         {
-            throw new NotSupportedException();
+            var completeItemEntityToCreate = _mapper.Map<CompleteItemEntity>(completeItemDtoToUpdate);
+            return Ok(_completeItemRepository.Update(completeItemEntityToCreate).ToString());
         }
 
         // DELETE api/<CompleteItemController>/5
         [HttpDelete("{id}")]
         public int Delete(Guid id)
         {
-            //return _completeItemManager.DeleteCompleteItem(id);
-            throw new NotImplementedException();
+            return _completeItemRepository.Delete(id);
         }
 
     }

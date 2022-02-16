@@ -35,7 +35,7 @@
                 <StackPanel.Background>
                     <SolidColorBrush Color="Black" Opacity="0.7"/>
                 </StackPanel.Background>
-                <Label Content="Liste des recettes" Margin="0,0,0,20" HorizontalAlignment="Center" Height="50" VerticalAlignment="Center" FontSize="28" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White"></Label>
+                <Label Content="Liste des recettes" Margin="0,5,0,5" HorizontalAlignment="Center" Height="50" VerticalAlignment="Center" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White"></Label>
                 <ListBox x:Name="lbItem" ItemsSource="{Binding Items}" SelectedItem="{Binding CurrentItem}" FontSize="18" HorizontalContentAlignment="Left" Foreground="White" SelectionChanged="lbItem_SelectionChanged" Height="550" d:ItemsSource="{d:SampleData ItemCount=25}" Width="260" BorderBrush="{x:Null}">
                     <ListBox.Background>
                         <SolidColorBrush Color="Black" Opacity="0"/>

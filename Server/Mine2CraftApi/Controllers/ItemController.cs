@@ -4,7 +4,6 @@ using Dtos;
 using Entities;
 using Persistance;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Mine2CraftApi.Controllers
 {
@@ -14,7 +13,7 @@ namespace Mine2CraftApi.Controllers
     {
         private IRepositoryGeneric<ItemEntity> _itemRepository;
         private IMapper _mapper;
-
+        // TODO Add Ilogger
         public ItemController(IRepositoryGeneric<ItemEntity> userRepository, IMapper mapper)
         {
             _itemRepository = userRepository;
@@ -23,15 +22,30 @@ namespace Mine2CraftApi.Controllers
 
          // GET: api/<ItemController>
         [HttpGet]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(500)]
         public ActionResult Get()
         {
-            var itemEntity = _itemRepository.GetAll();
-            var dto = _mapper.Map<IEnumerable<ItemDto>>(itemEntity);
-            return Ok(dto);
+            try
+            {
+                var itemEntity = _itemRepository.GetAll();
+                var dto = _mapper.Map<IEnumerable<ItemDto>>(itemEntity);
+                return Ok(dto);
+            }
+            catch (Exception)
+            {
+
+                return StatusCode(500);
+            }
+
         }
 
         // GET api/<ItemController>/5
         [HttpGet("{id}")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(500)]
         public string Get(int id)
         {
             return "value";
@@ -39,10 +53,13 @@ namespace Mine2CraftApi.Controllers
 
         // POST api/<ItemController>
         [HttpPost]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(500)]
         public IActionResult Post([FromBody] ItemDto itemDto)
         {
             var itemEntity = _mapper.Map<ItemEntity>(itemDto);
-            _itemRepository.Add(itemEntity);
+            _itemRepository.Create(itemEntity);
     
             return Ok(CreatedAtAction(nameof(Get), new {id = itemEntity.Id}, itemEntity));
         }
@@ -52,6 +69,7 @@ namespace Mine2CraftApi.Controllers
         [ProducesResponseType(200)]
         [ProducesResponseType(404)]
         [ProducesResponseType(500)]
+        //TODO: soit on mets des ProducesResponseType partout soit pas du tout
         public IActionResult Put(Guid guid, [FromBody] ItemDto itemDto)
         {
             try
@@ -75,13 +93,20 @@ namespace Mine2CraftApi.Controllers
         [ProducesResponseType(500)]
         public IActionResult Delete(Guid guid)
         {
-            var response = _itemRepository.Delete(guid);
-            if (response == 0) 
-                return NotFound();
-            if (response == 1) 
-                return Ok();
-
-            return StatusCode(500);
+            try
+            {
+                var response = _itemRepository.Delete(guid);
+                if (response == 1)
+                    return Ok();
+                else if (response == 0)
+                    return NotFound();
+                else
+                    return BadRequest();
+            }
+            catch (Exception)
+            {
+                return StatusCode(500);
+            }
         }
     }
 }

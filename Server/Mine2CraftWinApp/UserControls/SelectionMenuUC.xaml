@@ -7,18 +7,10 @@
              mc:Ignorable="d" 
              d:DesignHeight="720" d:DesignWidth="1080">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
-        </Grid.RowDefinitions>
 
-        <StackPanel Grid.Column="1">
+        <StackPanel Grid.Column="1"><!--TODO : pas de colonne ici --> 
             <Button Click="GoToCraftListClick" Content="Liste des craft" Height="50" Width="200" Margin="0,30"></Button>
-            <Button Click="GoToCreateOrUpdateItemClick" Content="Création ou modification d'item" Height="50" Width="200" Margin="0,30"></Button>
+            <Button Click="GoToCompleteItemManager" Content="Complete Item Manager" Height="50" Width="200" Margin="0,30"></Button>
             <Button Click="GoToItemManagerPage" Content="Item Manager" Height="50" Width="200" Margin="0,30"></Button>
             <Button Click="GoToFurnaceManagerPage" Content="Furnace Manager" Height="50" Width="200" Margin="0,30"></Button>
             <Button Click="GotoUserConnectionPage" Content="User connection" Height="50" Width="200" Margin="0,30"></Button>

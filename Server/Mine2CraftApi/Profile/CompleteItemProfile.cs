@@ -10,6 +10,9 @@ namespace Mine2CraftApi.Profile
             CreateMap<CompleteItemEntity, CompleteItemDto>()
                 .IncludeAllDerived();
             
+            CreateMap<CompleteItemDto, CompleteItemEntity>()
+                .IncludeAllDerived();
+            
             CreateMap<ArmorEntity, ArmorDto>().ReverseMap();
             CreateMap<ToolEntity, ToolDto>().ReverseMap();
             

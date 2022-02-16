@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Persistance
 {
+    //TODO : gestion des exceptions 
     public class SqlRepositoryGeneric<T> : IRepositoryGeneric<T> where T : class, IBaseEntity
     {
         private DbContext SqlContext { get; }
@@ -28,8 +29,8 @@ namespace Persistance
 
         public int Create(T entityToCreate)
         {
-            SqlContext.Add(entityToCreate);
-
+            SqlContext.Attach(entityToCreate);
+            
             return SqlContext.SaveChanges();
         }
 
@@ -44,8 +45,6 @@ namespace Persistance
             return SqlContext.SaveChanges();
         }
 
-
-        // Alexis
         public bool Update(T entity)
         {
             if (entity != null)
@@ -55,12 +54,6 @@ namespace Persistance
                 return true;
             }
             return false;
-        }
-
-        public void Add(T entity)
-        {
-            SqlContext.Add(entity);
-            SqlContext.SaveChanges();
         }
     }
 }

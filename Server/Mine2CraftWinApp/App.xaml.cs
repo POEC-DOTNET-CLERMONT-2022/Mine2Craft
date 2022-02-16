@@ -17,8 +17,8 @@ namespace Mine2CraftWinApp
         private const string SERVER_URL = "https://localhost:7204"; 
 
         public HttpClient HttpClient { get; } = new HttpClient();
-
         public IRequestManager<CompleteItemModel, CompleteItemDto> CompleteItemRequestManager { get; }
+        public IRequestManager<ToolModel, ToolDto> ToolRequestManager { get; }
         public IRequestManager<ItemModel, ItemDto> ItemDataManager { get; } 
         public IMapper Mapper { get; }
         public INavigator Navigator { get; } = new Navigator();
@@ -30,12 +30,14 @@ namespace Mine2CraftWinApp
             Mapper = new Mapper(configuration);
             
             CompleteItemRequestManager = new CompleteItemRequestManager(HttpClient, Mapper, SERVER_URL);
+            ToolRequestManager = new ToolRequestManager(HttpClient, Mapper, SERVER_URL);
             ItemDataManager = new ItemDataManager(HttpClient, Mapper, SERVER_URL);
         }
 
         private void App_OnStartup(object sender, StartupEventArgs e) // bind le Startup="App_OnStartup" dans le fichier app.xaml 
         {
             Navigator.RegisterView(new ItemManagerPage());
+            Navigator.RegisterView(new CompleteItemManagerPage());
             Navigator.RegisterView(new FurnaceManagerPage());
             Navigator.RegisterView(new ListCraftPage());
             Navigator.RegisterView(new SelectionMenuUC());

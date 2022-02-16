@@ -34,7 +34,7 @@ namespace Mine2CraftWinApp.UserControls
         public CompleteItemsList CompleteItemsList { get; set; } = new CompleteItemsList();
         
         public INavigator Navigator { get; set; } = ((App)Application.Current).Navigator;
-
+        
         public ListCraftPage()
         {
             InitializeComponent();
@@ -42,6 +42,7 @@ namespace Mine2CraftWinApp.UserControls
         
         private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            //TODO : il faut un await !!! 
             LoadData();
         }
 

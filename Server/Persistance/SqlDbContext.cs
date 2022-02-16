@@ -13,11 +13,13 @@ namespace Persistance
         public SqlDbContext(DbContextOptions<SqlDbContext> options)
             : base(options)
         {
-            //dotnet ef migrations add  InitialCreate --project Persistance --startup-project Mine2CraftApi
+            //dotnet ef migrations add InitialCreate --project Persistance --startup-project Mine2CraftApi
 
             //dotnet ef database update --project Persistance --startup-project Mine2CraftApi
 
             //dotnet ef migrations remove --project Persistance --startup-project Mine2CraftApi
+
+            //TODO: à mettre un readme
         }
 
         public SqlDbContext()
@@ -27,8 +29,9 @@ namespace Persistance
         
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=DESKTOP-KN0N952\ALEXPRESS;User id=sa;Password = mdpbdd;Initial Catalog=Mine2Craft;Integrated Security=True;");
-            //optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Initial Catalog=Mine2Craft;Integrated Security=True");
+            //TODO: rendre configurable via appsettings
+            //optionsBuilder.UseSqlServer(@"Server=DESKTOP-KN0N952\ALEXPRESS;User id=sa;Password = mdpbdd;Initial Catalog=Mine2Craft;Integrated Security=True;");
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Initial Catalog=Mine2Craft;Integrated Security=True");
         }
         
         public DbSet<CompleteItemEntity> CompleteItems { get; set; }
@@ -43,6 +46,8 @@ namespace Persistance
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+            //TODO : choisir soit fluent soit via annotation 
             modelBuilder.Entity<CompleteItemEntity>()
                 .HasMany(ci => ci.Workbenches)
                 .WithOne(w => w.CompleteItem)
@@ -61,6 +66,12 @@ namespace Persistance
                 .HasForeignKey(w => w.ItemId);
 
             modelBuilder.Entity<WorkbenchEntity>().Navigation(w => w.Item).AutoInclude();
+
+            modelBuilder.Entity<ToolEntity>()
+                .Property(t => t.Id).ValueGeneratedOnAdd();
+
+            modelBuilder.Entity<WorkbenchEntity>()
+                .Property(w => w.Id).ValueGeneratedOnAdd();
         }
         
     }

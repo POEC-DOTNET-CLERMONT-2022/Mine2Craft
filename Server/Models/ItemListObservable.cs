@@ -19,8 +19,6 @@ namespace Models
                 OnNotifyPropertyChanged();
             }
         }
-
-
         public ItemModel CurrentItem
         {
             get { return _currentItem; }
@@ -33,8 +31,6 @@ namespace Models
                 }
             }
         }
-
-
         public ObservableCollection<ItemModel> Items
         {
             get { return _items; }
