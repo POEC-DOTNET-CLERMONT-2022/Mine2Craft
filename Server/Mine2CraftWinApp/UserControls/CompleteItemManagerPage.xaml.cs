@@ -89,6 +89,8 @@ public partial class CompleteItemManagerPage : UserControl, INotifyPropertyChang
         }
 
         _completeItemRequestManager.Add(completeItemModelToCreate);
+        
+        CompleteItemsList.CompleteItemsModels.Add(completeItemModelToCreate);
     }
 
     private async void Window_Loaded(object sender, RoutedEventArgs e)
@@ -209,11 +211,15 @@ public partial class CompleteItemManagerPage : UserControl, INotifyPropertyChang
         }
 
         _completeItemRequestManager.Update(completeItemModelToUpdate, CompleteItemsList.CurrentCompleteItem.Id);
+
+        CompleteItemsList.CurrentCompleteItem = completeItemModelToUpdate;
     }
 
     private void DeleteCompleteItem(object sender, RoutedEventArgs e)
     {
         _completeItemRequestManager.Delete(CompleteItemsList.CurrentCompleteItem.Id);
+
+        CompleteItemsList.CompleteItemsModels.Remove(CompleteItemsList.CurrentCompleteItem);
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;
