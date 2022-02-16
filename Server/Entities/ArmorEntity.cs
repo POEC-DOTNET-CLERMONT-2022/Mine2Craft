@@ -6,6 +6,8 @@ namespace Entities;
 
 public class ArmorEntity : CompleteItemEntity
 {
+
+    //TODO : à supprimer
     public Guid Id
     {
         get => base.Id;

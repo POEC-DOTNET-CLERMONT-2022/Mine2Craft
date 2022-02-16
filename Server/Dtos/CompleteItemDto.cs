@@ -4,6 +4,8 @@ namespace Dtos
 {
     public class CompleteItemDto
     {
+
+        //TODO : à supprimer 
         [JsonPropertyName("id")]
         public Guid Id { get; set; }
 
@@ -20,6 +22,7 @@ namespace Dtos
         public string? CompleteItemType { get; set; }
         
         [JsonPropertyName("workbenches")]
+        //TODO: dans les DTO on utilise plutôt des IEnumerable
         public ICollection<WorkbenchDto> Workbenches { get; set; }
         
         public CompleteItemDto(Guid id, string name, int durability, string description,

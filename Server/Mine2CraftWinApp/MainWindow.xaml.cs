@@ -10,6 +10,7 @@ namespace Mine2CraftWinApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        //TODO c'est quoi ???? 
         //internal ListCraftPage ListCraftPage { get; set; } = new ListCraftPage();
 
         //internal SelectionMenuUC SelectionMenuUC { get; set; } = new SelectionMenuUC();

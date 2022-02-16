@@ -14,11 +14,13 @@ public class DisplaySpecificityCompleteItemValue : IValueConverter
         {
             if (typeof(ToolModel) == value.GetType())
             {
+                //TODO if(value is ToolModel model) 
                 ToolModel tool = value as ToolModel;
                 return tool.AttackPoint.ToString();
             }
             if (typeof(ArmorModel) == value.GetType())
             {
+                //TODO if(value is ArmorModel model) 
                 ArmorModel armor = value as ArmorModel;
                 return armor.ArmorPoint.ToString();
             }

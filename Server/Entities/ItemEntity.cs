@@ -8,6 +8,8 @@ namespace Entities
         public Guid Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+
+        //TODO: MAJ 
         public byte isCombustible { get; set; }
         public byte isCooked { get; set; }
         public Guid ItemBeforeCook { get; set; }

@@ -4,15 +4,15 @@ namespace Dtos;
 
 public class WorkbenchDto
 {
+    public Guid Id { get; set; }
+    
     [JsonPropertyName("position")]
     public int Position { get; set; }
     
+    public Guid ItemId { get; set; }
+    
     [JsonPropertyName("item")]
-    public ItemDto Item { get; set; }
+    public ItemDto? Item { get; set; }
 
-    public WorkbenchDto(int position, ItemDto item)
-    {
-        Position = position;
-        Item = item;
-    }
+    
 }

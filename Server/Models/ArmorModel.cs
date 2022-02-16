@@ -14,12 +14,18 @@ public class ArmorModel : CompleteItemModel
     {
         
     }
-    
+
     [JsonConstructorAttribute]
-    public ArmorModel(Guid id, string name, int durability, string description, ICollection<WorkbenchDto> workbenches, int armorPoint) : base(id, name, durability, description, workbenches)
+    public ArmorModel(Guid id, string name, int durability, string description, ICollection<WorkbenchModel> workbenches, string completeItemType, int armorPoint) : base(id, name, durability, description, workbenches, completeItemType)
     {
         ArmorPoint = armorPoint;
     }
+    
+    public ArmorModel(string name, int durability, string description, ICollection<WorkbenchModel> workbenches, string completeItemType, int armorPoint) : base(Guid.Empty, name, durability, description, workbenches, completeItemType)
+    {
+        ArmorPoint = armorPoint;
+    }
+
     
     public int ArmorPoint
     {
