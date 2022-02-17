@@ -54,19 +54,7 @@ namespace Mine2CraftWinApp.UserControls
             CompleteItemsList.CompleteItemsModels = new ObservableCollection<CompleteItemModel>(completeItemModels);
             
         }
-
-        /*
-         * Create an event to get back to the menu with User Control
-         */
-        internal static readonly RoutedEvent BackToMenuEvent = EventManager.RegisterRoutedEvent(
-            "BackToMenu", RoutingStrategy.Direct, typeof(RoutedEventHandler), typeof(ListCraftPage));
-
-        internal event RoutedEventHandler BackToMenu
-        {
-            add { AddHandler(BackToMenuEvent, value); }
-            remove { RemoveHandler(BackToMenuEvent, value); }
-        }
-
+        
         /*
          * OnClick method who will raise the event on the button "BackToMenu" click
          */
