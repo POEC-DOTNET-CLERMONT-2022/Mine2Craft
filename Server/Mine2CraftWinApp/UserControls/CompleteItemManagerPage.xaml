@@ -16,9 +16,9 @@
     
     <Grid DataContext="{Binding ., ElementName=Root}">
         <DockPanel LastChildFill="False">
-            <DockPanel.Background>
+            <!--<DockPanel.Background>
                 <ImageBrush ImageSource="/UserControls/minecrafWall.jpg"/>
-            </DockPanel.Background>
+            </DockPanel.Background>-->
             <WrapPanel DockPanel.Dock="Left" Width="280">
                 <WrapPanel.Background>
                     <SolidColorBrush Color="Black" Opacity="0.75"/>

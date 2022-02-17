@@ -1,5 +1,12 @@
 # Mine2Craft
 
+## Command for migrations with CLI .NET Core
+dotnet ef migrations add MigrationName --project ProjectWhereDbIs --startup-project ApiProject
+
+dotnet ef database update --project ProjectWhereDbIs --startup-project ApiProject
+
+dotnet ef migrations remove --project ProjectWhereDbIs --startup-project ApiProject
+
 ## Description du projet
 
 En tant que grand fan de jeux-vidéos et du jeu **Minecraft**,
