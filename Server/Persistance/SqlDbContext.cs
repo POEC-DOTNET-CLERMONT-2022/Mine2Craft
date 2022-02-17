@@ -44,8 +44,6 @@ namespace Persistance
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
-            //TODO : choisir soit fluent soit via annotation 
             modelBuilder.Entity<CompleteItemEntity>()
                 .HasMany(ci => ci.Workbenches)
                 .WithOne(w => w.CompleteItem)
