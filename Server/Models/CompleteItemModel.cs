@@ -21,8 +21,6 @@ namespace Models
         {
             
         }
-        //TODO pas besoin
-        [JsonConstructorAttribute]
         public CompleteItemModel(Guid id, string name, int durability, string description,
             ICollection<WorkbenchModel> workbenches, string completeItemType)
         {
