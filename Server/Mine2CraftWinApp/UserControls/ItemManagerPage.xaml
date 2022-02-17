@@ -9,9 +9,9 @@
              d:DesignHeight="720" d:DesignWidth="1080" Loaded="UserControl_Loaded">
 
     <Grid DataContext="{Binding ., ElementName=Root}">
-        <Grid.Background>
+        <!--<Grid.Background>
             <ImageBrush ImageSource="C:\Users\sa_12\Desktop\Formation .NET\Visual Studio\Mine2Craft\Server\Mine2CraftWinApp\Image\minecrafWall.jpg"/>
-        </Grid.Background>
+        </Grid.Background>-->
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>

@@ -37,7 +37,7 @@ namespace Persistance
         public int Delete(Guid id)
         {
             var completeItemEntityToDelete = GetSingle(id);
-            
+
             //TODO:: create a new class with an Id and then use it to delete
 
             SqlContext.Remove(completeItemEntityToDelete);

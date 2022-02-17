@@ -7,17 +7,12 @@ namespace Entities
     [Table("users")]
     public class UserEntity : IBaseEntity
     {
-        [Key]
-        [Column("id")]
         public Guid Id { get; set; }
 
-        [Column("nickname")]
         public string Nickname { get; set; }
 
-        [Column("email")]
         public string Email { get; set; }
 
-        [Column("pwd")]
         public string Paswword { get; set; }
 
         public UserEntity()

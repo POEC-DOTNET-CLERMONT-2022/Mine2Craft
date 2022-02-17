@@ -4,6 +4,7 @@ using System.Text;
 using Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.Extensions.Configuration;
 
 namespace Persistance
 {
@@ -13,13 +14,7 @@ namespace Persistance
         public SqlDbContext(DbContextOptions<SqlDbContext> options)
             : base(options)
         {
-            //dotnet ef migrations add InitialCreate --project Persistance --startup-project Mine2CraftApi
-
-            //dotnet ef database update --project Persistance --startup-project Mine2CraftApi
-
-            //dotnet ef migrations remove --project Persistance --startup-project Mine2CraftApi
-
-            //TODO: à mettre un readme
+            
         }
 
         public SqlDbContext()
@@ -29,8 +24,11 @@ namespace Persistance
         
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            
+            
+            /*var config = new ConfigurationManager();
+            string connectionString = config.GetConnectionString("connectionStringDb");*/
             //TODO: rendre configurable via appsettings
-            //optionsBuilder.UseSqlServer(@"Server=DESKTOP-KN0N952\ALEXPRESS;User id=sa;Password = mdpbdd;Initial Catalog=Mine2Craft;Integrated Security=True;");
             optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Initial Catalog=Mine2Craft;Integrated Security=True");
         }
         
