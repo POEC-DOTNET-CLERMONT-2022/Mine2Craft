@@ -42,11 +42,10 @@ namespace Mine2CraftWinApp.UserControls
         
         private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            //TODO : il faut un await !!! 
-            LoadData();
+            await LoadData();
         }
 
-        public async void LoadData()
+        public async Task LoadData()
         {
             CompleteItemsList.CompleteItemsModels.Clear();
 
