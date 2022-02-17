@@ -1,11 +1,11 @@
 # Mine2Craft
 
 ## Command for migrations with CLI .NET Core
-dotnet ef migrations add MigrationName --project ProjectWhereDbIs --startup-project ApiProject
+dotnet ef migrations add MigrationName --project Persistance --startup-project Mine2CraftApi
 
-dotnet ef database update --project ProjectWhereDbIs --startup-project ApiProject
+dotnet ef database update --project Persistance --startup-project Mine2CraftApi
 
-dotnet ef migrations remove --project ProjectWhereDbIs --startup-project ApiProject
+dotnet ef migrations remove --project Persistance --startup-project Mine2CraftApi
 
 ## Description du projet
 

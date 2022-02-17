@@ -6,6 +6,5 @@ namespace Entities;
 
 public class ToolEntity : CompleteItemEntity
 {
-    [Column("attackPoint")] 
     public int AttackPoint { get; set; }
 }
