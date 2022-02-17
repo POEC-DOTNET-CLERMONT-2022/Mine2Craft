@@ -26,10 +26,10 @@ namespace Persistance
         {
             
             
-            var config = new ConfigurationManager();
-            string connectionString = config.GetConnectionString("connectionStringDb");
+            /*var config = new ConfigurationManager();
+            string connectionString = config.GetConnectionString("connectionStringDb");*/
             //TODO: rendre configurable via appsettings
-            optionsBuilder.UseSqlServer(connectionString);
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Initial Catalog=Mine2Craft;Integrated Security=True");
         }
         
         public DbSet<CompleteItemEntity> CompleteItems { get; set; }
