@@ -37,15 +37,7 @@ namespace Mine2CraftApi.Controllers
                 return StatusCode(500);
             }
         }
-
-        // GET api/<CompleteItemController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-            //TODO : ?????
-        }
-
+        
         // POST api/<CompleteItemController>
         [HttpPost]
         public IActionResult Post(CompleteItemDto completeItemDtoToCreate)
