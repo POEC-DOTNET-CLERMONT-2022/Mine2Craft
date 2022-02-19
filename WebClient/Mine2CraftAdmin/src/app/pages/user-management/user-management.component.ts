@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from "../../../services/user/user.service";
-import {Observable} from "rxjs";
+import {Observable, subscribeOn} from "rxjs";
 import {UserDto} from "../../../dtos/user-dto";
 import Swal from 'sweetalert2'
 import {Guid} from "guid-typescript";
@@ -22,6 +22,54 @@ export class UserManagementComponent implements OnInit {
       .subscribe((userList : UserDto[] ) => {
         this.userList = userList;
       })
+  }
+
+  createUser() {
+
+    Swal.fire({
+      title : 'Création d\'un utilisateur',
+      html:
+        '<label>Pseudo :</label>'+
+        '<input id="nicknameInput" class="swal2-input">' +
+        '<label>Email :</label>'+
+        '<input id="emailInput" class="swal2-input">'+
+        '<label>Mot de passe :</label>'+
+        '<input id="passwordInput" class="swal2-input">',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        let nickname = <HTMLInputElement>document.querySelector("#nicknameInput");
+        let email = <HTMLInputElement>document.querySelector("#emailInput");
+        let password = <HTMLInputElement>document.querySelector("#passwordInput");
+
+        let user = {
+          Nickname: nickname.value,
+          Email: email.value,
+          Password: password.value
+        }
+
+        this.userService.createUser(user)
+        .subscribe((rawAffected : number) => {
+          if(rawAffected === 1){
+            Swal.fire({
+              title : 'Confirmation de création !',
+              text : "L'utilisateur a été créé avec succès",
+              icon : 'success'
+            });
+
+            let userCreated = new UserDto(nickname.value, email.value, 1);
+
+            this.userList?.push(userCreated);
+          }else{
+            Swal.fire({
+              title: 'Erreur lors de la création',
+              text: "Une erreur est survenue lors de la création",
+              icon: 'error'
+            });
+          }
+        });
+      }
+    });
+
   }
 
   updateUser(user: UserDto) {
