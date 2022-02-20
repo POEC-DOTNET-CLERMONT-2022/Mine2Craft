@@ -2,6 +2,8 @@
 using Dtos;
 using Entities;
 using Microsoft.AspNetCore.Mvc;
+using Models;
+using Newtonsoft.Json.Linq;
 using Persistance;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -12,12 +14,12 @@ namespace Mine2CraftApi.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly IRepositoryGeneric<UserEntity> _userItemRepository;
+        private readonly IRepositoryGeneric<UserEntity> _userRepository;
         private readonly IMapper _mapper;
 
-        public UserController(IRepositoryGeneric<UserEntity> userItemRepository, IMapper mapper)
+        public UserController(IRepositoryGeneric<UserEntity> userRepository, IMapper mapper)
         {
-            _userItemRepository = userItemRepository;
+            _userRepository = userRepository;
             _mapper = mapper;
         }
 
@@ -27,7 +29,7 @@ namespace Mine2CraftApi.Controllers
         {
             try
             {
-                var userEntities = _userItemRepository.GetAll();
+                var userEntities = _userRepository.GetAll();
                 var userDtos = _mapper.Map<IEnumerable<UserDto>>(userEntities);
                 return Ok(userDtos);
             }
@@ -46,26 +48,36 @@ namespace Mine2CraftApi.Controllers
 
         // POST api/<UserController>
         [HttpPost]
-        public int Post(UserDto userDtoToCreate)
+        public int Post(JObject userDtoToCreate)
         {
-            //return _userManager.CreateUser(userDtoToCreate);
-            //TODO: à implementer ! ou à supprimer 
-            throw new NotImplementedException();
+            var nickname = userDtoToCreate.GetValue("nickname");
+            var email = userDtoToCreate.GetValue("email");
+            var password = userDtoToCreate.GetValue("password");
+
+            var userToCreate = new UserEntity();
+            userToCreate.Nickname = nickname.ToString();
+            userToCreate.Email = email.ToString();
+            userToCreate.Password = password.ToString();
+            userToCreate.UserRole = UserRole.Admin;
+
+            return _userRepository.Create(userToCreate);
         }
 
         // PUT api/<UserController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public bool Put(Guid id, [FromBody] UserDto userDtoToUpdate)
         {
+            var userToUpdate = _userRepository.GetSingle(id);
+            userToUpdate.Password = userToUpdate.Password;
+
+            return _userRepository.Update(userToUpdate);
         }
 
         // DELETE api/<UserController>/5
         [HttpDelete("{id}")]
         public int Delete(Guid id)
         {
-            //return _userManager.DeleteUser(id);
-            //TODO: à implementer ! ou à supprimer 
-            throw new NotImplementedException();
+            return _userRepository.Delete(id);
         }
     }
 }

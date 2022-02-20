@@ -14,6 +14,7 @@ namespace Dtos
         public string Nickname { get; set; }
 
         public string Email { get; set; }
-
+        
+        public int UserRole { get; set; }
     }
 }
