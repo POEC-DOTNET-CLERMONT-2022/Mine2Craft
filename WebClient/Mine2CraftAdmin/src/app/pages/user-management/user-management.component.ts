@@ -76,10 +76,35 @@ export class UserManagementComponent implements OnInit {
     Swal.fire({
       title : 'Modification du role de : ' + user.nickname,
       html:
-        '<label>Pseudo :</label>'+
-        '<input id="swal-input1" class="swal2-input" value="' + user.nickname + '">' +
-        '<label>Email :</label>'+
-        '<input id="swal-input2" class="swal2-input" value="' + user.email + '">',
+        '<select id="dropdownRole">'+
+          '<option selected disabled>Role</option>' +
+          '<option value="1">Administrateur</option>' +
+          '<option value="2">Super Administrateur</option>' +
+        '</select>',
+      showCancelButton: true,
+      cancelButtonText: 'Annuler !',
+      cancelButtonColor: '#d33',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        let userRole = <HTMLInputElement>document.querySelector("#dropdownRole");
+        user.userRole = parseInt(userRole.value);
+        this.userService.updateUser(user)
+          .subscribe((modifSucced : boolean) => {
+            if(modifSucced){
+              Swal.fire({
+                title : 'Confirmation de modification !',
+                text : "Le role de l'utilisateur a été mis à jour avec succès",
+                icon : 'success'
+              });
+            }else{
+              Swal.fire({
+                title: 'Erreur lors de la modification',
+                text: "Une erreur est survenue lors de la modification du role",
+                icon: 'error'
+              });
+            }
+          });
+      }
     })
   }
 
@@ -114,5 +139,12 @@ export class UserManagementComponent implements OnInit {
           });
       }
     })
+  }
+
+  convertRoleToString(userRole: number) : string {
+    if(userRole === 1){
+      return "Administrateur";
+    }
+    return "Super Administrateur";
   }
 }

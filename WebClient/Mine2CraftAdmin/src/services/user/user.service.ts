@@ -17,13 +17,6 @@ export class UserService {
     })
   };
 
-  /*{
-  "Nickname": "test",
-  "Email": "test",
-  "UserRole" : 1,
-  "Password": "test"
-}*/
-
   constructor(private httpClient: HttpClient) { }
 
   getUserList(): Observable<UserDto[]>{
@@ -34,6 +27,12 @@ export class UserService {
     let userAsJson = JSON.stringify(userToCreate);
 
     return this.httpClient.post<number>(this.baseUrl, JSON.parse(userAsJson), this.headers);
+  }
+
+  updateUser(userToUpdate : UserDto): Observable<boolean>{
+    let userAsJson = JSON.stringify(userToUpdate);
+
+    return this.httpClient.put<boolean>(this.baseUrl + "/" + userToUpdate.id, JSON.parse(userAsJson), this.headers);
   }
 
   deleteUser(id : Guid|undefined): Observable<number>{

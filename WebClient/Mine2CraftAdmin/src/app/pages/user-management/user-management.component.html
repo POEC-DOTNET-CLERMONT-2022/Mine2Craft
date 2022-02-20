@@ -21,7 +21,7 @@
       <tr *ngFor="let user of userList">
         <td colspan="3">{{user.nickname}}</td>
         <td colspan="3">{{user.email}}</td>
-        <td colspan="3">Role</td>
+        <td colspan="3">{{convertRoleToString(user.userRole)}}</td>
         <td colspan="3">
           <button class="btn btn-warning mx-1" (click)="updateUser(user)">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
