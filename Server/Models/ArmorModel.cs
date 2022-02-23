@@ -15,7 +15,6 @@ public class ArmorModel : CompleteItemModel
         
     }
 
-    [JsonConstructorAttribute]
     public ArmorModel(Guid id, string name, int durability, string description, ICollection<WorkbenchModel> workbenches, string completeItemType, int armorPoint) : base(id, name, durability, description, workbenches, completeItemType)
     {
         ArmorPoint = armorPoint;

@@ -16,7 +16,6 @@ public class ToolModel : CompleteItemModel
         
     }
     
-    [JsonConstructorAttribute]
     public ToolModel(Guid id, string name, int durability, string description, ICollection<WorkbenchModel> workbenches, string completeItemType, int attackPoint) : base(id, name, durability, description, workbenches, completeItemType)
     {
         AttackPoint = attackPoint;

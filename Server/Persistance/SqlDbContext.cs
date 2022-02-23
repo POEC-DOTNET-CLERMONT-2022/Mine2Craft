@@ -22,16 +22,6 @@ namespace Persistance
             
         }
         
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            
-            
-            /*var config = new ConfigurationManager();
-            string connectionString = config.GetConnectionString("connectionStringDb");*/
-            //TODO: rendre configurable via appsettings
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Initial Catalog=Mine2Craft;Integrated Security=True");
-        }
-        
         public DbSet<CompleteItemEntity> CompleteItems { get; set; }
         public DbSet<ToolEntity> Tools { get; set; }
         public DbSet<ArmorEntity> Armors { get; set; }
@@ -41,11 +31,11 @@ namespace Persistance
         public DbSet<WorkbenchEntity> Workbenches { get; set; }
         
         public DbSet<ItemEntity> Items { get; set; }
+        
+        public DbSet<FurnaceEntity> Furnaces { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
-            //TODO : choisir soit fluent soit via annotation 
             modelBuilder.Entity<CompleteItemEntity>()
                 .HasMany(ci => ci.Workbenches)
                 .WithOne(w => w.CompleteItem)
@@ -70,6 +60,13 @@ namespace Persistance
 
             modelBuilder.Entity<WorkbenchEntity>()
                 .Property(w => w.Id).ValueGeneratedOnAdd();
+
+            modelBuilder.Entity<FurnaceEntity>()
+                .HasOne(f => f.ItemAfterCooking)
+                .WithOne(i => i.Furnace)
+                .HasForeignKey<FurnaceEntity>(f => f.ItemAfterCookingId)
+                .OnDelete(DeleteBehavior.ClientCascade);
+
         }
         
     }

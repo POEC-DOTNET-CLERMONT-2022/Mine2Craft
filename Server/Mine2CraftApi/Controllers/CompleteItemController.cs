@@ -15,17 +15,22 @@ namespace Mine2CraftApi.Controllers
     {
         private readonly IRepositoryGeneric<CompleteItemEntity> _completeItemRepository;
         private readonly IMapper _mapper;
+        private readonly ILogger<CompleteItemController> _logger;
         
-        public CompleteItemController(IRepositoryGeneric<CompleteItemEntity> completeItemRepository, IMapper mapper)
+        public CompleteItemController(IRepositoryGeneric<CompleteItemEntity> completeItemRepository, IMapper mapper, ILogger<CompleteItemController> logger)
         {
             _completeItemRepository = completeItemRepository;
             _mapper = mapper;
+            _logger = logger;
         }
+        
         // GET: api/<CompleteItemController>
         [HttpGet]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(500)]
         public IActionResult Get()
         { 
-            //TODO : Ajouter des logs
             try
             {
                 var completeItemEntities = _completeItemRepository.GetAll();
@@ -34,41 +39,68 @@ namespace Mine2CraftApi.Controllers
             }
             catch (Exception e)
             {
+                _logger.LogError(e, "An error occured during get all request on complete item");
                 return StatusCode(500);
             }
         }
-
-        // GET api/<CompleteItemController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-            //TODO : ?????
-        }
-
+        
         // POST api/<CompleteItemController>
         [HttpPost]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(500)]
         public IActionResult Post(CompleteItemDto completeItemDtoToCreate)
         {
-            //TODO ajouter des logs 
-            //TODO : gestion d'exception
-            var completeItemEntityToCreate = _mapper.Map<CompleteItemEntity>(completeItemDtoToCreate);
-            return Ok(_completeItemRepository.Create(completeItemEntityToCreate).ToString());
+            try
+            {
+                var completeItemEntityToCreate = _mapper.Map<CompleteItemEntity>(completeItemDtoToCreate);
+                return Ok(_completeItemRepository.Create(completeItemEntityToCreate).ToString());
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, "An error occured during post request on complete item");
+                return StatusCode(500);
+            }
+            
         }
 
         // PUT api/<CompleteItemController>/5
         [HttpPut("{guid}")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(500)]
         public IActionResult Put(Guid guid, [FromBody] CompleteItemDto completeItemDtoToUpdate)
         {
-            var completeItemEntityToCreate = _mapper.Map<CompleteItemEntity>(completeItemDtoToUpdate);
-            return Ok(_completeItemRepository.Update(completeItemEntityToCreate).ToString());
+            try
+            {
+                var completeItemEntityToCreate = _mapper.Map<CompleteItemEntity>(completeItemDtoToUpdate);
+                return Ok(_completeItemRepository.Update(completeItemEntityToCreate).ToString());
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, "An error occured during put request on complete item");
+                return StatusCode(500);
+            }
+           
         }
 
         // DELETE api/<CompleteItemController>/5
         [HttpDelete("{id}")]
-        public int Delete(Guid id)
+        [ProducesResponseType(200)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(500)]
+        public IActionResult Delete(Guid id)
         {
-            return _completeItemRepository.Delete(id);
+            try
+            {
+                return Ok(_completeItemRepository.Delete(id).ToString()); 
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, "An error occured during delete request on complete item");
+                return StatusCode(500);
+            }
+            
         }
 
     }

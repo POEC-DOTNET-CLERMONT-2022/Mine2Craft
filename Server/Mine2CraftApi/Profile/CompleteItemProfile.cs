@@ -16,10 +16,6 @@ namespace Mine2CraftApi.Profile
             CreateMap<ArmorEntity, ArmorDto>().ReverseMap();
             CreateMap<ToolEntity, ToolDto>().ReverseMap();
             
-            CreateMap<WorkbenchEntity, WorkbenchDto>().ReverseMap();
-            CreateMap<ItemEntity, ItemDto>().ReverseMap();
-            
-            
         }
     }
 }

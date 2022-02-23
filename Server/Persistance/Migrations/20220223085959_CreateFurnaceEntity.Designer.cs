@@ -12,8 +12,8 @@ using Persistance;
 namespace Persistance.Migrations
 {
     [DbContext(typeof(SqlDbContext))]
-    [Migration("20220217094743_RemoveAnnotation")]
-    partial class RemoveAnnotation
+    [Migration("20220223085959_CreateFurnaceEntity")]
+    partial class CreateFurnaceEntity
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -50,6 +50,28 @@ namespace Persistance.Migrations
                     b.HasDiscriminator<string>("CompleteItemType").HasValue("CompleteItemEntity");
                 });
 
+            modelBuilder.Entity("Entities.FurnaceEntity", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ItemAfterCookingId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ItemBeforeCookingId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ItemAfterCookingId")
+                        .IsUnique();
+
+                    b.HasIndex("ItemBeforeCookingId");
+
+                    b.ToTable("Furnaces");
+                });
+
             modelBuilder.Entity("Entities.ItemEntity", b =>
                 {
                     b.Property<Guid>("Id")
@@ -67,9 +89,6 @@ namespace Persistance.Migrations
 
                     b.Property<byte>("IsCooked")
                         .HasColumnType("tinyint");
-
-                    b.Property<Guid>("ItemBeforeCook")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -91,8 +110,11 @@ namespace Persistance.Migrations
                     b.Property<string>("Nickname")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Paswword")
+                    b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserRole")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -143,6 +165,25 @@ namespace Persistance.Migrations
                     b.HasDiscriminator().HasValue("tools");
                 });
 
+            modelBuilder.Entity("Entities.FurnaceEntity", b =>
+                {
+                    b.HasOne("Entities.ItemEntity", "ItemAfterCooking")
+                        .WithOne("Furnace")
+                        .HasForeignKey("Entities.FurnaceEntity", "ItemAfterCookingId")
+                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .IsRequired();
+
+                    b.HasOne("Entities.ItemEntity", "ItemBeforeCooking")
+                        .WithMany()
+                        .HasForeignKey("ItemBeforeCookingId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ItemAfterCooking");
+
+                    b.Navigation("ItemBeforeCooking");
+                });
+
             modelBuilder.Entity("Entities.WorkbenchEntity", b =>
                 {
                     b.HasOne("Entities.CompleteItemEntity", "CompleteItem")
@@ -169,6 +210,8 @@ namespace Persistance.Migrations
 
             modelBuilder.Entity("Entities.ItemEntity", b =>
                 {
+                    b.Navigation("Furnace");
+
                     b.Navigation("Workbenches");
                 });
 #pragma warning restore 612, 618
