@@ -31,6 +31,8 @@ namespace Persistance
         public DbSet<WorkbenchEntity> Workbenches { get; set; }
         
         public DbSet<ItemEntity> Items { get; set; }
+        
+        public DbSet<FurnaceEntity> Furnaces { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -58,6 +60,13 @@ namespace Persistance
 
             modelBuilder.Entity<WorkbenchEntity>()
                 .Property(w => w.Id).ValueGeneratedOnAdd();
+
+            modelBuilder.Entity<FurnaceEntity>()
+                .HasOne(f => f.ItemAfterCooking)
+                .WithOne(i => i.Furnace)
+                .HasForeignKey<FurnaceEntity>(f => f.ItemAfterCookingId)
+                .OnDelete(DeleteBehavior.ClientCascade);
+
         }
         
     }

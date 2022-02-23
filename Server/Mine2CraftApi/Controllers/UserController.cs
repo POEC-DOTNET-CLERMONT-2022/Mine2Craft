@@ -50,9 +50,9 @@ namespace Mine2CraftApi.Controllers
         [HttpPost]
         public int Post(JObject userDtoToCreate)
         {
-            var nickname = userDtoToCreate.GetValue("nickname");
-            var email = userDtoToCreate.GetValue("email");
-            var password = userDtoToCreate.GetValue("password");
+            var nickname = userDtoToCreate.GetValue("Nickname");
+            var email = userDtoToCreate.GetValue("Email");
+            var password = userDtoToCreate.GetValue("Password");
 
             var userToCreate = new UserEntity();
             userToCreate.Nickname = nickname.ToString();
@@ -68,7 +68,7 @@ namespace Mine2CraftApi.Controllers
         public bool Put(Guid id, [FromBody] UserDto userDtoToUpdate)
         {
             var userToUpdate = _userRepository.GetSingle(id);
-            userToUpdate.Password = userToUpdate.Password;
+            userToUpdate.UserRole = (UserRole)userDtoToUpdate.UserRole;
 
             return _userRepository.Update(userToUpdate);
         }

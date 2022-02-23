@@ -25,6 +25,7 @@ export class UserService {
 
   createUser(userToCreate: { Email: string; Nickname: string, Password: string}): Observable<number>{
     let userAsJson = JSON.stringify(userToCreate);
+    console.log(JSON.parse(userAsJson));
 
     return this.httpClient.post<number>(this.baseUrl, JSON.parse(userAsJson), this.headers);
   }
