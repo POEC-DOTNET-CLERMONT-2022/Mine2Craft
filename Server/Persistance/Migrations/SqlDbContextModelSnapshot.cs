@@ -88,9 +88,6 @@ namespace Persistance.Migrations
                     b.Property<byte>("IsCooked")
                         .HasColumnType("tinyint");
 
-                    b.Property<Guid>("ItemBeforeCook")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 

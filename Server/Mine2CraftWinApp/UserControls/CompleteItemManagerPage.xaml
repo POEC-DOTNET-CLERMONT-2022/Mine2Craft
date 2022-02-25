@@ -99,7 +99,7 @@
 
                 <StackPanel Grid.Row="0" DataContext="{Binding CompleteItemsList.CurrentCompleteItem}" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <StackPanel.Background>
-                        <SolidColorBrush Color="Black" Opacity="0.4"/>
+                        <SolidColorBrush Color="Black" Opacity="0.5"/>
                     </StackPanel.Background>
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -142,7 +142,7 @@
                     </Grid>
                 </StackPanel>
 
-                <Label Grid.Row="1" Content="Creation de la recette" Width="auto" Height="auto" FontSize="18" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Normal" Foreground="White">
+                <Label Grid.Row="1" Content="Creation de la recette" Width="auto" Height="auto" FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Normal" Foreground="White">
                 </Label>
 
 

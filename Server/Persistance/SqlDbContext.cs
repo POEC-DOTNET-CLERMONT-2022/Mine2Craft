@@ -14,7 +14,7 @@ namespace Persistance
         public SqlDbContext(DbContextOptions<SqlDbContext> options)
             : base(options)
         {
-            
+
         }
 
         public SqlDbContext()
@@ -70,7 +70,6 @@ namespace Persistance
                 .WithOne(i => i.Furnace)
                 .HasForeignKey<FurnaceEntity>(f => f.ItemAfterCookingId)
                 .OnDelete(DeleteBehavior.ClientCascade);
-
         }
         
     }

@@ -12,8 +12,8 @@ using Persistance;
 namespace Persistance.Migrations
 {
     [DbContext(typeof(SqlDbContext))]
-    [Migration("20220223085959_CreateFurnaceEntity")]
-    partial class CreateFurnaceEntity
+    [Migration("20220225165441_Mig01")]
+    partial class Mig01
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -33,7 +33,7 @@ namespace Mine2CraftApi.Controllers
                 var userDtos = _mapper.Map<IEnumerable<UserDto>>(userEntities);
                 return Ok(userDtos);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return StatusCode(500);
             }
