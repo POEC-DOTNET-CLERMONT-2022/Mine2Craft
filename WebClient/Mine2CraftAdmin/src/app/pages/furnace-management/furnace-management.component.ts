@@ -236,7 +236,20 @@ export class FurnaceManagementComponent implements OnInit {
                 text : "L'utilisateur a été supprimé avec succès",
                 icon : 'success'
               });
-              //this.userList = this.userList?.filter((user) => user.id != id);
+
+              let furnaceIndex = this.furnaceList.findIndex(furnace => furnace.id === id);
+              let furnace = this.furnaceList[furnaceIndex];
+              
+              this.furnaceList.splice(furnaceIndex, 1);
+
+              let itemBeforeCookingIndex = this.itemList.findIndex(item => item.id === furnace.itemBeforeCooking.id);
+              let itemBeforeCooking = this.itemList[itemBeforeCookingIndex];
+              this.itemNotInFurnace.push(itemBeforeCooking)
+
+              let itemAfterCookingIndex = this.itemList.findIndex(item => item.id === furnace.itemAfterCooking.id);
+              let itemAfterCooking = this.itemList[itemAfterCookingIndex];
+              this.itemNotInFurnace.push(itemAfterCooking)
+
             }else{
               Swal.fire({
                 title: 'Erreur lors de la suppresion',
