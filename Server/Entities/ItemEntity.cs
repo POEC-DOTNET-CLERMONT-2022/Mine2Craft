@@ -13,6 +13,5 @@ namespace Entities
         public string ImagePath { get; set; }
 
         public ICollection<WorkbenchEntity> Workbenches { get; set; }
-        public FurnaceEntity? Furnace { get; set; }
     }
 }

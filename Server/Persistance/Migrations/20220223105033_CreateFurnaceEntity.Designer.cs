@@ -12,7 +12,7 @@ using Persistance;
 namespace Persistance.Migrations
 {
     [DbContext(typeof(SqlDbContext))]
-    [Migration("20220223085959_CreateFurnaceEntity")]
+    [Migration("20220223105033_CreateFurnaceEntity")]
     partial class CreateFurnaceEntity
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -67,7 +67,8 @@ namespace Persistance.Migrations
                     b.HasIndex("ItemAfterCookingId")
                         .IsUnique();
 
-                    b.HasIndex("ItemBeforeCookingId");
+                    b.HasIndex("ItemBeforeCookingId")
+                        .IsUnique();
 
                     b.ToTable("Furnaces");
                 });
@@ -168,15 +169,15 @@ namespace Persistance.Migrations
             modelBuilder.Entity("Entities.FurnaceEntity", b =>
                 {
                     b.HasOne("Entities.ItemEntity", "ItemAfterCooking")
-                        .WithOne("Furnace")
+                        .WithOne()
                         .HasForeignKey("Entities.FurnaceEntity", "ItemAfterCookingId")
                         .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
 
                     b.HasOne("Entities.ItemEntity", "ItemBeforeCooking")
-                        .WithMany()
-                        .HasForeignKey("ItemBeforeCookingId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .WithOne()
+                        .HasForeignKey("Entities.FurnaceEntity", "ItemBeforeCookingId")
+                        .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
 
                     b.Navigation("ItemAfterCooking");
@@ -210,8 +211,6 @@ namespace Persistance.Migrations
 
             modelBuilder.Entity("Entities.ItemEntity", b =>
                 {
-                    b.Navigation("Furnace");
-
                     b.Navigation("Workbenches");
                 });
 #pragma warning restore 612, 618

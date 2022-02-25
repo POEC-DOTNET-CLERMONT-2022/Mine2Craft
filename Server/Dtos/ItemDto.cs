@@ -9,20 +9,21 @@ namespace Dtos
         public string? Description { get; set; }
         public byte isCombustible { get; set; }
         public byte isCooked { get; set; }
-        public Guid ItemBeforeCook { get; set; }
         public string ImagePath { get; set; }
         
-        public FurnaceDto FurnaceDto { get; set; }
-
-        public ItemDto(Guid id, string name, string description, byte isCombustible, byte isCooked, Guid itemBeforeCook, string imagePath)
+        public ItemDto(Guid id, string name, string description, byte isCombustible, byte isCooked, string imagePath)
         {
             Id = id;
             Name = name;
             Description = description;
             this.isCombustible = isCombustible;
             this.isCooked = isCooked;
-            ItemBeforeCook = itemBeforeCook;
             ImagePath = imagePath;
+        }
+
+        public ItemDto()
+        {
+            
         }
     }
 }

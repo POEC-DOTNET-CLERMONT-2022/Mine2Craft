@@ -77,8 +77,7 @@ namespace Persistance.Migrations
                         name: "FK_Furnaces_Items_ItemBeforeCookingId",
                         column: x => x.ItemBeforeCookingId,
                         principalTable: "Items",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -116,7 +115,8 @@ namespace Persistance.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Furnaces_ItemBeforeCookingId",
                 table: "Furnaces",
-                column: "ItemBeforeCookingId");
+                column: "ItemBeforeCookingId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Workbenches_CompleteItemId",
