@@ -6,7 +6,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Mine2CraftWinApp.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="720" d:DesignWidth="1080" Loaded="Root_Loaded">
+             d:DesignHeight="720" d:DesignWidth="1080" Loaded="Root_Loaded" Style="{StaticResource MineCraftFont}">
     <Grid DataContext="{Binding ., ElementName=Root}" Background="#FF8A8A8A">
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
@@ -17,7 +17,7 @@
         </Grid.RowDefinitions>
 
         <Label FontSize="48" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold">FURNACE MANAGER</Label>
-        <Button x:Name="BtBack" Width="100" Height="55" HorizontalAlignment="Right" FontSize="18" Margin="10" Click="BtBack_Click">Back</Button>
+        <Button x:Name="BtBack" Width="90" Height="45" HorizontalAlignment="Right" FontSize="18" Margin="10" Click="BtBack_Click">Back</Button>
 
         <Grid  Grid.Row="1" Background="#FFC6C6C6">
             <Grid.ColumnDefinitions>
@@ -35,8 +35,8 @@
                 <StackPanel.Background>
                     <SolidColorBrush Color="Black" Opacity="0.7"/>
                 </StackPanel.Background>
-                <Label Content="Liste des recettes" Margin="0,0,0,20" HorizontalAlignment="Center" Height="50" VerticalAlignment="Center" FontSize="28" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White"></Label>
-                <ListBox x:Name="lbItem" ItemsSource="{Binding Items}" SelectedItem="{Binding CurrentItem}" FontSize="18" HorizontalContentAlignment="Left" Foreground="White" SelectionChanged="lbItem_SelectionChanged" Height="550" d:ItemsSource="{d:SampleData ItemCount=25}" Width="260" BorderBrush="{x:Null}">
+                <Label Content="Liste des recettes" Margin="0,5,0,5" HorizontalAlignment="Center" Height="50" VerticalAlignment="Center" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White"></Label>
+                <ListBox x:Name="lbItem" ItemsSource="{Binding Items}" SelectedItem="{Binding CurrentItem}" FontSize="18" HorizontalContentAlignment="Left" Foreground="White" SelectionChanged="lbItem_SelectionChanged" Height="560" d:ItemsSource="{d:SampleData ItemCount=25}" Width="260" BorderBrush="{x:Null}">
                     <ListBox.Background>
                         <SolidColorBrush Color="Black" Opacity="0"/>
                     </ListBox.Background>

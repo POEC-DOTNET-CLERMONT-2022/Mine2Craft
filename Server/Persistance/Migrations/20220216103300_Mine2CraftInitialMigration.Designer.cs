@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistance;
 
@@ -11,9 +12,10 @@ using Persistance;
 namespace Persistance.Migrations
 {
     [DbContext(typeof(SqlDbContext))]
-    partial class SqlDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220216103300_Mine2CraftInitialMigration")]
+    partial class Mine2CraftInitialMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -26,48 +28,31 @@ namespace Persistance.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("id");
 
                     b.Property<string>("CompleteItemType")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("complete_item_type");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("description");
 
                     b.Property<int>("Durability")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("durability");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("name");
 
                     b.HasKey("Id");
 
                     b.ToTable("CompleteItems");
 
                     b.HasDiscriminator<string>("CompleteItemType").HasValue("CompleteItemEntity");
-                });
-
-            modelBuilder.Entity("Entities.FurnaceEntity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ItemAfterCookingId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ItemBeforeCookingId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ItemAfterCookingId")
-                        .IsUnique();
-
-                    b.HasIndex("ItemBeforeCookingId");
-
-                    b.ToTable("Furnaces");
                 });
 
             modelBuilder.Entity("Entities.ItemEntity", b =>
@@ -103,19 +88,20 @@ namespace Persistance.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("id");
 
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("email");
 
                     b.Property<string>("Nickname")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("nickname");
 
-                    b.Property<string>("Password")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("UserRole")
-                        .HasColumnType("int");
+                    b.Property<string>("Paswword")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("pwd");
 
                     b.HasKey("Id");
 
@@ -151,7 +137,8 @@ namespace Persistance.Migrations
                     b.HasBaseType("Entities.CompleteItemEntity");
 
                     b.Property<int>("ArmorPoint")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("armorPoint");
 
                     b.HasDiscriminator().HasValue("armors");
                 });
@@ -161,28 +148,10 @@ namespace Persistance.Migrations
                     b.HasBaseType("Entities.CompleteItemEntity");
 
                     b.Property<int>("AttackPoint")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("attackPoint");
 
                     b.HasDiscriminator().HasValue("tools");
-                });
-
-            modelBuilder.Entity("Entities.FurnaceEntity", b =>
-                {
-                    b.HasOne("Entities.ItemEntity", "ItemAfterCooking")
-                        .WithOne("Furnace")
-                        .HasForeignKey("Entities.FurnaceEntity", "ItemAfterCookingId")
-                        .OnDelete(DeleteBehavior.ClientCascade)
-                        .IsRequired();
-
-                    b.HasOne("Entities.ItemEntity", "ItemBeforeCooking")
-                        .WithMany()
-                        .HasForeignKey("ItemBeforeCookingId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ItemAfterCooking");
-
-                    b.Navigation("ItemBeforeCooking");
                 });
 
             modelBuilder.Entity("Entities.WorkbenchEntity", b =>
@@ -211,8 +180,6 @@ namespace Persistance.Migrations
 
             modelBuilder.Entity("Entities.ItemEntity", b =>
                 {
-                    b.Navigation("Furnace");
-
                     b.Navigation("Workbenches");
                 });
 #pragma warning restore 612, 618

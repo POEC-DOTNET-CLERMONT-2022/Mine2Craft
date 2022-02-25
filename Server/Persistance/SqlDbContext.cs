@@ -22,14 +22,18 @@ namespace Persistance
             
         }
         
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            //TODO: rendre configurable via appsettings
+            optionsBuilder.UseSqlServer(@"Server=DESKTOP-KN0N952\ALEXPRESS;User id=sa;Password = mdpbdd;Initial Catalog=Mine2Craft;Integrated Security=True;");
+            //optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Initial Catalog=Mine2Craft;Integrated Security=True");
+        }
+
         public DbSet<CompleteItemEntity> CompleteItems { get; set; }
         public DbSet<ToolEntity> Tools { get; set; }
         public DbSet<ArmorEntity> Armors { get; set; }
-
         public DbSet<UserEntity> Users { get; set; }
-        
         public DbSet<WorkbenchEntity> Workbenches { get; set; }
-        
         public DbSet<ItemEntity> Items { get; set; }
         
         public DbSet<FurnaceEntity> Furnaces { get; set; }

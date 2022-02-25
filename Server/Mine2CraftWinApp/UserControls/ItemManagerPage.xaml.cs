@@ -50,7 +50,7 @@ namespace Mine2CraftWinApp.UserControls
                 var itemModel = ItemsList.Items[index].Id;
                 if (itemModel != Guid.Empty)
                     await _itemDataManager.Delete(itemModel);
-                await LoadItem();
+                await LoadItem(); // TODO Eviter double appel API
             }
         }
 
@@ -60,10 +60,8 @@ namespace Mine2CraftWinApp.UserControls
             byte isCombustible = 0, isCooked = 0;
             Guid guidCooked = Guid.Empty;
 
-            if (rbCombustible.IsChecked == true)
-                isCombustible = 1;
 
-            if (rbCooked.IsChecked == true)
+            if (rbCooked.IsChecked == true && rbNull.IsChecked == false)
             {
                 isCooked = 1;
                 stackLbCooked.Visibility = Visibility.Visible;
@@ -74,6 +72,10 @@ namespace Mine2CraftWinApp.UserControls
                     if (tbGuid.Text != string.Empty)
                         guidCooked = System.Guid.Parse(tbGuid.Text);
                 }
+            }
+            else
+            {
+                isCombustible = 1;
             }
 
             var newItem = new ItemModel()
@@ -87,7 +89,7 @@ namespace Mine2CraftWinApp.UserControls
             };
 
             await _itemDataManager.Add(newItem);
-            await LoadItem();
+            await LoadItem(); // TODO Eviter double appel API
             Reset();
         }
 
@@ -125,7 +127,7 @@ namespace Mine2CraftWinApp.UserControls
                     itemModel.ImagePath = tbImagePath.Text;
 
                     await _itemDataManager.Update(itemModel, itemModel.Id);
-                    await LoadItem();
+                    await LoadItem(); // TODO Eviter double appel API
                 }
                 Reset();
             }

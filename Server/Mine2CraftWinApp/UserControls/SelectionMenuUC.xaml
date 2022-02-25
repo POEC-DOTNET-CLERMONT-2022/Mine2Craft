@@ -13,6 +13,7 @@
             <Button Click="GoToCompleteItemManager" Content="Complete Item Manager" Height="50" Width="200" Margin="0,30"></Button>
             <Button Click="GoToItemManagerPage" Content="Item Manager" Height="50" Width="200" Margin="0,30"></Button>
             <Button Click="GoToFurnaceManagerPage" Content="Furnace Manager" Height="50" Width="200" Margin="0,30"></Button>
+            <Button Click="GotoUserConnectionPage" Content="User connection" Height="50" Width="200" Margin="0,30"></Button>
 
             <Image Width="100" Height="100" Source="/UserControls/arrowload.jpg" Stretch="Fill"/>
 

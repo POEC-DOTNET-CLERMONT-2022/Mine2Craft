@@ -96,11 +96,11 @@ public partial class CompleteItemManagerPage : UserControl, INotifyPropertyChang
 
     private async void Window_Loaded(object sender, RoutedEventArgs e)
     {
-        LoadData();
+        await LoadData();
     }
 
     //TODO: mettre une TASK 
-    public async void LoadData()
+    public async Task LoadData()
     {
         var completeItemModels = await _completeItemRequestManager.GetAll();
 
