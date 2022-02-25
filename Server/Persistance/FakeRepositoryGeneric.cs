@@ -40,10 +40,6 @@ public class FakeRepositoryGeneric<T> : IRepositoryGeneric<T> where T : class, I
 
         return _listEntity.Count - listEntityCount;
     }
-    
-    public bool Update(T entity)
-    {
-        var entityToUpdateIndex = _listEntity.FindIndex(t => t.Id == entity.Id);
 
     public bool Update(T entity)
     {
@@ -61,23 +57,23 @@ public class FakeRepositoryGeneric<T> : IRepositoryGeneric<T> where T : class, I
 
     }
 
-    public int Delete(Guid id)
-    {
-        var newListEntity = _listEntity.Where(t => t.Id != id).ToList();
+    //public int Delete(Guid id)
+    //{
+    //    var newListEntity = _listEntity.Where(t => t.Id != id).ToList();
 
 
-        try
-        {
-            _listEntity[entityToUpdateIndex] = entity;
-            return true;
-        }
-        catch (Exception e)
-        {
-            return false;
-        }
+    //    try
+    //    {
+    //        _listEntity[entityToUpdateIndex] = entity;
+    //        return true;
+    //    }
+    //    catch (Exception e)
+    //    {
+    //        return false;
+    //    }
         
-    }
-    
+    //}
+
     public int Delete(Guid id)
     {
         var newListEntity = _listEntity.Where(t => t.Id != id).ToList();

@@ -31,7 +31,6 @@ public class OldFakeRepo<T> : IRepositoryGeneric<T> where T : class, IBaseEntity
         item.Description = "New Desc";
         item.IsCombustible = 0;
         item.IsCooked = 1;
-        item.ItemBeforeCook = new Guid();
         item.ImagePath = "";
 
         item2.Id = new Guid();
@@ -39,7 +38,6 @@ public class OldFakeRepo<T> : IRepositoryGeneric<T> where T : class, IBaseEntity
         item2.Description = "New Desc";
         item2.IsCombustible = 0;
         item2.IsCooked = 1;
-        item2.ItemBeforeCook = new Guid();
         item2.ImagePath = "";
 
         item3.Id = new Guid();
@@ -47,7 +45,6 @@ public class OldFakeRepo<T> : IRepositoryGeneric<T> where T : class, IBaseEntity
         item3.Description = "New Desc";
         item3.IsCombustible = 0;
         item3.IsCooked = 1;
-        item3.ItemBeforeCook = new Guid();
         item3.ImagePath = "";
 
 

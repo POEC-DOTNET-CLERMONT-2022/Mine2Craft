@@ -14,7 +14,7 @@ namespace Persistance
         public SqlDbContext(DbContextOptions<SqlDbContext> options)
             : base(options)
         {
-            
+
         }
 
         public SqlDbContext()
