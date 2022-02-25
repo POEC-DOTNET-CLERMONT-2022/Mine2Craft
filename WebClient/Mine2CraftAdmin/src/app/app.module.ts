@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { UserManagementComponent } from './pages/user-management/user-management.component';
+import { FurnaceManagementComponent } from './pages/furnace-management/furnace-management.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import {HttpClientModule} from "@angular/common/http";
@@ -13,7 +13,7 @@ import { LoginComponent } from './pages/login/login.component';
 @NgModule({
   declarations: [
     AppComponent,
-    UserManagementComponent,
+    FurnaceManagementComponent,
     HeaderComponent,
     FooterComponent,
     LoginComponent
