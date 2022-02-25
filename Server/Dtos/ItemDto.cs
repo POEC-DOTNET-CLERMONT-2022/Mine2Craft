@@ -11,6 +11,8 @@ namespace Dtos
         public byte isCooked { get; set; }
         public Guid ItemBeforeCook { get; set; }
         public string ImagePath { get; set; }
+        
+        public FurnaceDto FurnaceDto { get; set; }
 
         public ItemDto(Guid id, string name, string description, byte isCombustible, byte isCooked, Guid itemBeforeCook, string imagePath)
         {

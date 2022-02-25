@@ -1,5 +1,12 @@
 # Mine2Craft
 
+## Command for migrations with CLI .NET Core
+dotnet ef migrations add MigrationName --project Persistance --startup-project Mine2CraftApi
+
+dotnet ef database update --project Persistance --startup-project Mine2CraftApi
+
+dotnet ef migrations remove --project Persistance --startup-project Mine2CraftApi
+
 ## Description du projet
 
 En tant que grand fan de jeux-vidéos et du jeu **Minecraft**,

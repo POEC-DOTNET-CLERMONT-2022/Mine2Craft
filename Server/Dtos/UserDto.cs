@@ -9,14 +9,12 @@ namespace Dtos
 {
     public class UserDto
     {
-        [JsonPropertyName("id")]
         public Guid Id { get; set; }
 
-        [JsonPropertyName("nickname")]
         public string Nickname { get; set; }
 
-        [JsonPropertyName("email")]
         public string Email { get; set; }
-
+        
+        public int UserRole { get; set; }
     }
 }

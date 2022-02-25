@@ -262,8 +262,8 @@ namespace Mine2CraftWinApp.UserControls
         //TODO: Binding
         private void rbNull_Checked(object sender, RoutedEventArgs e)
         {
-            stackLbCooked.Visibility = Visibility.Collapsed;
-            stackItemBeforeCook.Visibility = Visibility.Collapsed;
+            /*stackLbCooked.Visibility = Visibility.Collapsed;
+            stackItemBeforeCook.Visibility = Visibility.Collapsed;*/
         }
 
         private void btBack_Click(object sender, RoutedEventArgs e)

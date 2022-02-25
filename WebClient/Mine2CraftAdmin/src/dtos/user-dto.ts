@@ -5,8 +5,12 @@ export class UserDto{
   private _id : Guid|undefined;
   private _nickname : string = '';
   private _email : string = '';
+  private _userRole : number = 1;
 
-  constructor() {
+  constructor(nickname: string, email: string, userRole: number) {
+    this._nickname = nickname;
+    this._email = email;
+    this._userRole = userRole;
   }
 
   get id(): Guid|undefined {
@@ -31,5 +35,13 @@ export class UserDto{
 
   set email(value: string) {
     this._email = value;
+  }
+
+  get userRole(): number {
+    return this._userRole;
+  }
+
+  set userRole(value: number) {
+    this._userRole = value;
   }
 }

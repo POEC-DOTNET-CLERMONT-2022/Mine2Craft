@@ -16,6 +16,7 @@
     </UserControl.Resources>
 
     <Grid DataContext="{Binding ., ElementName=Root}">
+
         <Grid.Background>
             <ImageBrush ImageSource="/Image/minecrafWall.jpg"/>
         </Grid.Background>
@@ -41,6 +42,7 @@
 
             <StackPanel Grid.Column="0">
                 <StackPanel.Background>
+
                     <SolidColorBrush Color="Black" Opacity="0.75"/>
                 </StackPanel.Background>
                 <Label Content="List des Items" Margin="10" HorizontalAlignment="Center" Height="50" VerticalAlignment="Center" FontSize="24" HorizontalContentAlignment="Center" Foreground="White"></Label>

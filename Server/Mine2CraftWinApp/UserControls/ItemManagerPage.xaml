@@ -9,9 +9,11 @@
              d:DesignHeight="720" d:DesignWidth="1080" Loaded="UserControl_Loaded" Style="{StaticResource MineCraftFont}">
 
     <Grid DataContext="{Binding ., ElementName=Root}">
+
         <Grid.Background>
             <ImageBrush ImageSource="/Image/minecrafWall.jpg"/>
         </Grid.Background>
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>

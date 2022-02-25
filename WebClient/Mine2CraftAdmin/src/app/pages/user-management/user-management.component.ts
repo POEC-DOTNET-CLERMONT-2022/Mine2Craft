@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from "../../../services/user/user.service";
-import {Observable} from "rxjs";
+import {Observable, subscribeOn} from "rxjs";
 import {UserDto} from "../../../dtos/user-dto";
 import Swal from 'sweetalert2'
 import {Guid} from "guid-typescript";
@@ -24,14 +24,87 @@ export class UserManagementComponent implements OnInit {
       })
   }
 
+  createUser() {
+
+    Swal.fire({
+      title : 'Création d\'un utilisateur',
+      html:
+        '<label>Pseudo :</label>'+
+        '<input id="nicknameInput" class="swal2-input">' +
+        '<label>Email :</label>'+
+        '<input id="emailInput" class="swal2-input">'+
+        '<label>Mot de passe :</label>'+
+        '<input id="passwordInput" class="swal2-input">',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        let nickname = <HTMLInputElement>document.querySelector("#nicknameInput");
+        let email = <HTMLInputElement>document.querySelector("#emailInput");
+        let password = <HTMLInputElement>document.querySelector("#passwordInput");
+
+        let user = {
+          Nickname: nickname.value,
+          Email: email.value,
+          Password: password.value
+        }
+
+        this.userService.createUser(user)
+        .subscribe((rawAffected : number) => {
+          if(rawAffected === 1){
+            Swal.fire({
+              title : 'Confirmation de création !',
+              text : "L'utilisateur a été créé avec succès",
+              icon : 'success'
+            });
+
+            let userCreated = new UserDto(nickname.value, email.value, 1);
+
+            this.userList?.push(userCreated);
+          }else{
+            Swal.fire({
+              title: 'Erreur lors de la création',
+              text: "Une erreur est survenue lors de la création",
+              icon: 'error'
+            });
+          }
+        });
+      }
+    });
+
+  }
+
   updateUser(user: UserDto) {
     Swal.fire({
       title : 'Modification du role de : ' + user.nickname,
       html:
-        '<label>Pseudo :</label>'+
-        '<input id="swal-input1" class="swal2-input" value="' + user.nickname + '">' +
-        '<label>Email :</label>'+
-        '<input id="swal-input2" class="swal2-input" value="' + user.email + '">',
+        '<select id="dropdownRole">'+
+          '<option selected disabled>Role</option>' +
+          '<option value="1">Administrateur</option>' +
+          '<option value="2">Super Administrateur</option>' +
+        '</select>',
+      showCancelButton: true,
+      cancelButtonText: 'Annuler !',
+      cancelButtonColor: '#d33',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        let userRole = <HTMLInputElement>document.querySelector("#dropdownRole");
+        user.userRole = parseInt(userRole.value);
+        this.userService.updateUser(user)
+          .subscribe((modifSucced : boolean) => {
+            if(modifSucced){
+              Swal.fire({
+                title : 'Confirmation de modification !',
+                text : "Le role de l'utilisateur a été mis à jour avec succès",
+                icon : 'success'
+              });
+            }else{
+              Swal.fire({
+                title: 'Erreur lors de la modification',
+                text: "Une erreur est survenue lors de la modification du role",
+                icon: 'error'
+              });
+            }
+          });
+      }
     })
   }
 
@@ -66,5 +139,12 @@ export class UserManagementComponent implements OnInit {
           });
       }
     })
+  }
+
+  convertRoleToString(userRole: number) : string {
+    if(userRole === 1){
+      return "Administrateur";
+    }
+    return "Super Administrateur";
   }
 }
