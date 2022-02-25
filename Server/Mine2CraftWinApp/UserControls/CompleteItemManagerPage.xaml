@@ -8,30 +8,50 @@
              xmlns:converter="clr-namespace:Mine2CraftWinApp.Converter"
              mc:Ignorable="d"
              Loaded="Window_Loaded"
-             d:DesignHeight="720" d:DesignWidth="1080">
+             d:DesignHeight="720" d:DesignWidth="1080" Style="{StaticResource MineCraftFont}">
+
     <UserControl.Resources>
         <converter:DisplayCompleteItemWrapPanelSpecificityConverter x:Key="DisplayCompleteItemWrapPanelSpecificityConverter"/>
         <converter:CheckRadioButtonConverter x:Key="CheckRadioButtonConverter"/>
     </UserControl.Resources>
-    
-    <Grid DataContext="{Binding ., ElementName=Root}">
-        <DockPanel LastChildFill="False">
-            <DockPanel.Background>
-                <ImageBrush ImageSource="/Image/minecrafWall.jpg"/>
-            </DockPanel.Background>
-            <WrapPanel DockPanel.Dock="Left" Width="280">
-                <WrapPanel.Background>
-                    <SolidColorBrush Color="Black" Opacity="0.75"/>
-                </WrapPanel.Background>
-                <Label Content="List des Items Complets" Margin="0,20,0,20" HorizontalAlignment="Center" Height="50" Width="275" VerticalAlignment="Center" FontSize="24" HorizontalContentAlignment="Center"></Label>
 
-                <ListBox x:Name="CompleteItemList" ItemsSource="{Binding CompleteItemsList.CompleteItemsModels}" SelectedItem="{Binding CompleteItemsList.CurrentCompleteItem}" SelectionChanged="OnSelectionChangeCompleteItemList" Width="275" Height="630" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18" HorizontalContentAlignment="Left" Foreground="White">
+    <Grid DataContext="{Binding ., ElementName=Root}">
+        <Grid.Background>
+            <ImageBrush ImageSource="/Image/minecrafWall.jpg"/>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="7*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Label Content="COMPLETE ITEM MANAGER" Width="auto" Height="auto" FontSize="40" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold" Foreground="Black"/>
+        <Button Margin="0,0,15,0" Content="Back" Height="50" Width="80" Click="Button_Click_Back" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+                <ColumnDefinition Width="5*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Column="0">
+                <StackPanel.Background>
+                    <SolidColorBrush Color="Black" Opacity="0.75"/>
+                </StackPanel.Background>
+                <Label Content="List des Items" Margin="10" HorizontalAlignment="Center" Height="50" VerticalAlignment="Center" FontSize="24" HorizontalContentAlignment="Center" Foreground="White"></Label>
+
+                <ListBox x:Name="CompleteItemList" ItemsSource="{Binding CompleteItemsList.CompleteItemsModels}" SelectedItem="{Binding CompleteItemsList.CurrentCompleteItem}" SelectionChanged="OnSelectionChangeCompleteItemList" Width="320" Height="560" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="18" HorizontalContentAlignment="Left" Foreground="White" BorderThickness="0,0,0,0" d:ItemsSource="{d:SampleData ItemCount=5}">
                     <ListBox.Background>
                         <SolidColorBrush Color="Black" Opacity="0"/>
                     </ListBox.Background>
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Width="275">
+                            <StackPanel Width="305">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="4*"/>
@@ -56,168 +76,187 @@
                                         <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Name}" HorizontalAlignment="Center"/>
                                     </Grid>
                                     <Image Grid.Column="1" Width="55" Height="55" Source="/Image/minecrafWall.jpg"></Image>
-                                    <Button x:Name="button_Delete" Content="DEL" Grid.Column="3" Width="20" Height="55" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                    <Button x:Name="button_Delete" Content="DEL" Grid.Column="3" Width="25" Height="55" HorizontalAlignment="Left" VerticalAlignment="Center" Background="#FFFF0303"/>
                                 </Grid>
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-            </WrapPanel>
-
-            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Height="100" Margin="0,0,0,0">
-
-                <Label Content="COMPLETE ITEM MANAGER" Width="632" Height="106" FontSize="40" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold" Foreground="Black"/>
-                <Button Margin="70,10,0,10" Content="Back" Height="50" Width="80" Click="Button_Click_Back" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-
             </StackPanel>
 
-            <Grid>
+            <Grid Grid.Column="1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="400"></ColumnDefinition>
-                    <ColumnDefinition Width="400"></ColumnDefinition>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="550"></RowDefinition>
-                    <RowDefinition Height="70"></RowDefinition>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="0.4*"/>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
-                
-                <StackPanel Grid.Row="0" Grid.Column="0" DataContext="{Binding .CompleteItemsList.CurrentCompleteItem}">
-                    <WrapPanel x:Name="ItemTypeContainer">
-                        <Label Content="Type d'item :"></Label>
-                        <RadioButton IsChecked="{Binding CompleteItemDiscriminator, ElementName='Root', Converter={StaticResource CheckRadioButtonConverter}, ConverterParameter='tools'}" GroupName="CompleteItemType" Name="tools" Checked="RadioButtonChecked">Arme</RadioButton>
-                        <RadioButton IsChecked="{Binding CompleteItemDiscriminator, ElementName='Root', Converter={StaticResource CheckRadioButtonConverter}, ConverterParameter='armors'}" GroupName="CompleteItemType" Name="armors" Checked="RadioButtonChecked">Armure</RadioButton>
-                    </WrapPanel>
-                    
-                    <WrapPanel x:Name="ItemNameContainer">
-                        <Label Content="Nom de l'item :"></Label>
-                        <TextBox x:Name="ItemName" Width="200" Text="{Binding .Name}"></TextBox>
-                    </WrapPanel>
-                    
-                    <WrapPanel x:Name="ItemDescriptionContainer">
-                        <Label Content="Description de l'item :"></Label>
-                        <TextBox x:Name="ItemDescription" Width="200" Text="{Binding .Description}"></TextBox>
-                    </WrapPanel>
-                    
-                    <WrapPanel x:Name="ItemDurabilityContainer">
-                        <Label Content="Durabilité de l'item :"></Label>
-                        <TextBox x:Name="ItemDurability" Width="200" Text="{Binding .Durability}"></TextBox>
-                    </WrapPanel>
-                    
-                    <WrapPanel x:Name="ItemAttackContainer" Visibility="{Binding .CompleteItemDiscriminator, ElementName='Root', Converter={StaticResource DisplayCompleteItemWrapPanelSpecificityConverter}, ConverterParameter=tools}">
-                        <Label Content="Attaque de l'item :"></Label>
-                        <TextBox x:Name="ItemAttack" Width="200"></TextBox>
-                    </WrapPanel>
-                    
-                    <WrapPanel x:Name="ItemArmorContainer" Visibility="{Binding .CompleteItemDiscriminator, ElementName='Root', Converter={StaticResource DisplayCompleteItemWrapPanelSpecificityConverter}, ConverterParameter=armors}">
-                        <Label Content="Armure de l'item :"></Label>
-                        <TextBox x:Name="ItemArmor" Width="200"></TextBox>
-                    </WrapPanel>
-                    
+
+                <StackPanel Grid.Row="0" DataContext="{Binding CompleteItemsList.CurrentCompleteItem}" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <StackPanel.Background>
+                        <SolidColorBrush Color="Black" Opacity="0.4"/>
+                    </StackPanel.Background>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="3*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="50"/>
+                        </Grid.RowDefinitions>
+
+                        <Label Content="Nom de l'item :" Grid.Row="0" Grid.Column="0" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14"></Label>
+                        <TextBox x:Name="ItemName" Grid.Row="0" Grid.Column="1" Margin="10" Width="300" Text="{Binding Name}"></TextBox>
+
+                        <Label Content="Description de l'item :" Grid.Row="1" Grid.Column="0" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14"></Label>
+                        <TextBox x:Name="ItemDescription" Grid.Row="1" Grid.Column="1" Margin="10" Width="300" Text="{Binding Description}"></TextBox>
+
+                        <Label Content="Durabilité de l'item :" Grid.Row="2" Grid.Column="0" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14"></Label>
+                        <TextBox x:Name="ItemDurability" Grid.Row="2" Grid.Column="1" Margin="10" Width="300" Text="{Binding Durability}"></TextBox>
+
+                        <Label Content="Type d'item" Grid.Row="3" Grid.Column="0" FontSize="16" HorizontalAlignment="Center" Foreground="White" VerticalAlignment="Center"></Label>
+                        <RadioButton Grid.Row="4" Grid.Column="0" IsChecked="{Binding CompleteItemDiscriminator, ElementName='Root', Converter={StaticResource CheckRadioButtonConverter}, ConverterParameter='tools'}" GroupName="CompleteItemType" Name="tools" Checked="RadioButtonChecked" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14">Arme</RadioButton>
+                        <RadioButton Grid.Row="4" Grid.Column="1" IsChecked="{Binding CompleteItemDiscriminator, ElementName='Root', Converter={StaticResource CheckRadioButtonConverter}, ConverterParameter='armors'}" GroupName="CompleteItemType" Name="armors" Checked="RadioButtonChecked" Foreground="White" VerticalAlignment="Center" FontSize="14">Armure</RadioButton>
+
+
+                        <WrapPanel x:Name="ItemAttackContainer" Grid.Row="5" Visibility="{Binding CompleteItemDiscriminator, ElementName='Root', Converter={StaticResource DisplayCompleteItemWrapPanelSpecificityConverter}, ConverterParameter=tools}" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Top">
+                            <Label Content="Attaque de l'item :" Foreground="White" FontSize="14" ></Label>
+                            <TextBox x:Name="ItemAttack" Width="196"></TextBox>
+                        </WrapPanel>
+
+
+                        <WrapPanel x:Name="ItemArmorContainer" Grid.Row="5" Visibility="{Binding CompleteItemDiscriminator, ElementName='Root', Converter={StaticResource DisplayCompleteItemWrapPanelSpecificityConverter}, ConverterParameter=armors}" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Top">
+                            <Label Content="Armure de l'item :" Foreground="White" FontSize="14"></Label>
+                            <TextBox x:Name="ItemArmor" Width="200"></TextBox>
+                        </WrapPanel>
+                    </Grid>
                 </StackPanel>
-                <StackPanel x:Name="StackPanelWorkbenches" Grid.Row="0" Grid.Column="1">
-                    <ComboBox x:Name="Workbench1" ItemsSource="{Binding .ItemsList.Items}" SelectionChanged="ComboBox_SelectionChanged" SelectedValuePath="1">
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <Rectangle Fill="{Binding Name}" Width="16" Height="16" Margin="0,2,5,2" />
-                                    <TextBlock Text="{Binding Name}" />
-                                </StackPanel>
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>
-                    </ComboBox>
-                    <ComboBox x:Name="Workbench2" ItemsSource="{Binding .ItemsList.Items}" SelectionChanged="ComboBox_SelectionChanged" SelectedValuePath="2">
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <Rectangle Fill="{Binding Name}" Width="16" Height="16" Margin="0,2,5,2" />
-                                    <TextBlock Text="{Binding Name}" />
-                                </StackPanel>
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>
-                    </ComboBox>
-                    <ComboBox x:Name="Workbench3" ItemsSource="{Binding .ItemsList.Items}" SelectionChanged="ComboBox_SelectionChanged" SelectedValuePath="3">
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <Rectangle Fill="{Binding Name}" Width="16" Height="16" Margin="0,2,5,2" />
-                                    <TextBlock Text="{Binding Name}" />
-                                </StackPanel>
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>
-                    </ComboBox>
-                    <ComboBox x:Name="Workbench4" ItemsSource="{Binding .ItemsList.Items}" SelectionChanged="ComboBox_SelectionChanged" SelectedValuePath="4">
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <Rectangle Fill="{Binding Name}" Width="16" Height="16" Margin="0,2,5,2" />
-                                    <TextBlock Text="{Binding Name}" />
-                                </StackPanel>
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>
-                    </ComboBox>
-                    <ComboBox x:Name="Workbench5" ItemsSource="{Binding .ItemsList.Items}" SelectionChanged="ComboBox_SelectionChanged" SelectedValuePath="5">
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <Rectangle Fill="{Binding Name}" Width="16" Height="16" Margin="0,2,5,2" />
-                                    <TextBlock Text="{Binding Name}" />
-                                </StackPanel>
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>
-                    </ComboBox>
-                    <ComboBox x:Name="Workbench6" ItemsSource="{Binding .ItemsList.Items}" SelectionChanged="ComboBox_SelectionChanged" SelectedValuePath="6">
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <Rectangle Fill="{Binding Name}" Width="16" Height="16" Margin="0,2,5,2" />
-                                    <TextBlock Text="{Binding Name}" />
-                                </StackPanel>
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>
-                    </ComboBox>
-                    <ComboBox x:Name="Workbench7" ItemsSource="{Binding .ItemsList.Items}" SelectionChanged="ComboBox_SelectionChanged" SelectedValuePath="7">
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <Rectangle Fill="{Binding Name}" Width="16" Height="16" Margin="0,2,5,2" />
-                                    <TextBlock Text="{Binding Name}" />
-                                </StackPanel>
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>
-                    </ComboBox>
-                    <ComboBox x:Name="Workbench8" ItemsSource="{Binding .ItemsList.Items}" SelectionChanged="ComboBox_SelectionChanged" SelectedValuePath="8">
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <Rectangle Fill="{Binding Name}" Width="16" Height="16" Margin="0,2,5,2" />
-                                    <TextBlock Text="{Binding Name}" />
-                                </StackPanel>
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>
-                    </ComboBox>
-                    <ComboBox x:Name="Workbench9" ItemsSource="{Binding .ItemsList.Items}" SelectionChanged="ComboBox_SelectionChanged" SelectedValuePath="9">
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <Rectangle Fill="{Binding Name}" Width="16" Height="16" Margin="0,2,5,2" />
-                                    <TextBlock Text="{Binding Name}" />
-                                </StackPanel>
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>
-                    </ComboBox>
+
+                <Label Grid.Row="1" Content="Creation de la recette" Width="auto" Height="auto" FontSize="18" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Normal" Foreground="White">
+                </Label>
+
+
+                <StackPanel x:Name="StackPanelWorkbenches" Grid.Row="2" Margin="10">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="80"/>
+                            <RowDefinition Height="80"/>
+                            <RowDefinition Height="80"/>
+                        </Grid.RowDefinitions>
+
+
+                        <ComboBox x:Name="Workbench1" Grid.Column="0" Grid.Row="0" Margin="20" ItemsSource="{Binding ItemsList.Items}" SelectionChanged="ComboBox_SelectionChanged" SelectedValuePath="1">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Rectangle Fill="{Binding Name}" Width="16" Height="16" Margin="0,2,5,2" />
+                                        <TextBlock Text="{Binding Name}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <ComboBox x:Name="Workbench2" Grid.Column="1" Grid.Row="0" Margin="20" ItemsSource="{Binding ItemsList.Items}" SelectionChanged="ComboBox_SelectionChanged" SelectedValuePath="2">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Rectangle Fill="{Binding Name}" Width="16" Height="16" Margin="0,2,5,2" />
+                                        <TextBlock Text="{Binding Name}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <ComboBox x:Name="Workbench3" Grid.Column="2" Grid.Row="0" Margin="20" ItemsSource="{Binding ItemsList.Items}" SelectionChanged="ComboBox_SelectionChanged" SelectedValuePath="3">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Rectangle Fill="{Binding Name}" Width="16" Height="16" Margin="0,2,5,2" />
+                                        <TextBlock Text="{Binding Name}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <ComboBox x:Name="Workbench4" Grid.Column="0" Grid.Row="1" Margin="20" ItemsSource="{Binding ItemsList.Items}" SelectionChanged="ComboBox_SelectionChanged" SelectedValuePath="4">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Rectangle Fill="{Binding Name}" Width="16" Height="16" Margin="0,2,5,2" />
+                                        <TextBlock Text="{Binding Name}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <ComboBox x:Name="Workbench5" Grid.Column="1" Grid.Row="1" Margin="20" ItemsSource="{Binding ItemsList.Items}" SelectionChanged="ComboBox_SelectionChanged" SelectedValuePath="5">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Rectangle Fill="{Binding Name}" Width="16" Height="16" Margin="0,2,5,2" />
+                                        <TextBlock Text="{Binding Name}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <ComboBox x:Name="Workbench6" Grid.Column="2" Grid.Row="1" Margin="20" ItemsSource="{Binding ItemsList.Items}" SelectionChanged="ComboBox_SelectionChanged" SelectedValuePath="6">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Rectangle Fill="{Binding Name}" Width="16" Height="16" Margin="0,2,5,2" />
+                                        <TextBlock Text="{Binding Name}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <ComboBox x:Name="Workbench7" Grid.Column="0" Grid.Row="2" Margin="20" ItemsSource="{Binding ItemsList.Items}" SelectionChanged="ComboBox_SelectionChanged" SelectedValuePath="7">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Rectangle Fill="{Binding Name}" Width="16" Height="20" Margin="0,2,5,2" />
+                                        <TextBlock Text="{Binding Name}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <ComboBox x:Name="Workbench8" Grid.Column="1" Grid.Row="2" Margin="20" ItemsSource="{Binding ItemsList.Items}" SelectionChanged="ComboBox_SelectionChanged" SelectedValuePath="8">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Rectangle Fill="{Binding Name}" Width="16" Height="16" Margin="0,2,5,2" />
+                                        <TextBlock Text="{Binding Name}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <ComboBox x:Name="Workbench9" Grid.Column="2" Grid.Row="2" Margin="20" ItemsSource="{Binding ItemsList.Items}" SelectionChanged="ComboBox_SelectionChanged" SelectedValuePath="9">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Rectangle Fill="{Binding Name}" Width="16" Height="16" Margin="0,2,5,2" />
+                                        <TextBlock Text="{Binding Name}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </Grid>
                 </StackPanel>
-                
-                <WrapPanel Grid.Row="1">
-                    <Button Content="Create" Click="CreateCompleteItem"></Button>
-                    <Button Content="Update" Click="UpdateCompleteItem"></Button>
-                    <Button Content="Delete" Click="DeleteCompleteItem"></Button>
+
+                <WrapPanel VerticalAlignment="Top" Grid.Row="3" HorizontalAlignment="Center" Width="450" Margin="0,5,0,0">
+                    <Button Width="125" Margin="10" Height="50" Content="Create" Click="CreateCompleteItem"></Button>
+                    <Button Width="125" Margin="10" Height="50" Content="Update" Click="UpdateCompleteItem"></Button>
+                    <Button Width="125" Margin="10" Height="50" Content="Delete" Click="DeleteCompleteItem"></Button>
                 </WrapPanel>
             </Grid>
-
-            
-            
-        </DockPanel>
-
+        </Grid>
     </Grid>
 </UserControl>
