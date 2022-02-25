@@ -2,22 +2,11 @@
 <div class="container">
   <div class="row" *ngIf="furnaceList; else noDatas">
     <div class="col-1 offset-10">
-      <button class="btn btn-success mx-1" (click)="showOptionCreateFurnace()">
+      <button class="btn btn-success mx-1" (click)="createFurnace()">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
           <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
         </svg>
       </button>
-    </div>
-    <div class="col-12" id="furnaceCreation" hidden>
-      <select class="col-4" id="itemBeforeCookingDropdown">
-        <option *ngFor="let item of itemNotInFurnace" value="{{item.name}}">{{item.name}}</option>
-      </select>
-
-      <select class="col-4" id="itemAfterCookingDropdown">
-        <option *ngFor="let item of itemNotInFurnace" value="{{item.name}}">{{item.name}}</option>
-      </select>
-
-      <button class="col-4 btn btn-success" (click)="createFurnace()">Ajouter ta mère la pute</button>
     </div>
     <table class="table text-center table-type">
       <thead>
