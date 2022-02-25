@@ -12,7 +12,6 @@ namespace Models
         private byte _isCooked;
         private Guid _itemBeforeCook;
         private string _imagePath;
-        private FurnaceModel _furnaceModel;
 
         public string ImagePath
         {
@@ -90,17 +89,6 @@ namespace Models
             }
         }
 
-        public FurnaceModel FurnaceModel
-        {
-            get { return _furnaceModel; }
-            set
-            {
-                if (_furnaceModel != value)
-                {
-                    _furnaceModel = value;
-                    OnNotifyPropertyChanged();
-                }
-            }
-        }
+        
     }
 }

@@ -67,9 +67,22 @@ namespace Persistance
 
             modelBuilder.Entity<FurnaceEntity>()
                 .HasOne(f => f.ItemAfterCooking)
-                .WithOne(i => i.Furnace)
+                .WithOne()
                 .HasForeignKey<FurnaceEntity>(f => f.ItemAfterCookingId)
                 .OnDelete(DeleteBehavior.ClientCascade);
+            
+            modelBuilder.Entity<FurnaceEntity>()
+                .HasOne(f => f.ItemBeforeCooking)
+                .WithOne()
+                .HasForeignKey<FurnaceEntity>(f => f.ItemBeforeCookingId)
+                .OnDelete(DeleteBehavior.ClientCascade);
+            
+            modelBuilder.Entity<FurnaceEntity>().Navigation(f => f.ItemAfterCooking).AutoInclude();
+            modelBuilder.Entity<FurnaceEntity>().Navigation(f => f.ItemBeforeCooking).AutoInclude();
+
+            modelBuilder.Entity<FurnaceEntity>()
+                .Property(f => f.Id).ValueGeneratedOnAdd();
+
         }
         
     }
