@@ -10,7 +10,7 @@
 
     <Grid DataContext="{Binding ., ElementName=Root}">
         <Grid.Background>
-            <ImageBrush ImageSource="C:\Users\sa_12\Desktop\Formation .NET\Visual Studio\Mine2Craft\Server\Mine2CraftWinApp\Image\minecrafWall.jpg"/>
+            <ImageBrush ImageSource="/Image/minecrafWall.jpg"/>
         </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
@@ -39,8 +39,8 @@
                 <StackPanel.Background>
                     <SolidColorBrush Color="Black" Opacity="0.75"/>
                 </StackPanel.Background>
-                <Label Content="List des Items" Margin="0,0,0,20" HorizontalAlignment="Center" Height="50" VerticalAlignment="Center" FontSize="28" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White"></Label>
-                <ListBox x:Name="lbItem" ItemsSource="{Binding ItemsList.Items}" SelectedItem="{Binding ItemsList.CurrentItem}" FontSize="18" HorizontalContentAlignment="Left" Foreground="White" SelectionChanged="lbItem_SelectionChanged" Height="550" d:ItemsSource="{d:SampleData ItemCount=25}" Width="310" BorderBrush="{x:Null}">
+                <Label Content="Liste des Items" Margin="0,5,0,5" HorizontalAlignment="Center" Height="50" VerticalAlignment="Center" FontSize="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White"></Label>
+                <ListBox x:Name="lbItem" ItemsSource="{Binding ItemsList.Items}" SelectedItem="{Binding ItemsList.CurrentItem}" FontSize="16" HorizontalContentAlignment="Left" Foreground="White" SelectionChanged="lbItem_SelectionChanged" Height="560" d:ItemsSource="{d:SampleData ItemCount=25}" Width="310" BorderBrush="{x:Null}">
                     <ListBox.Background>
                         <SolidColorBrush Color="Black" Opacity="0"/>
                     </ListBox.Background>
@@ -70,7 +70,7 @@
                                         <!--<TextBlock Grid.Row="0" Grid.Column="0" Text="Name" HorizontalAlignment="Center" FontSize="14" FontWeight="Bold"/>-->
                                         <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Name}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                     </Grid>
-                                    <Image Grid.Column="1" Width="55" Height="55" Source="/Image/minecrafWall.jpg"/>
+                                    <Image Grid.Column="1" Width="45" Height="45" Source="{Binding ImagePath}"/>
                                     <Button x:Name="button_Delete" Content="DEL" Grid.Column="3" Width="25" Height="50" HorizontalAlignment="Left" VerticalAlignment="Center" Background="#FFAD0000" Click="Button_Click_Delete" BorderBrush="#FFAD0000"/>
                                 </Grid>
                             </StackPanel>
@@ -80,6 +80,9 @@
             </StackPanel>
 
             <StackPanel Grid.Column="2">
+                <StackPanel.Background>
+                    <SolidColorBrush Color="Black" Opacity="0.3"/>
+                </StackPanel.Background>
                 <Grid x:Name="gridForm" Margin="10,30,10,0" Visibility="Visible">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />

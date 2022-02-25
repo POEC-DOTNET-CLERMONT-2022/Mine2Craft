@@ -15,15 +15,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Fonts\minecraft.ttf" />
     <None Remove="Image\Coal.png" />
     <None Remove="Image\Gold_Ingot.png" />
     <None Remove="Image\Gold_Ore.png" />
     <None Remove="Image\Iron_Ingot.png" />
     <None Remove="Image\Iron_Ore.png" />
     <None Remove="Image\minecrafWall.jpg" />
-    <None Remove="UserControls\arrowload.jpg" />
-    <None Remove="UserControls\Flame.png" />
-    <None Remove="UserControls\minecrafWall.jpg" />
+    <None Remove="Image\arrowload.jpg" />
+    <None Remove="Image\Flame.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,6 +33,9 @@
   <ItemGroup>
     <Resource Include="App.xaml">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\minecraft.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
 

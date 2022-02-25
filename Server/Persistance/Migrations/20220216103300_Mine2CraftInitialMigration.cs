@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Persistance.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class Mine2CraftInitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -33,9 +33,10 @@ namespace Persistance.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    isCombustible = table.Column<byte>(type: "tinyint", nullable: false),
-                    isCooked = table.Column<byte>(type: "tinyint", nullable: false),
-                    ItemBeforeCook = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    IsCombustible = table.Column<byte>(type: "tinyint", nullable: false),
+                    IsCooked = table.Column<byte>(type: "tinyint", nullable: false),
+                    ItemBeforeCook = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ImagePath = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {

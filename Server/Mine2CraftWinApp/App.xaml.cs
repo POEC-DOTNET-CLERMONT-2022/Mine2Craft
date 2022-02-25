@@ -14,13 +14,12 @@ namespace Mine2CraftWinApp
     /// </summary>
     public partial class App : Application
     {
-        private const string SERVER_URL = "https://localhost:7204"; 
-
+        private const string SERVER_URL = "https://localhost:7204";
+        public IMapper Mapper { get; }
         public HttpClient HttpClient { get; } = new HttpClient();
         public IRequestManager<CompleteItemModel, CompleteItemDto> CompleteItemRequestManager { get; }
         public IRequestManager<ToolModel, ToolDto> ToolRequestManager { get; }
         public IRequestManager<ItemModel, ItemDto> ItemDataManager { get; } 
-        public IMapper Mapper { get; }
         public INavigator Navigator { get; } = new Navigator();
 
 

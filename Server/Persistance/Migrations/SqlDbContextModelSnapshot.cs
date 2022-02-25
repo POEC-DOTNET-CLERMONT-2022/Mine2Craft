@@ -65,17 +65,17 @@ namespace Persistance.Migrations
                     b.Property<string>("ImagePath")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<byte>("IsCombustible")
+                        .HasColumnType("tinyint");
+
+                    b.Property<byte>("IsCooked")
+                        .HasColumnType("tinyint");
+
                     b.Property<Guid>("ItemBeforeCook")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<byte>("isCombustible")
-                        .HasColumnType("tinyint");
-
-                    b.Property<byte>("isCooked")
-                        .HasColumnType("tinyint");
 
                     b.HasKey("Id");
 

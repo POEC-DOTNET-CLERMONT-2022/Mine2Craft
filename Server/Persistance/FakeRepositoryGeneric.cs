@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using AutoFixture;
+using AutoFixture.Kernel;
 using Entities;
 
 namespace Persistance;
@@ -13,6 +14,12 @@ public class FakeRepositoryGeneric<T> : IRepositoryGeneric<T> where T : class, I
 
     public FakeRepositoryGeneric()
     {
+        _fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList().ForEach(b => _fixture.Behaviors.Remove(b));
+        _fixture.Behaviors.Add(new OmitOnRecursionBehavior());
+        _fixture.Customizations.Add(
+            new TypeRelay(
+                typeof(CompleteItemEntity),
+                typeof(ToolEntity)));
         _listEntity = _fixture.CreateMany<T>(15).ToList(); 
     }
     public IEnumerable<T> GetAll()
@@ -27,16 +34,35 @@ public class FakeRepositoryGeneric<T> : IRepositoryGeneric<T> where T : class, I
 
     public int Create(T t)
     {
-        throw new NotImplementedException();
-    }
+        var listEntityCount = _listEntity.Count;
 
-    public int Delete(Guid id)
-    {
-        throw new NotImplementedException();
+        _listEntity.Add(t);
+
+        return _listEntity.Count - listEntityCount;
     }
 
     public bool Update(T entity)
     {
-        throw new NotImplementedException();
+        var entityToUpdateIndex = _listEntity.FindIndex(t => t.Id == entity.Id);
+
+        try
+        {
+            _listEntity[entityToUpdateIndex] = entity;
+            return true;
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+
     }
+
+    public int Delete(Guid id)
+    {
+        var newListEntity = _listEntity.Where(t => t.Id != id).ToList();
+
+        return _listEntity.Count - newListEntity.Count;
+    }
+
+
 }
