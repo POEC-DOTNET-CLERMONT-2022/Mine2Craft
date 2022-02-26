@@ -44,7 +44,7 @@ public class FakeRepositoryGeneric<T> : IRepositoryGeneric<T> where T : class, I
     public bool Update(T entity)
     {
         var entityToUpdateIndex = _listEntity.FindIndex(t => t.Id == entity.Id);
-        
+
         try
         {
             _listEntity[entityToUpdateIndex] = entity;

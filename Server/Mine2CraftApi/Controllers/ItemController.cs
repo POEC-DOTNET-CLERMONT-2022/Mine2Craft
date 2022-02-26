@@ -79,7 +79,7 @@ namespace Mine2CraftApi.Controllers
                     return NotFound();
                 return Ok();
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return StatusCode(500);
             }

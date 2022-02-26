@@ -99,6 +99,7 @@
     <ProjectReference Include="..\ApiRequest\ApiRequest.csproj" />
     <ProjectReference Include="..\Dtos\Dtos.csproj" />
     <ProjectReference Include="..\Persistance\Persistance.csproj" />
+
   </ItemGroup>
 
   <ItemGroup>
