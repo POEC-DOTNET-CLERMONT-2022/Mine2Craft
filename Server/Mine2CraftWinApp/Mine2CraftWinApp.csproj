@@ -63,6 +63,8 @@
     </Content>
 
     <Content Include="Image\minecrafWall.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
 
     <None Remove="App.config" />
     <Content Include="App.config">
