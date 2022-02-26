@@ -162,57 +162,102 @@ export class FurnaceManagementComponent implements OnInit {
             resolve()
           }
         })
-      }
+      },
+      showCancelButton: true,
     }).then((result) => {
       if(result.isConfirmed){
         itemBeforeCookingSelected = this.itemNotInFurnace.find(itemDto => itemDto.id === result.value)
+      }
+
+      Swal.fire({
+        input: "select",
+        inputAttributes: {
+          id: "dropdownItemAfterCooking",
+        },
+        inputOptions: map,
+        inputValidator: function (value) {
+          return new Promise(function (resolve, reject) {
+            if (value != null) {
+              // @ts-ignore
+              resolve()
+            }
+          })
+        },
+        showCancelButton: true,
+      }).then((result) => {
+        if(result.isConfirmed){
+          itemAfterCookingSelected = this.itemNotInFurnace.find(itemDto => itemDto.id === result.value)
+        }
 
         Swal.fire({
-          input: "select",
-          inputAttributes: {
-            id: "dropdownItemAfterCooking",
-          },
-          inputOptions: map,
-          inputValidator: function (value) {
-            return new Promise(function (resolve, reject) {
-              if (value != null) {
-                // @ts-ignore
-                resolve()
-              }
-            })
-          }
+          title: 'êtes vous sûr de vouloir modifier cette relation ?',
+          showCancelButton: true,
         }).then((result) => {
-          if(result.isConfirmed){
-            itemAfterCookingSelected = this.itemNotInFurnace.find(itemDto => itemDto.id === result.value)
+            if(result.isConfirmed){
 
-            if(itemBeforeCookingSelected != null && itemAfterCookingSelected){
-              furnace.itemBeforeCookingId = itemBeforeCookingSelected.id;
-              furnace.itemBeforeCooking = itemBeforeCookingSelected;
-
-              furnace.itemAfterCookingId = itemAfterCookingSelected.id;
-              furnace.itemAfterCooking = itemAfterCookingSelected;
-
-
-              this.furnaceService.updateFurnace(furnace)
-                .subscribe((modificationSucceed : string) => {
-                  if(modificationSucceed === 'True'){
-                    Swal.fire({
-                      title : 'Confirmation de modification !',
-                      text : "Le role de l'utilisateur a été mis à jour avec succès",
-                      icon : 'success'
-                    });
-                  }else{
-                    Swal.fire({
-                      title: 'Erreur lors de la modification',
-                      text: "Une erreur est survenue lors de la modification du role",
-                      icon: 'error'
-                    });
+              if(itemBeforeCookingSelected === undefined){
+                itemBeforeCookingSelected = furnace.itemBeforeCooking;
+              }else{
+                let itemBeforeCookingSelectedIndex = this.itemNotInFurnace.findIndex(item => {
+                  if(itemBeforeCookingSelected != undefined){
+                    return item.id === itemBeforeCookingSelected.id;
                   }
+                  return null;
                 });
+
+                if(itemBeforeCookingSelectedIndex != null){
+                  this.itemNotInFurnace.splice(itemBeforeCookingSelectedIndex, 1);
+                }
+
+                this.itemNotInFurnace.push(furnace.itemBeforeCooking);
+              }
+
+              if(itemAfterCookingSelected === undefined){
+                itemAfterCookingSelected = furnace.itemAfterCooking;
+              }else{
+                let itemAfterCookingSelectedIndex = this.itemNotInFurnace.findIndex(item => {
+                  if(itemAfterCookingSelected != undefined){
+                    return item.id === itemAfterCookingSelected.id;
+                  }
+                  return null;
+                });
+
+                if(itemAfterCookingSelectedIndex != null){
+                  this.itemNotInFurnace.splice(itemAfterCookingSelectedIndex, 1);
+                }
+
+                this.itemNotInFurnace.push(furnace.itemAfterCooking);
+              }
+
+
+              if(itemBeforeCookingSelected != null && itemAfterCookingSelected != null){
+                furnace.itemBeforeCookingId = itemBeforeCookingSelected.id;
+                furnace.itemBeforeCooking = itemBeforeCookingSelected;
+
+                furnace.itemAfterCookingId = itemAfterCookingSelected.id;
+                furnace.itemAfterCooking = itemAfterCookingSelected;
+
+
+                this.furnaceService.updateFurnace(furnace)
+                  .subscribe((modificationSucceed : string) => {
+                    if(modificationSucceed === 'True'){
+                      Swal.fire({
+                        title : 'Confirmation de modification !',
+                        text : "Le role de l'utilisateur a été mis à jour avec succès",
+                        icon : 'success'
+                      });
+                    }else{
+                      Swal.fire({
+                        title: 'Erreur lors de la modification',
+                        text: "Une erreur est survenue lors de la modification du role",
+                        icon: 'error'
+                      });
+                    }
+                  });
+              }
             }
-          }
         });
-      }
+      });
     });
   }
 
@@ -239,7 +284,7 @@ export class FurnaceManagementComponent implements OnInit {
 
               let furnaceIndex = this.furnaceList.findIndex(furnace => furnace.id === id);
               let furnace = this.furnaceList[furnaceIndex];
-              
+
               this.furnaceList.splice(furnaceIndex, 1);
 
               let itemBeforeCookingIndex = this.itemList.findIndex(item => item.id === furnace.itemBeforeCooking.id);
