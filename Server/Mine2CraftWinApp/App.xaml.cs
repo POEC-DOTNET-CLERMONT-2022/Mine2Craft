@@ -20,6 +20,7 @@ namespace Mine2CraftWinApp
         public IRequestManager<CompleteItemModel, CompleteItemDto> CompleteItemRequestManager { get; }
         public IRequestManager<ToolModel, ToolDto> ToolRequestManager { get; }
         public IRequestManager<ItemModel, ItemDto> ItemDataManager { get; } 
+        public IRequestManager<FurnaceModel, FurnaceDto> FurnaceManager { get; }
         public INavigator Navigator { get; } = new Navigator();
 
 
@@ -31,6 +32,7 @@ namespace Mine2CraftWinApp
             CompleteItemRequestManager = new CompleteItemRequestManager(HttpClient, Mapper, SERVER_URL);
             ToolRequestManager = new ToolRequestManager(HttpClient, Mapper, SERVER_URL);
             ItemDataManager = new ItemDataManager(HttpClient, Mapper, SERVER_URL);
+            FurnaceManager = new FurnaceManager(HttpClient, Mapper, SERVER_URL);
         }
 
         private void App_OnStartup(object sender, StartupEventArgs e) // bind le Startup="App_OnStartup" dans le fichier app.xaml 

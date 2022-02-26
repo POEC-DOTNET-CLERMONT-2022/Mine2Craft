@@ -8,6 +8,7 @@ namespace Mine2CraftWinApp.Profile
         public ModelProfile()
         {
             CreateMap<ItemModel, ItemDto>().ReverseMap();
+            CreateMap<FurnaceModel, FurnaceDto>().ReverseMap();
         }
     }
 }
