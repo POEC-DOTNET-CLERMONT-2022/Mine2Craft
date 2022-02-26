@@ -9,6 +9,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import {HttpClientModule} from "@angular/common/http";
 import {ReactiveFormsModule} from "@angular/forms";
 import { LoginComponent } from './pages/login/login.component';
+import { AuthModule } from '@auth0/auth0-angular';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,10 @@ import { LoginComponent } from './pages/login/login.component';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    AuthModule.forRoot({
+      domain: 'mine2craftcompany.eu.auth0.com',
+      clientId: 'JrBTJ7fW4muhpWgXVIz5jrAtSrPXks3o'
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {FurnaceService} from "../../../services/furnace/furnace.service";
 import {Observable, subscribeOn} from "rxjs";
 import {FurnaceDto} from "../../../dtos/furnace-dto";
@@ -6,6 +6,8 @@ import Swal from 'sweetalert2'
 import {Guid} from "guid-typescript";
 import {ItemDto} from "../../../dtos/item-dto";
 import {ItemService} from "../../../services/item/item.service";
+import {AuthService} from "@auth0/auth0-angular";
+import {DOCUMENT} from "@angular/common";
 
 @Component({
   selector: 'app-furnace-management',
@@ -18,7 +20,7 @@ export class FurnaceManagementComponent implements OnInit {
   itemList : ItemDto[] = [];
   itemNotInFurnace: ItemDto[] = [];
 
-  constructor(private furnaceService : FurnaceService, private itemService : ItemService) {
+  constructor(private furnaceService : FurnaceService, private itemService : ItemService, @Inject(DOCUMENT) public document: Document, public auth: AuthService) {
   }
 
   ngOnInit(): void {

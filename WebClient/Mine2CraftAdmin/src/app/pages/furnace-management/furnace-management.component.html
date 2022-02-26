@@ -1,5 +1,14 @@
 <p>user-management works!</p>
 <div class="container">
+  <ng-container *ngIf="auth.isAuthenticated$ | async; else loggedOut">
+    <button (click)="auth.logout({ returnTo: document.location.origin })">
+      Log out
+    </button>
+  </ng-container>
+
+  <ng-template #loggedOut>
+    <button (click)="auth.loginWithRedirect()">Log in</button>
+  </ng-template>
   <div class="row" *ngIf="furnaceList; else noDatas">
     <div class="col-1 offset-10">
       <button class="btn btn-success mx-1" (click)="createFurnace()">

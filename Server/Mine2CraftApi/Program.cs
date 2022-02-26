@@ -12,8 +12,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddScoped(typeof(IRepositoryGeneric<>), typeof(SqlRepositoryGeneric<>));
 builder.Services.AddScoped<DbContext, SqlDbContext>();
-builder.Services.AddDbContext<SqlDbContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionAlexis")));
-//builder.Services.AddDbContext<SqlDbContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionJohan")));
+//builder.Services.AddDbContext<SqlDbContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionAlexis")));
+builder.Services.AddDbContext<SqlDbContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionJohan")));
 
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
