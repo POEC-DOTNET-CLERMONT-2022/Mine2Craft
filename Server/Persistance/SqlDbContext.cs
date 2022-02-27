@@ -84,6 +84,5 @@ namespace Persistance
                 .Property(f => f.Id).ValueGeneratedOnAdd();
 
         }
-        
     }
 }

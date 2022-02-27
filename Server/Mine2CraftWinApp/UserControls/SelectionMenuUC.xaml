@@ -5,19 +5,128 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Mine2CraftWinApp.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="720" d:DesignWidth="1080">
+             d:DesignHeight="720" d:DesignWidth="1080" Style="{StaticResource MineCraftFont}">
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Image/minecraft-wallpaper.jpg"/>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="250"></RowDefinition>
+            <RowDefinition Height="70"></RowDefinition>
+            <RowDefinition Height="70"></RowDefinition>
+            <RowDefinition Height="70"></RowDefinition>
+            <RowDefinition Height="70"></RowDefinition>
+            <RowDefinition Height="70"></RowDefinition>
+        </Grid.RowDefinitions>
 
-        <StackPanel Grid.Column="1"><!--TODO : pas de colonne ici --> 
-            <Button Click="GoToCraftListClick" Content="Liste des craft" Height="50" Width="200" Margin="0,30"></Button>
-            <Button Click="GoToCompleteItemManager" Content="Complete Item Manager" Height="50" Width="200" Margin="0,30"></Button>
-            <Button Click="GoToItemManagerPage" Content="Item Manager" Height="50" Width="200" Margin="0,30"></Button>
-            <Button Click="GoToFurnaceManagerPage" Content="Furnace Manager" Height="50" Width="200" Margin="0,30"></Button>
-            <Button Click="GotoUserConnectionPage" Content="User connection" Height="50" Width="200" Margin="0,30"></Button>
-
-            <Image Width="100" Height="100" Source="/UserControls/arrowload.jpg" Stretch="Fill"/>
-
-        </StackPanel>
-
+        <Image Height="124" Source="/Image/Mine2Craft-logo.png" Stretch="Fill" Width="800" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,0,0,0"/>
+        <Button Grid.Row="1" Click="GoToCraftListClick" Content="Liste des craft" Height="50" Width="500" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="Gainsboro" FontSize="20" Cursor="Hand">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#FF716B6B"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}" BorderBrush="Black" BorderThickness="2,2,2,2">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="ForestGreen"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button Grid.Row="2" Click="GoToFurnaceManagerPage" Content="Furnace Manager" Height="50" Width="500" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="Gainsboro" FontSize="20" Cursor="Hand">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#FF716B6B"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}" BorderBrush="Black" BorderThickness="2,2,2,2">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="ForestGreen"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button Grid.Row="3" Click="GoToItemManagerPage" Content="Item Manager" Height="50" Width="500" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="Gainsboro" FontSize="20" Cursor="Hand">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#FF716B6B"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}" BorderBrush="Black" BorderThickness="2,2,2,2">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="ForestGreen"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button Grid.Row="4" Click="GoToCompleteItemManager" Content="Complete Item Manager" Height="50" Width="500" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="Gainsboro" FontSize="20" Cursor="Hand">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#FF716B6B"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}" BorderBrush="Black" BorderThickness="2,2,2,2">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="ForestGreen"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button Grid.Row="5" Click="GotoUserConnectionPage" Content="User connection" Height="50" Width="500" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="Gainsboro" FontSize="20" Cursor="Hand">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#FF716B6B"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}" BorderBrush="Black" BorderThickness="2,2,2,2">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="ForestGreen"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
     </Grid>
 </UserControl>
