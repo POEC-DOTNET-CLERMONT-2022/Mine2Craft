@@ -42,7 +42,7 @@
                     <SolidColorBrush Color="Black" Opacity="0.75"/>
                 </StackPanel.Background>
                 <Label Content="Liste des Items" Margin="0,5,0,5" HorizontalAlignment="Center" Height="50" VerticalAlignment="Center" FontSize="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White"></Label>
-                <ListBox x:Name="lbItem" ItemsSource="{Binding ItemsList.Items}" SelectedItem="{Binding ItemsList.CurrentItem}" FontSize="16" HorizontalContentAlignment="Left" Foreground="White" SelectionChanged="lbItem_SelectionChanged" Height="560" d:ItemsSource="{d:SampleData ItemCount=25}" Width="310" BorderBrush="{x:Null}">
+                <ListBox x:Name="LbItem" ItemsSource="{Binding ItemsList.Items}" SelectedItem="{Binding ItemsList.CurrentItem}" FontSize="16" HorizontalContentAlignment="Left" Foreground="White" SelectionChanged="LbItem_SelectionChanged" Height="560" d:ItemsSource="{d:SampleData ItemCount=25}" Width="310" BorderBrush="{x:Null}">
                     <ListBox.Background>
                         <SolidColorBrush Color="Black" Opacity="0"/>
                     </ListBox.Background>
@@ -65,11 +65,9 @@
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
                                         <Grid.RowDefinitions>
-                                            <!--<RowDefinition Height="20" />-->
                                             <RowDefinition Height="50" />
                                         </Grid.RowDefinitions>
 
-                                        <!--<TextBlock Grid.Row="0" Grid.Column="0" Text="Name" HorizontalAlignment="Center" FontSize="14" FontWeight="Bold"/>-->
                                         <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Name}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                     </Grid>
                                     <Image Grid.Column="1" Width="45" Height="45" Source="{Binding ImagePath}"/>
@@ -111,54 +109,21 @@
                         <TextBox x:Name="tbDescItem" Grid.Row="4" DataContext="{Binding ItemsList.CurrentItem}" Text="{Binding Description}" Margin="0,0,0,20" FontSize="20" Height="30" VerticalContentAlignment="Center" />
 
                         <Viewbox Grid.Row="5" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,15">
-                            <RadioButton x:Name="rbCooked" GroupName="GrItem" DataContext="{Binding ItemsList.CurrentItem}" IsChecked="{Binding IsCooked}" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="5,-4,0,0" Foreground="White" Checked="rbCooked_Checked" >Can be cooked</RadioButton>
+                            <RadioButton x:Name="rbCooked" GroupName="GrItem" DataContext="{Binding ItemsList.CurrentItem}" IsChecked="{Binding IsCooked}" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="5,-4,0,0" Foreground="White" >Can be cooked</RadioButton>
                         </Viewbox>
                         <Viewbox Grid.Row="6" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,15">
-                            <RadioButton x:Name="rbCombustible" GroupName="GrItem" DataContext="{Binding ItemsList.CurrentItem}" IsChecked="{Binding IsCombustible}" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="5,-4,0,0" Foreground="White" Checked="rbCombustible_Checked" >Can be used at fuel</RadioButton>
+                            <RadioButton x:Name="rbCombustible" GroupName="GrItem" DataContext="{Binding ItemsList.CurrentItem}" IsChecked="{Binding IsCombustible}" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="5,-4,0,0" Foreground="White" >Can be used at fuel</RadioButton>
                         </Viewbox>
                         <Viewbox Grid.Row="7" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,10">
-                            <RadioButton x:Name="rbNull" GroupName="GrItem" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="5,-4,0,0" Foreground="White" Checked="rbNull_Checked" >Nothing</RadioButton>
+                            <RadioButton x:Name="rbNull" GroupName="GrItem" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="5,-4,0,0" Foreground="White" >Nothing</RadioButton>
                         </Viewbox>
 
                         <Label Grid.Row="8" Foreground="White" FontSize="18">Liste d'image</Label>
                         <ComboBox Grid.Row="9" x:Name="cbListImage" SelectionChanged="cbListImage_SelectionChanged" FontFamily="Arial"></ComboBox>
                         <Label Grid.Row="10" Foreground="White" FontSize="18">Chemin de l'image</Label>
                         <TextBox x:Name="tbImagePath" Grid.Row="11" DataContext="{Binding ItemsList.CurrentItem}" Text="{Binding ImagePath}" Margin="0,0,0,10" FontSize="16" Height="25" VerticalContentAlignment="Center" />
-
                     </StackPanel>
-
                 </Grid>
-                <StackPanel x:Name="stackLbCooked" Visibility="Collapsed" Margin="0,10,0,0" Panel.ZIndex="100" HorizontalAlignment="Center" Grid.RowSpan="2" Width="335" >
-                    <ListBox DataContext="{Binding ItemCookedList}" x:Name="lbCooked" ItemsSource="{Binding Items}" SelectedItem="{Binding CurrentItem}" Height="32" Width="275" FontSize="18" HorizontalContentAlignment="Left" Foreground="Black" MouseEnter="lbCooked_MouseEnter" MouseLeave="lbCooked_MouseLeave" d:ItemsSource="{d:SampleData ItemCount=5}">
-                        <ListBox.Background>
-                            <SolidColorBrush Color="White" Opacity="20"/>
-                        </ListBox.Background>
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Width="230">
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="5*"/>
-                                            <ColumnDefinition Width="1*"/>
-                                            <ColumnDefinition Width="1*"/>
-                                        </Grid.ColumnDefinitions>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="30" />
-                                        </Grid.RowDefinitions>
-                                        <TextBlock Grid.Column="0" Text="{Binding Name}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                                        <Image Grid.Column="2" Width="30" Height="30" Source="{Binding ImagePath}"></Image>
-                                    </Grid>
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                    <TextBox x:Name="tbGuid" DataContext="{Binding ItemCookedList.CurrentItem}" Text="{Binding Id}" Visibility="Collapsed"/>
-                </StackPanel>
-
-                <StackPanel x:Name="stackItemBeforeCook" Visibility="Collapsed">
-                    <Label Foreground="White" FontSize="20" Margin="10,0,10,0">Item needed for be cooked</Label>
-                    <TextBox x:Name="tbItemBeforeCook" DataContext="{Binding ItemsList.CurrentItem}" Text="{Binding ItemBeforeCook}" Margin="10,0,10,0" FontSize="20" Height="35" VerticalContentAlignment="Center"/>
-                </StackPanel>
 
                 <Grid Margin="0,30,0,0">
                     <Grid.ColumnDefinitions>
