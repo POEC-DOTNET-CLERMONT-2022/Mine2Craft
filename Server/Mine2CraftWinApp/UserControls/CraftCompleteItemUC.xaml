@@ -9,22 +9,31 @@
              d:DesignHeight="300" d:DesignWidth="300"
              >
     <Grid DataContext="{Binding ., ElementName=Root}">
-        <StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Label x:Name="Component0" Content="{Binding .WorkbenchCompleteItem[0].Item.Name}" Margin="20"></Label>
-                <Label x:Name="Component1" Content="{Binding .WorkbenchCompleteItem[1].Item.Name}" Margin="20"></Label>
-                <Label x:Name="Component2" Content="{Binding .WorkbenchCompleteItem[2].Item.Name}" Margin="20"></Label>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Label x:Name="Component3" Content="{Binding .WorkbenchCompleteItem[3].Item.Name}" Margin="20"></Label>
-                <Label x:Name="Component4" Content="{Binding .WorkbenchCompleteItem[4].Item.Name}" Margin="20"></Label>
-                <Label x:Name="Component5" Content="{Binding .WorkbenchCompleteItem[5].Item.Name}" Margin="20"></Label>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Label x:Name="Component6" Content="{Binding .WorkbenchCompleteItem[6].Item.Name}" Margin="20"></Label>
-                <Label x:Name="Component7" Content="{Binding .WorkbenchCompleteItem[7].Item.Name}" Margin="20"></Label>
-                <Label x:Name="Component8" Content="{Binding .WorkbenchCompleteItem[8].Item.Name}" Margin="20"></Label>
-            </StackPanel>
-        </StackPanel>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Image/WorkBench.PNG"/>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Label x:Name="Component0" Grid.Column="0" Grid.Row="0" Content="{Binding WorkbenchCompleteItem[0].Item.Name}" Margin="30,30,10,10" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+        <Label x:Name="Component1" Grid.Column="1" Grid.Row="0" Content="{Binding WorkbenchCompleteItem[1].Item.Name}" Margin="20,30,20,10" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+        <Label x:Name="Component2" Grid.Column="2" Grid.Row="0" Content="{Binding WorkbenchCompleteItem[2].Item.Name}" Margin="10,30,30,10" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+
+        <Label x:Name="Component3" Grid.Column="0" Grid.Row="1" Content="{Binding WorkbenchCompleteItem[3].Item.Name}" Margin="30,20,10,20" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+        <Label x:Name="Component4" Grid.Column="1" Grid.Row="1" Content="{Binding WorkbenchCompleteItem[4].Item.Name}" Margin="20" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+        <Label x:Name="Component5" Grid.Column="2" Grid.Row="1" Content="{Binding WorkbenchCompleteItem[5].Item.Name}" Margin="10,20,30,20" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+
+        <Label x:Name="Component6" Grid.Column="0" Grid.Row="2" Content="{Binding WorkbenchCompleteItem[6].Item.Name}" Margin="30,10,10,30" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+        <Label x:Name="Component7" Grid.Column="1" Grid.Row="2" Content="{Binding WorkbenchCompleteItem[7].Item.Name}" Margin="20,10,20,30" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+        <Label x:Name="Component8" Grid.Column="2" Grid.Row="2" Content="{Binding WorkbenchCompleteItem[8].Item.Name}" Margin="10,10,30,30" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+        
     </Grid>
 </UserControl>

@@ -6,15 +6,18 @@
              xmlns:local="clr-namespace:Mine2CraftWinApp.UserControls"
              mc:Ignorable="d" 
              x:Name="Root"
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800" Style="{StaticResource MineCraftFont}">
     <Grid DataContext="{Binding ., ElementName=Root}">
+        <Grid.Background>
+            <SolidColorBrush Color="Black" Opacity="0.4"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="9*"/>
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="0" Content="Liste des objets :" HorizontalAlignment="Center"></Label>
-        <ListBox x:Name="ListBoxCompleteItem" Grid.Row="1" ItemsSource="{Binding ListCraft.CompleteItemsModels}" SelectedItem="{Binding ListCraft.CurrentCompleteItem}">
+        <Label Grid.Row="0" Content="Liste des objets :" HorizontalAlignment="Center" Foreground="White" VerticalAlignment="Center" FontSize="16"></Label>
+        <ListBox x:Name="ListBoxCompleteItem" Grid.Row="1" ItemsSource="{Binding ListCraft.CompleteItemsModels}" SelectedItem="{Binding ListCraft.CurrentCompleteItem}" Background="{x:Null}" Foreground="#FFC1C1C1">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Vertical">

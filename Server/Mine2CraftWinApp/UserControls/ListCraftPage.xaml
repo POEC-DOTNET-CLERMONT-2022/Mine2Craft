@@ -8,16 +8,19 @@
              xmlns:converter="clr-namespace:Mine2CraftWinApp.Converter"
              xmlns:system="clr-namespace:System;assembly=System.Runtime"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800"
+             d:DesignHeight="720" d:DesignWidth="1080" Style="{StaticResource MineCraftFont}"
              Loaded="Window_Loaded"
              >
     <UserControl.Resources>
         <converter:DisplaySpecificityCompleteItemValue x:Key="DisplaySpecificityCompleteItemValue"/>
         <converter:DisplaySpecificityCompleteItemLabel x:Key="DisplaySpecificityCompleteItemLabel"/>
     </UserControl.Resources>
-    
+
     <Grid>
-        
+        <Grid.Background>
+            <ImageBrush ImageSource="/Image/minecrafWall.jpg"/>
+        </Grid.Background>
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="3*"/>
@@ -30,11 +33,14 @@
         <Grid Grid.Column="1">
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="1*"/>
+                <RowDefinition Height="0.8*"/>
                 <RowDefinition Height="3*"/>
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0">
+                <Grid.Background>
+                    <SolidColorBrush Color="Black" Opacity="0.4"/>
+                </Grid.Background>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
@@ -80,22 +86,26 @@
 
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.2*"/>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="3*"/>
                 </Grid.ColumnDefinitions>
 
-                <StackPanel Grid.Column="0" Margin="30, 50, 30, 30">
-                    <Label x:Name="CompleteItemDescription" HorizontalAlignment="Center" Content="Description :"></Label>
-                    <TextBlock x:Name="CompleteItemDescriptionContainer" HorizontalAlignment="Center" Text="{Binding ListCraft.CurrentCompleteItem.Description ,ElementName=ListUc}"></TextBlock>
-                    <Label x:Name="CompleteItemDurability" HorizontalAlignment="Center" Content="Durabilité :"></Label>
-                    <TextBlock x:Name="CompleteItemDurabilityContainer" HorizontalAlignment="Center" Text="{Binding ListCraft.CurrentCompleteItem.Durability ,ElementName=ListUc}"></TextBlock>
-                    <Label x:Name="CompleteItemSpecifity" HorizontalAlignment="Center" Content="{Binding ListCraft.CurrentCompleteItem ,ElementName=ListUc,  Converter={StaticResource DisplaySpecificityCompleteItemLabel}}"></Label>
-                    <TextBlock x:Name="CompleteItemSpecifityContainer" HorizontalAlignment="Center" Text="{Binding ListCraft.CurrentCompleteItem ,ElementName=ListUc,  Converter={StaticResource DisplaySpecificityCompleteItemValue}}"></TextBlock>
+                <StackPanel Grid.Column="1" Margin="0,65,0,26" >
+                    <StackPanel.Background>
+                        <SolidColorBrush Color="#FF5B5B5B" Opacity="0.995"/>
+                    </StackPanel.Background>
+                    <Label x:Name="CompleteItemDescription" HorizontalAlignment="Center" Content="Description :" VerticalAlignment="Center" FontSize="14" Foreground="#FFE0E0E0"></Label>
+                    <TextBlock x:Name="CompleteItemDescriptionContainer" HorizontalAlignment="Center" Text="{Binding ListCraft.CurrentCompleteItem.Description ,ElementName=ListUc}" FontSize="14" Foreground="#FFE0E0E0"></TextBlock>
+                    <Label x:Name="CompleteItemDurability" HorizontalAlignment="Center" Content="Durabilité :" FontSize="14" Foreground="#FFE0E0E0"></Label>
+                    <TextBlock x:Name="CompleteItemDurabilityContainer" HorizontalAlignment="Center" Text="{Binding ListCraft.CurrentCompleteItem.Durability ,ElementName=ListUc}" FontSize="14" Foreground="#FFE0E0E0"></TextBlock>
+                    <Label x:Name="CompleteItemSpecifity" HorizontalAlignment="Center" Content="{Binding ListCraft.CurrentCompleteItem ,ElementName=ListUc,  Converter={StaticResource DisplaySpecificityCompleteItemLabel}}" FontSize="14" Foreground="#FFE0E0E0"></Label>
+                    <TextBlock x:Name="CompleteItemSpecifityContainer" HorizontalAlignment="Center" Text="{Binding ListCraft.CurrentCompleteItem ,ElementName=ListUc,  Converter={StaticResource DisplaySpecificityCompleteItemValue}}" FontSize="14" Foreground="#FFE0E0E0"></TextBlock>
                 </StackPanel>
 
-                <StackPanel x:Name="CraftList" Grid.Column="1" Orientation="Vertical" Margin="20, 50, 30, 30">
-                    <Label Content="Craft de l'objet :" HorizontalAlignment="Center"></Label>
-                    <local:CraftCompleteItemUC WorkbenchCompleteItem="{Binding .CompleteItemsList.CurrentCompleteItem.Workbenches, ElementName=Root}"></local:CraftCompleteItemUC>
+                <StackPanel x:Name="CraftList" Grid.Column="2" Orientation="Vertical">
+                    <Label Content="Craft de l'objet" HorizontalAlignment="Center" FontSize="18" FontWeight="Normal" Foreground="#FFE0E0E0" Background="#FF636363" Margin="0,20,0,10"></Label>
+                    <local:CraftCompleteItemUC WorkbenchCompleteItem="{Binding CompleteItemsList.CurrentCompleteItem.Workbenches, ElementName=Root}" Height="450" Width="450"></local:CraftCompleteItemUC>
                 </StackPanel>
             </Grid>
         </Grid>
