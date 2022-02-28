@@ -57,6 +57,8 @@ export class FurnaceManagementComponent implements OnInit {
     let itemAfterCookingSelected : ItemDto;
 
     Swal.fire({
+      title: "Création d'une relation pour le four",
+      text: "Item avant cuisson",
       input: "select",
       inputAttributes: {
         id: "dropdownItemBeforeCooking",
@@ -76,6 +78,8 @@ export class FurnaceManagementComponent implements OnInit {
         itemBeforeCookingSelected = this.itemNotInFurnace[itemBeforeCookingSelectedIndex];
 
         Swal.fire({
+          title: "Création d'une relation pour le four",
+          text: "Item après cuisson",
           input: "select",
           inputAttributes: {
             id: "dropdownItemAfterCooking",
@@ -106,8 +110,8 @@ export class FurnaceManagementComponent implements OnInit {
                 .subscribe((creationSucceed : number) => {
                   if(creationSucceed === 1){
                     Swal.fire({
-                      title : 'Confirmation de modification !',
-                      text : "Le role de l'utilisateur a été mis à jour avec succès",
+                      title : 'Confirmation de création !',
+                      text : "La relation a été créée avec succès",
                       icon : 'success'
                     });
 
@@ -125,8 +129,8 @@ export class FurnaceManagementComponent implements OnInit {
                     this.itemNotInFurnace.splice(itemAfterCookingIndex, 1);
                   }else{
                     Swal.fire({
-                      title: 'Erreur lors de la modification',
-                      text: "Une erreur est survenue lors de la modification du role",
+                      title: 'Erreur lors de la création',
+                      text: "Une erreur est survenue lors de la création de la relation",
                       icon: 'error'
                     });
                   }
@@ -152,6 +156,8 @@ export class FurnaceManagementComponent implements OnInit {
     let itemAfterCookingSelected : ItemDto | undefined;
 
     Swal.fire({
+      title: "Modification d'une relation",
+      text: "cancel pour ne pas changer l'item avant cuisson",
       input: "select",
       inputAttributes: {
         id: "dropdownItemBeforeCooking",
@@ -172,6 +178,8 @@ export class FurnaceManagementComponent implements OnInit {
       }
 
       Swal.fire({
+        title: "Modification d'une relation",
+        text: "cancel pour ne pas changer l'item après cuisson",
         input: "select",
         inputAttributes: {
           id: "dropdownItemAfterCooking",
@@ -193,6 +201,7 @@ export class FurnaceManagementComponent implements OnInit {
 
         Swal.fire({
           title: 'êtes vous sûr de vouloir modifier cette relation ?',
+          icon: 'warning',
           showCancelButton: true,
         }).then((result) => {
             if(result.isConfirmed){
@@ -245,13 +254,13 @@ export class FurnaceManagementComponent implements OnInit {
                     if(modificationSucceed === 'True'){
                       Swal.fire({
                         title : 'Confirmation de modification !',
-                        text : "Le role de l'utilisateur a été mis à jour avec succès",
+                        text : "La relation a été mise à jour avec succès",
                         icon : 'success'
                       });
                     }else{
                       Swal.fire({
                         title: 'Erreur lors de la modification',
-                        text: "Une erreur est survenue lors de la modification du role",
+                        text: "Une erreur est survenue lors de la modification de la relation",
                         icon: 'error'
                       });
                     }
@@ -265,8 +274,8 @@ export class FurnaceManagementComponent implements OnInit {
 
   deleteFurnace(id : Guid|undefined) {
     Swal.fire({
-      title: "Suppresion d'un utilisateur !",
-      text: 'Êtes-vous sûr de vouloir supprimer cet utilisateur ?',
+      title: "Suppresion d'une relation !",
+      text: 'Êtes-vous sûr de vouloir supprimer cette relation ?',
       icon: 'warning',
       confirmButtonText: 'For sure !',
       confirmButtonColor: '#33dd36',
@@ -280,7 +289,7 @@ export class FurnaceManagementComponent implements OnInit {
             if(rawAffected === 1){
               Swal.fire({
                 title : 'Confirmation de suppresion !',
-                text : "L'utilisateur a été supprimé avec succès",
+                text : "La relation a été supprimée avec succès",
                 icon : 'success'
               });
 

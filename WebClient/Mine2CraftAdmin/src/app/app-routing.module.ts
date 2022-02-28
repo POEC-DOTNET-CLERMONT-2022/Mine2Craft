@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '@auth0/auth0-angular';
 import {FurnaceManagementComponent} from "./pages/furnace-management/furnace-management.component";
-import {LoginComponent} from "./pages/login/login.component";
+import {HomeComponent} from "./pages/home/home.component";
 
 const routes: Routes = [
-  {path: '', component: LoginComponent},
+  {path: '', component: HomeComponent},
   {path: 'furnace', component: FurnaceManagementComponent, canActivate : [AuthGuard]},
 ];
 

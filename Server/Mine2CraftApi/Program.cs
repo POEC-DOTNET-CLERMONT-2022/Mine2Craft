@@ -42,8 +42,6 @@ using (var scope = app.Services.CreateScope())
 
 app.UseCors(MyAllowSpecificOrigins);
 
-
-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

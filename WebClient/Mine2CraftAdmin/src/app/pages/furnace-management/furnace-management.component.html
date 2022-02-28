@@ -1,20 +1,8 @@
-<p>user-management works!</p>
 <div class="container">
-  <ng-container *ngIf="auth.isAuthenticated$ | async; else loggedOut">
-    <button (click)="auth.logout({ returnTo: document.location.origin })">
-      Log out
-    </button>
-  </ng-container>
-
-  <ng-template #loggedOut>
-    <button (click)="auth.loginWithRedirect()">Log in</button>
-  </ng-template>
   <div class="row" *ngIf="furnaceList; else noDatas">
-    <div class="col-1 offset-10">
-      <button class="btn btn-success mx-1" (click)="createFurnace()">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
-          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
-        </svg>
+    <div class="col-3 offset-9 create-button-container">
+      <button class="btn btn-success mx-1 create-button" (click)="createFurnace()">
+        Créer une relation
       </button>
     </div>
     <table class="table text-center table-type">

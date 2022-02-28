@@ -1,1 +1,19 @@
-<p>header works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-9">
+        <button routerLink="/furnace">Four</button>
+    </div>
+    <div class="col-2 offset-1">
+      <ng-container *ngIf="auth.isAuthenticated$ | async; else loggedOut">
+        <button class='log-out-button' (click)="auth.logout({ returnTo: document.location.origin })">
+          Deconnexion
+        </button>
+      </ng-container>
+
+      <ng-template #loggedOut>
+        <button class='log-in-button' (click)="auth.loginWithRedirect()">Connexion</button>
+      </ng-template>
+    </div>
+  </div>
+</div>
+

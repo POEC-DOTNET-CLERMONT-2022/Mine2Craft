@@ -1,3 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import "~bootstrap/scss/bootstrap";
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+$green-hover: #228b22;
+$grey-background: #aaa;
+
+@font-face {
+  font-family: "Minecraft";
+  src: local("Minecraft"), url(./assets/fonts/Minecraft/Minecraft.ttf) format("truetype");
+}
+
+body{
+  background: url("/../assets/images/minecrafWall.jpg");
+}
