@@ -3,6 +3,7 @@ using Dtos;
 using Entities;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Mine2CraftApi.Controllers;
 using Moq;
@@ -17,8 +18,9 @@ namespace TestProject1
     public class ItemControllerTest
     {
         private ItemController ItemController { get; set; }
-
         public IRepositoryGeneric<ItemEntity> ItemRepository { get; set; } = new FakeRepositoryGeneric<ItemEntity>();
+        private readonly ILogger<ItemController> _logger;
+
 
         //public Mock<IRepositoryGeneric<ItemEntity>> MockItemRepository { get; set; }
 
@@ -52,7 +54,7 @@ namespace TestProject1
 
             Mapper _mapper = new Mapper(configuration);
 
-            ItemController = new ItemController(ItemRepository, _mapper);
+            ItemController = new ItemController(ItemRepository, _mapper, _logger);
         }
 
         [TestMethod]
