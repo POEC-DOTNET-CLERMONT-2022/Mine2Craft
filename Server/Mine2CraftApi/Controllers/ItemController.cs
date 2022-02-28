@@ -13,11 +13,13 @@ namespace Mine2CraftApi.Controllers
     {
         private IRepositoryGeneric<ItemEntity> _itemRepository;
         private IMapper _mapper;
-        // TODO Add Ilogger
-        public ItemController(IRepositoryGeneric<ItemEntity> userRepository, IMapper mapper)
+        private readonly ILogger<ItemController> _logger;
+
+        public ItemController(IRepositoryGeneric<ItemEntity> userRepository, IMapper mapper, ILogger<ItemController> logger)
         {
             _itemRepository = userRepository;
             _mapper = mapper;
+            _logger = logger;
         }
 
          // GET: api/<ItemController>
@@ -33,22 +35,12 @@ namespace Mine2CraftApi.Controllers
                 var dto = _mapper.Map<IEnumerable<ItemDto>>(itemEntity);
                 return Ok(dto);
             }
-            catch (Exception)
+            catch (Exception e)
             {
-
+                _logger.LogError(e, "An error occured during get all request on item from ItemController");
                 return StatusCode(500);
             }
 
-        }
-
-        // GET api/<ItemController>/5
-        [HttpGet("{id}")]
-        [ProducesResponseType(200)]
-        [ProducesResponseType(404)]
-        [ProducesResponseType(500)]
-        public string Get(int id)
-        {
-            return "value";
         }
 
         // POST api/<ItemController>
@@ -58,10 +50,17 @@ namespace Mine2CraftApi.Controllers
         [ProducesResponseType(500)]
         public IActionResult Post([FromBody] ItemDto itemDto)
         {
-            var itemEntity = _mapper.Map<ItemEntity>(itemDto);
-            _itemRepository.Create(itemEntity);
-    
-            return Ok(CreatedAtAction(nameof(Get), new {id = itemEntity.Id}, itemEntity));
+            try
+            {
+                var itemEntity = _mapper.Map<ItemEntity>(itemDto);
+                _itemRepository.Create(itemEntity);
+                return Ok(CreatedAtAction(nameof(Get), new { id = itemEntity.Id }, itemEntity));
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, "An error occured during Post request on item from ItemController");
+                return StatusCode(500);
+            }
         }
 
         // PUT api/<ItemController>/5
@@ -79,8 +78,9 @@ namespace Mine2CraftApi.Controllers
                     return NotFound();
                 return Ok();
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                _logger.LogError(e, "An error occured during Put request on item from ItemController");
                 return StatusCode(500);
             }
         }
@@ -102,8 +102,9 @@ namespace Mine2CraftApi.Controllers
                 else
                     return BadRequest();
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                _logger.LogError(e, "An error occured during Delete request on item from ItemController");
                 return StatusCode(500);
             }
         }
